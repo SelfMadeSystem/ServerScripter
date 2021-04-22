@@ -1,4 +1,4 @@
-package uwu.smsgamer.serverscriptor;
+package uwu.smsgamer.serverscripter;
 
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.plugin.java.annotation.dependency.SoftDependency;
@@ -8,7 +8,7 @@ import uwu.smsgamer.senapi.Loader;
 
 import java.io.File;
 
-@Plugin(name="ServerScriptor", version="0.1")
+@Plugin(name="ServerScripter", version="0.1")
 @Description("Scripting plugin for Spigot.")
 @Author("Sms_Gamer_3808")
 @SoftDependency("PacketEvents")
