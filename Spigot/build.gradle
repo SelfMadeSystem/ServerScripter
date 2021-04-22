@@ -1,0 +1,52 @@
+plugins {
+    id 'java'
+}
+
+group 'uwu.smsgamer'
+version '0.1'
+
+repositories {
+    mavenCentral()
+    maven {
+        name = 'spigotmc-repo'
+        url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
+    }
+    maven {
+        name = 'sonatype'
+        url = 'https://oss.sonatype.org/content/groups/public/'
+    }
+    maven { url 'https://jitpack.io' }
+    maven { url "https://repo.dmulloy2.net/nexus/repository/public/" }
+    maven {
+        url = 'http://repo.extendedclip.com/content/repositories/placeholderapi/'
+    }
+    maven {
+        url = 'https://mvn.exceptionflug.de/repository/exceptionflug-public/'
+    }
+}
+
+dependencies {
+    implementation project(":Base")
+
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+
+    compile 'net.luckperms:api:5.0'
+
+    compileOnly 'org.spigotmc:spigot-api:1.12.2-R0.1-SNAPSHOT'
+
+    compileOnly 'com.github.simplix-softworks:SimplixStorage:3.2.2'
+
+    compileOnly 'org.projectlombok:lombok:1.18.12'
+    annotationProcessor 'org.projectlombok:lombok:1.18.12'
+
+    testCompileOnly 'org.projectlombok:lombok:1.18.12'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.12'
+
+    compileOnly 'org.spigotmc:plugin-annotations:1.2.3-SNAPSHOT'
+    annotationProcessor 'org.spigotmc:plugin-annotations:1.2.3-SNAPSHOT'
+    compileOnly 'me.clip:placeholderapi:2.10.4'
+}
+
+test {
+    useJUnitPlatform()
+}

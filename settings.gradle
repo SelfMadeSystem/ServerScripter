@@ -1,0 +1,4 @@
+rootProject.name = 'ServerScripter'
+include 'Base'
+include 'Spigot'
+

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Gradle Imported" enabled="true">
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.12/48e4e5d60309ebd833bc528dcf77668eab3cd72c/lombok-1.18.12.jar" />
+        </processorPath>
+        <module name="ServerScripter.Base.test" />
+        <module name="ServerScripter.Base.main" />
+        <module name="ServerScripter.Spigot.test" />
+      </profile>
+      <profile name="Gradle Imported" enabled="true">
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.12/48e4e5d60309ebd833bc528dcf77668eab3cd72c/lombok-1.18.12.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spigotmc/plugin-annotations/1.2.3-SNAPSHOT/66faf777193010e137ddb65ec5f4f63cf41b7c2d/plugin-annotations-1.2.3-SNAPSHOT.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.bukkit/bukkit/1.13-R0.1-SNAPSHOT/ebcbed4b5c0a0e12562b9503eeee316a2b73c401/bukkit-1.13-R0.1-SNAPSHOT.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-lang/commons-lang/2.6/ce1edb914c94ebc388f086c6827e8bdeec71ac2/commons-lang-2.6.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.googlecode.json-simple/json-simple/1.1.1/c9ad4a0850ab676c5c64461a05ca524cdfff59f1/json-simple-1.1.1.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/21.0/3a3d111be1be1b745edfa7d91678a12d7ed38709/guava-21.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.8.0/c4ba5371a29ac9b2ad6129b1d39ea38750043eff/gson-2.8.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.yaml/snakeyaml/1.21/18775fdda48574784f40b47bf478ab0593f92e4d/snakeyaml-1.21.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/junit/junit/4.10/e4f1766ce7404a08f45d859fb9c226fc9e41a861/junit-4.10.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-core/1.1/860340562250678d1a344907ac75754e259cdb14/hamcrest-core-1.1.jar" />
+        </processorPath>
+        <module name="ServerScripter.Spigot.main" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel target="1.8" />
+  </component>
+</project>
