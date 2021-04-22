@@ -13,7 +13,7 @@ import java.io.File;
 @Author("Sms_Gamer_3808")
 @SoftDependency("PacketEvents")
 @SoftDependency("PlaceholderAPI")
-public class SpigotServerScriptor extends JavaPlugin implements Loader {
+public class SpigotServerScripter extends JavaPlugin implements Loader {
     @Override
     public File getFile() {
         return super.getFile();
