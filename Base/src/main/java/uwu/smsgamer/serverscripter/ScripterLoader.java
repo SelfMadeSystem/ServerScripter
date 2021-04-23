@@ -1,6 +1,7 @@
 package uwu.smsgamer.serverscripter;
 
 import de.leonhard.storage.Json;
+import me.godead.lilliputian.*;
 import org.jetbrains.annotations.NotNull;
 import uwu.smsgamer.senapi.Loader;
 
@@ -22,6 +23,18 @@ public final class ScripterLoader {
         this.classLoader = classLoader;
         this.loader = loader;
         this.addonsDir = new File(this.loader.getDataFolder(), "addons");
+    }
+
+    public DependencyBuilder startDependencyBuilder() {
+        return new Lilliputian(loader).getDependencyBuilder()
+                .addDependency(new Dependency(Repository.MAVENCENTRAL,
+                        "org.xerial",
+                        "sqlite-jdbc",
+                        "3.8.11.2"))
+                .addDependency(new Dependency(Repository.JITPACK,
+                        "com.github.simplix-softworks",
+                        "SimplixStorage",
+                        "3.2.2"));
     }
 
     public void loadAddons() {

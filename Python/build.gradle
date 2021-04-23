@@ -1,0 +1,18 @@
+plugins {
+    id 'java'
+}
+
+group 'uwu.smsgamer'
+version '0.1'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation project(":Base")
+}
+
+test {
+    useJUnitPlatform()
+}
