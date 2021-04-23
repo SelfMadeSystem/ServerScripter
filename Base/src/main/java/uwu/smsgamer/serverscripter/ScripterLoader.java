@@ -38,9 +38,9 @@ public final class ScripterLoader {
                     Json json = new Json("<jar>", null,
                             jarFile.getInputStream(entry));
 
-                    String name = json.getString("name");
-                    String version = json.getString("version");
-                    String author = json.getString("author");
+//                    String name = json.getString("name");
+//                    String version = json.getString("version");
+//                    String author = json.getString("author");
                     String main = json.getString("main");
 
                     if (main == null) continue;
@@ -75,6 +75,24 @@ public final class ScripterLoader {
             method.invoke(classLoader, file.toURI().toURL());
         } catch (Throwable t) {
             t.printStackTrace();
+        }
+    }
+
+    public void enableAddons() {
+        for (ScriptAddon addon : addons) {
+            addon.enable();
+        }
+    }
+
+    public void disableAddons() {
+        for (ScriptAddon addon : addons) {
+            addon.disable();
+        }
+    }
+
+    public void reloadAddons() {
+        for (ScriptAddon addon : addons) {
+            addon.reload();
         }
     }
 }
