@@ -1,10 +1,10 @@
 package uwu.smsgamer.serverscripter;
 
-import de.leonhard.storage.Json;
 import lombok.Getter;
 import me.godead.lilliputian.DependencyBuilder;
 
 import java.io.File;
+import java.util.Map;
 
 /**
  * An abstract class that addons must extend.
@@ -15,17 +15,9 @@ import java.io.File;
 @Getter
 public abstract class ScriptAddon {
     File file;
-    Json json;
+    Map<String, String> jsonMap;
     protected String name;
     protected String version;
-
-    /**
-     * Returns scripter.json file as a {@link Json}.
-     * @return scripter.json file as a {@link Json}.
-     */
-    public Json getJson() {
-        return json;
-    }
 
     /**
      * Use this method to load dependencies before loading the addon.

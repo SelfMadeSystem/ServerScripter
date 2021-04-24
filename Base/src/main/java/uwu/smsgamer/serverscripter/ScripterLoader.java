@@ -1,13 +1,14 @@
 package uwu.smsgamer.serverscripter;
 
-import de.leonhard.storage.Json;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import lombok.Getter;
 import me.godead.lilliputian.*;
 import org.jetbrains.annotations.NotNull;
 import uwu.smsgamer.senapi.Loader;
 
-import java.io.File;
-import java.lang.reflect.Method;
+import java.io.*;
+import java.lang.reflect.*;
 import java.net.*;
 import java.util.*;
 import java.util.jar.*;
@@ -77,10 +78,13 @@ public final class ScripterLoader {
 
                     if (entry == null) throw new Exception("scripter.json is null.");
 
-                    Json json = new Json("<jar>", null,
-                            jarFile.getInputStream(entry));
+                    Gson json = new Gson();
 
-                    String main = json.getString("main");
+                    Type type = new TypeToken<Map<String, String>>(){}.getType();
+
+                    Map<String, String> map = json.fromJson(new InputStreamReader(jarFile.getInputStream(entry)), type);
+
+                    String main = map.get("main");
 
                     if (main == null) throw new Exception("Main is null.");
                     String mainClassEntry = main.replace(".", "/") + ".class";
@@ -100,7 +104,7 @@ public final class ScripterLoader {
                         throw new Exception("Version of addon not initialised.");
 
                     addon.file = file;
-                    addon.json = json;
+                    addon.jsonMap = map;
 
                     addon.loadDependencies(builder);
 
