@@ -2,15 +2,18 @@ package uwu.smsgamer.serverscripter;
 
 import lombok.Getter;
 import me.godead.lilliputian.DependencyBuilder;
+import org.bukkit.command.Command;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.plugin.java.annotation.dependency.SoftDependency;
 import org.bukkit.plugin.java.annotation.plugin.*;
 import org.bukkit.plugin.java.annotation.plugin.author.Author;
 import uwu.smsgamer.senapi.Loader;
-import uwu.smsgamer.serverscripter.utils.ScriptListenerHelper;
+import uwu.smsgamer.serverscripter.command.CommandScript;
+import uwu.smsgamer.serverscripter.utils.*;
 
 import java.io.File;
 import java.net.URLClassLoader;
+import java.util.Collections;
 
 @Plugin(name = "ServerScripter", version = "0.1")
 @Description("Scripting plugin for Spigot.")
@@ -44,6 +47,8 @@ public class SpigotServerScripter extends JavaPlugin implements Loader {
     public void onEnable() {
         ScriptListenerHelper.init();
         scripterLoader.enableAddons();
+        ScriptCommand command = new ScriptCommand("script", "ServerScripter command.", "/script <addons:reload>", Collections.emptyList(), CommandScript.getInstance(), CommandScript.getInstance());
+        command.setPermission("serverscripter.command.script");
     }
 
     @Override

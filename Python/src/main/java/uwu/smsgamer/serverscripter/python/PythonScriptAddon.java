@@ -5,6 +5,11 @@ import uwu.smsgamer.serverscripter.ScriptAddon;
 import uwu.smsgamer.serverscripter.python.scripts.PyScriptLoader;
 
 public class PythonScriptAddon extends ScriptAddon {
+    public PythonScriptAddon() {
+        this.name = "Python";
+        this.version = "0.1";
+    }
+
     @Override
     public void loadDependencies(DependencyBuilder builder) {
         builder.addDependency(new Dependency(Repository.MAVENCENTRAL,

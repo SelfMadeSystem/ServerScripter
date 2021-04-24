@@ -1,17 +1,17 @@
 package uwu.smsgamer.serverscripter;
 
 import de.leonhard.storage.Json;
+import lombok.Getter;
 import me.godead.lilliputian.DependencyBuilder;
 
 import java.io.File;
 
+@Getter
 public abstract class ScriptAddon {
     File file;
     Json json;
-
-    public File getFile() {
-        return file;
-    }
+    protected String name;
+    protected String version;
 
     public Json getJson() {
         return json;

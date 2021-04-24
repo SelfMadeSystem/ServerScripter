@@ -22,6 +22,7 @@ public final class ScripterLoader {
     private final File addonsDir;
     @Getter
     private final File scriptsDir;
+    @Getter
     private final Set<ScriptAddon> addons = new HashSet<>();
 
     {
@@ -63,9 +64,6 @@ public final class ScripterLoader {
                     Json json = new Json("<jar>", null,
                             jarFile.getInputStream(entry));
 
-//                    String name = json.getString("name");
-//                    String version = json.getString("version");
-//                    String author = json.getString("author");
                     String main = json.getString("main");
 
                     if (main == null) throw new Exception("Main is null.");
@@ -79,6 +77,11 @@ public final class ScripterLoader {
                         throw new Exception("Main class is not ScriptAddon. Main class: " + mainClass.getName());
 
                     ScriptAddon addon = (ScriptAddon) mainClass.newInstance();
+
+                    if (addon.getName() == null || addon.getName().length() == 0)
+                        throw new Exception("Name of addon not initialised.");
+                    if (addon.getVersion() == null || addon.getVersion().length() == 0)
+                        throw new Exception("Version of addon not initialised.");
 
                     addon.file = file;
                     addon.json = json;
