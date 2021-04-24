@@ -1,12 +1,16 @@
 package uwu.smsgamer.serverscripter.python.scripts;
 
+import org.python.util.PythonInterpreter;
 import uwu.smsgamer.serverscripter.scripts.Script;
 
-import java.io.File;
+import java.io.*;
 
 public class PyScript extends Script {
+    private PythonInterpreter interpreter;
+
     public PyScript(File scriptFile) {
         super(scriptFile);
+        interpreter = new PythonInterpreter();
     }
 
     @Override
@@ -17,6 +21,11 @@ public class PyScript extends Script {
     @Override
     public void init() {
         System.out.println("Init: " + scriptFile.getName());
+        try {
+            interpreter.execfile(new FileInputStream(getScriptFile()), getScriptFile().getName());
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

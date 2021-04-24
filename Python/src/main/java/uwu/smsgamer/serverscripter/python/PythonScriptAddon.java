@@ -15,6 +15,7 @@ public class PythonScriptAddon extends ScriptAddon {
     public void load() {
         System.out.println("[PyScripter] Loading");
         PyScriptLoader.getInstance().loadScripts();
+        PyScriptLoader.getInstance().initScripts();
     }
 
     @Override

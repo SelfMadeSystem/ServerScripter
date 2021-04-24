@@ -11,8 +11,6 @@ repositories {
 
 dependencies {
     implementation project(":Base")
-}
 
-test {
-    useJUnitPlatform()
+    compile group:'org.python', name:'jython-standalone', version:'2.7.2'
 }
