@@ -18,7 +18,12 @@ public abstract class ScriptsLoader<S extends Script> {
     public abstract S newScript(File file);
 
     public Set<File> getScriptFiles() {
-        File[] ts = getScriptDirectory().listFiles();
+        File scriptDirectory = getScriptDirectory();
+        if (!scriptDirectory.exists()) {
+            scriptDirectory.mkdirs();
+            scriptDirectory.mkdir();
+        }
+        File[] ts = scriptDirectory.listFiles();
         if (ts == null) return Collections.emptySet();
         return Arrays.stream(ts).collect(Collectors.toSet());
     }

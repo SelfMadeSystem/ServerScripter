@@ -21,6 +21,8 @@ package me.godead.lilliputian;
 import org.jetbrains.annotations.*;
 import uwu.smsgamer.senapi.Loader;
 
+import java.io.File;
+
 public class Lilliputian {
 
     @Nullable
@@ -34,7 +36,7 @@ public class Lilliputian {
      */
     public Lilliputian(@NotNull Loader plugin) {
         Lilliputian.plugin = plugin;
-        path = plugin.getDataFolder().getParent() + "/" + "LilliputianLibraries";
+        path = plugin.getDataFolder() + File.separator + "LilliputianLibraries";
     }
 
     /**

@@ -1,6 +1,7 @@
 package uwu.smsgamer.serverscripter;
 
 import lombok.Getter;
+import me.godead.lilliputian.DependencyBuilder;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.plugin.java.annotation.dependency.SoftDependency;
 import org.bukkit.plugin.java.annotation.plugin.*;
@@ -21,6 +22,9 @@ public class SpigotServerScripter extends JavaPlugin implements Loader {
     @Override
     public void onLoad() {
         scripterLoader = new ScripterLoader((URLClassLoader) this.getClassLoader(), this);
+        DependencyBuilder builder = scripterLoader.startDependencyBuilder();
+        scripterLoader.loadAddons(builder);
+        builder.loadDependencies();
         scripterLoader.loadAddons();
     }
 

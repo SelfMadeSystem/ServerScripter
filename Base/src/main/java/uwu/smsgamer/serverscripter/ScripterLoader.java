@@ -1,11 +1,12 @@
 package uwu.smsgamer.serverscripter;
 
 import de.leonhard.storage.Json;
+import lombok.Getter;
 import me.godead.lilliputian.*;
 import org.jetbrains.annotations.NotNull;
 import uwu.smsgamer.senapi.Loader;
 
-import java.io.*;
+import java.io.File;
 import java.lang.reflect.Method;
 import java.net.*;
 import java.util.*;
@@ -13,16 +14,28 @@ import java.util.jar.*;
 import java.util.zip.ZipEntry;
 
 public final class ScripterLoader {
+    private static ScripterLoader INSTANCE;
     @NotNull
     private final URLClassLoader classLoader;
+    @Getter
     private final Loader loader;
     private final File addonsDir;
+    @Getter
+    private final File scriptsDir;
     private final Set<ScriptAddon> addons = new HashSet<>();
 
+    {
+        INSTANCE = this;
+    }
     public ScripterLoader(@NotNull URLClassLoader classLoader, Loader loader) {
         this.classLoader = classLoader;
         this.loader = loader;
         this.addonsDir = new File(this.loader.getDataFolder(), "addons");
+        this.scriptsDir = new File(this.loader.getDataFolder(), "scripts");
+    }
+
+    public static ScripterLoader getInstance() {
+        return INSTANCE;
     }
 
     public DependencyBuilder startDependencyBuilder() {
@@ -30,14 +43,10 @@ public final class ScripterLoader {
                 .addDependency(new Dependency(Repository.MAVENCENTRAL,
                         "org.xerial",
                         "sqlite-jdbc",
-                        "3.8.11.2"))
-                .addDependency(new Dependency(Repository.JITPACK,
-                        "com.github.simplix-softworks",
-                        "SimplixStorage",
-                        "3.2.2"));
+                        "3.8.11.2"));
     }
 
-    public void loadAddons() {
+    public void loadAddons(DependencyBuilder builder) {
         if (!addonsDir.exists()) {
             addonsDir.mkdirs();
             addonsDir.mkdir();
@@ -66,21 +75,28 @@ public final class ScripterLoader {
                     loadDependency(file);
                     Class<?> mainClass = Class.forName(main, true, classLoader);
 
-                    if (!ScriptAddon.class.isAssignableFrom(mainClass)) throw new Exception("Main class is not ScriptAddon. Main class: " + mainClass.getName());
+                    if (!ScriptAddon.class.isAssignableFrom(mainClass))
+                        throw new Exception("Main class is not ScriptAddon. Main class: " + mainClass.getName());
 
                     ScriptAddon addon = (ScriptAddon) mainClass.newInstance();
 
                     addon.file = file;
                     addon.json = json;
 
-                    addon.load();
+                    addon.loadDependencies(builder);
 
                     addons.add(addon);
 
-                } catch (Exception | ExceptionInInitializerError  e) {
+                } catch (Exception | ExceptionInInitializerError e) {
                     e.printStackTrace();
                 }
             }
+        }
+    }
+
+    public void loadAddons() {
+        for (ScriptAddon addon : addons) {
+            addon.load();
         }
     }
 
