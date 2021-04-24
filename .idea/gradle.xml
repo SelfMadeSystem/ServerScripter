@@ -10,6 +10,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/Base" />
+            <option value="$PROJECT_DIR$/Groovy" />
             <option value="$PROJECT_DIR$/Python" />
             <option value="$PROJECT_DIR$/Spigot" />
           </set>

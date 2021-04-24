@@ -1,0 +1,28 @@
+plugins {
+    id 'java'
+}
+
+group 'uwu.smsgamer'
+version '0.1'
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+    // configuration that holds jars to include in the jar
+    extraLibs
+}
+
+dependencies {
+    implementation project(":Base")
+
+    implementation group: 'org.codehaus.groovy', name: 'groovy-all', version: '3.0.8'
+    extraLibs group: 'org.codehaus.groovy', name: 'groovy-all', version: '3.0.8'
+}
+
+jar {
+    from {
+        configurations.extraLibs.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
