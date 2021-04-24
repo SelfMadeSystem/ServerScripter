@@ -38,7 +38,10 @@ public final class ScripterLoader {
     }
 
     public void loadAddons() {
-        addonsDir.mkdir();
+        if (!addonsDir.exists()) {
+            addonsDir.mkdirs();
+            addonsDir.mkdir();
+        }
 
         for (File file : addonsDir.listFiles()) {
             if (file.getName().endsWith(".jar")) {
@@ -46,7 +49,7 @@ public final class ScripterLoader {
                     JarFile jarFile = new JarFile(file);
                     ZipEntry entry = jarFile.getEntry("scripter.json");
 
-                    if (entry == null) continue;
+                    if (entry == null) throw new Exception("scripter.json is null.");
 
                     Json json = new Json("<jar>", null,
                             jarFile.getInputStream(entry));
@@ -56,13 +59,14 @@ public final class ScripterLoader {
 //                    String author = json.getString("author");
                     String main = json.getString("main");
 
-                    if (main == null) continue;
-                    JarEntry mainEntry = jarFile.getJarEntry(main);
-                    if (mainEntry == null) continue;
+                    if (main == null) throw new Exception("Main is null.");
+                    String mainClassEntry = main.replace(".", "/") + ".class";
+                    JarEntry mainEntry = jarFile.getJarEntry(mainClassEntry);
+                    if (mainEntry == null) throw new Exception("Main entry is null. Main: " + mainClassEntry);
                     loadDependency(file);
                     Class<?> mainClass = Class.forName(main, true, classLoader);
 
-                    if (!mainClass.isAssignableFrom(ScriptAddon.class)) continue;
+                    if (!ScriptAddon.class.isAssignableFrom(mainClass)) throw new Exception("Main class is not ScriptAddon. Main class: " + mainClass.getName());
 
                     ScriptAddon addon = (ScriptAddon) mainClass.newInstance();
 
@@ -73,8 +77,7 @@ public final class ScripterLoader {
 
                     addons.add(addon);
 
-                } catch (IOException | ClassNotFoundException | ExceptionInInitializerError |
-                        InstantiationException | IllegalAccessException e) {
+                } catch (Exception | ExceptionInInitializerError  e) {
                     e.printStackTrace();
                 }
             }
