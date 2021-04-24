@@ -11,7 +11,9 @@ public abstract class ScriptsLoader<S extends Script> {
 
     public void loadScripts() {
         for (File scriptFile : getScriptFiles()) {
-            scripts.add(newScript(scriptFile));
+            S e = newScript(scriptFile);
+            e.load();
+            scripts.add(e);
         }
     }
 

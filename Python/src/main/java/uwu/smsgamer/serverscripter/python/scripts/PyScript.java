@@ -11,26 +11,26 @@ public class PyScript extends Script {
 
     @Override
     protected void loadScript() {
-
+        System.out.println("LoadScript: " + scriptFile.getName());
     }
 
     @Override
     public void init() {
-
+        System.out.println("Init: " + scriptFile.getName());
     }
 
     @Override
     public void enable() {
-
+        System.out.println("Enable: " + scriptFile.getName());
     }
 
     @Override
     public void disable() {
-
+        System.out.println("Disable: " + scriptFile.getName());
     }
 
     @Override
     public void reload() {
-
+        System.out.println("Reload: " + scriptFile.getName());
     }
 }
