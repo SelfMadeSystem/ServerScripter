@@ -8,6 +8,9 @@ import java.lang.reflect.Method;
 import java.util.*;
 import java.util.function.Consumer;
 
+/**
+ * Helper class to make listening to bukkit events much easier. Not necessary though.
+ */
 public class ScriptListenerHelper extends RegisteredListener {
     public static ScriptListenerHelper lowestListener;
     public static ScriptListenerHelper lowListener;

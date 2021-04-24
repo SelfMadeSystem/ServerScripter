@@ -12,6 +12,9 @@ package uwu.smsgamer.senapi;
 import java.io.File;
 import java.util.logging.Logger;
 
+/**
+ * Basic loader to implement for bases.
+ */
 public interface Loader {
     File getDataFolder();
 

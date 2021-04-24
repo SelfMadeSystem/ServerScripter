@@ -13,6 +13,9 @@ import java.util.*;
 import java.util.jar.*;
 import java.util.zip.ZipEntry;
 
+/**
+ * The main addon loader class. Dunno why I called it "ScripterLoader".
+ */
 public final class ScripterLoader {
     private static ScripterLoader INSTANCE;
     @NotNull
@@ -28,6 +31,11 @@ public final class ScripterLoader {
     {
         INSTANCE = this;
     }
+
+    /**
+     * @param classLoader The {@link URLClassLoader} to use.
+     * @param loader      The {@link Loader} to use.
+     */
     public ScripterLoader(@NotNull URLClassLoader classLoader, Loader loader) {
         this.classLoader = classLoader;
         this.loader = loader;
@@ -39,6 +47,10 @@ public final class ScripterLoader {
         return INSTANCE;
     }
 
+    /**
+     * Used to start the dependency builder. Gets sqlite-jdbc by default.
+     * @return Returns a {@link DependencyBuilder}.
+     */
     public DependencyBuilder startDependencyBuilder() {
         return new Lilliputian(loader).getDependencyBuilder()
                 .addDependency(new Dependency(Repository.MAVENCENTRAL,
@@ -47,6 +59,10 @@ public final class ScripterLoader {
                         "3.8.11.2"));
     }
 
+    /**
+     * Loads all the addons in the addons directory.
+     * @param builder The {@link DependencyBuilder} returned by {@link ScripterLoader#startDependencyBuilder()}.
+     */
     public void loadAddons(DependencyBuilder builder) {
         if (!addonsDir.exists()) {
             addonsDir.mkdirs();
@@ -97,12 +113,6 @@ public final class ScripterLoader {
         }
     }
 
-    public void loadAddons() {
-        for (ScriptAddon addon : addons) {
-            addon.load();
-        }
-    }
-
     protected void loadDependency(File file) {
         try {
             Method method = URLClassLoader.class.getDeclaredMethod("addURL", URL.class);
@@ -113,21 +123,55 @@ public final class ScripterLoader {
         }
     }
 
+    /**
+     * Calls the {@link ScriptAddon#load()} method for all addons.
+     */
+    public void loadAddons() {
+        for (ScriptAddon addon : addons) {
+            try {
+                addon.load();
+            } catch (Exception e) {
+                new Exception("Failed to load addon: " + addon.getName() + " version " + addon.getVersion(), e).printStackTrace();
+            }
+        }
+    }
+
+    /**
+     * Calls the {@link ScriptAddon#enable()} method for all addons.
+     */
     public void enableAddons() {
         for (ScriptAddon addon : addons) {
-            addon.enable();
+            try {
+                addon.enable();
+            } catch (Exception e) {
+                new Exception("Failed to enable addon: " + addon.getName() + " version " + addon.getVersion(), e).printStackTrace();
+            }
         }
     }
 
+    /**
+     * Calls the {@link ScriptAddon#disable()} method for all addons.
+     */
     public void disableAddons() {
         for (ScriptAddon addon : addons) {
-            addon.disable();
+            try {
+                addon.disable();
+            } catch (Exception e) {
+                new Exception("Failed to disable addon: " + addon.getName() + " version " + addon.getVersion(), e).printStackTrace();
+            }
         }
     }
 
+    /**
+     * Calls the {@link ScriptAddon#reload()} method for all addons.
+     */
     public void reloadAddons() {
         for (ScriptAddon addon : addons) {
-            addon.reload();
+            try {
+                addon.reload();
+            } catch (Exception e) {
+                new Exception("Failed to reload addon: " + addon.getName() + " version " + addon.getVersion(), e).printStackTrace();
+            }
         }
     }
 }

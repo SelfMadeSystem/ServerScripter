@@ -6,6 +6,9 @@ import org.bukkit.command.*;
 import java.lang.reflect.*;
 import java.util.*;
 
+/**
+ * Class to make registering commands via scripts much easier.
+ */
 public class ScriptCommand extends Command {
     public CommandExecutor executor;
     public TabCompleter tabCompleter;
