@@ -1,4 +1,4 @@
-package uwu.smsgamer.serverscripter.scripts;
+package uwu.smsgamer.serverscripter.bungee.scripts;
 
 import lombok.Getter;
 

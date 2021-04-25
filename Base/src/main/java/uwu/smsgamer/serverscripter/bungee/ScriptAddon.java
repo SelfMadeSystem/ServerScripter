@@ -1,4 +1,4 @@
-package uwu.smsgamer.serverscripter;
+package uwu.smsgamer.serverscripter.bungee;
 
 import lombok.Getter;
 import me.godead.lilliputian.DependencyBuilder;

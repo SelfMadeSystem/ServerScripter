@@ -1,14 +1,13 @@
-package uwu.smsgamer.serverscripter.groovy.scripts;
+package uwu.smsgamer.serverscripter.bungee.groovy.scripts;
 
 import groovy.lang.*;
 import groovy.util.*;
 import org.codehaus.groovy.control.CompilationFailedException;
-import uwu.smsgamer.serverscripter.scripts.Script;
 
 import java.io.File;
 import java.net.*;
 
-public class GrScript extends Script {
+public class GrScript extends uwu.smsgamer.serverscripter.bungee.scripts.Script {
     private final GroovyScriptEngine engine;
     private final Binding binding;
     private groovy.lang.Script script;

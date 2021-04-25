@@ -1,8 +1,8 @@
-package uwu.smsgamer.serverscripter.utils;
+package uwu.smsgamer.serverscripter.spigot.utils;
 
 import org.bukkit.event.*;
 import org.bukkit.plugin.*;
-import uwu.smsgamer.serverscripter.SpigotServerScripter;
+import uwu.smsgamer.serverscripter.spigot.SpigotServerScripter;
 
 import java.lang.reflect.Method;
 import java.util.*;

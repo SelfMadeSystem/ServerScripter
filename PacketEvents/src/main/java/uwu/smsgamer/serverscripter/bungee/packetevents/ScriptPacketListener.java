@@ -1,4 +1,4 @@
-package uwu.smsgamer.serverscripter.packetevents;
+package uwu.smsgamer.serverscripter.bungee.packetevents;
 
 import io.github.retrooper.packetevents.event.*;
 import io.github.retrooper.packetevents.event.impl.*;

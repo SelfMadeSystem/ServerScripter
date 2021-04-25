@@ -1,4 +1,4 @@
-package uwu.smsgamer.serverscripter;
+package uwu.smsgamer.serverscripter.bungee;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;

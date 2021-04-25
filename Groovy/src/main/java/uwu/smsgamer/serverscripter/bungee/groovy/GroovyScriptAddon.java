@@ -1,8 +1,8 @@
-package uwu.smsgamer.serverscripter.groovy;
+package uwu.smsgamer.serverscripter.bungee.groovy;
 
 import me.godead.lilliputian.*;
-import uwu.smsgamer.serverscripter.ScriptAddon;
-import uwu.smsgamer.serverscripter.groovy.scripts.GrScriptLoader;
+import uwu.smsgamer.serverscripter.bungee.ScriptAddon;
+import uwu.smsgamer.serverscripter.bungee.groovy.scripts.GrScriptLoader;
 
 public class GroovyScriptAddon extends ScriptAddon {
     public GroovyScriptAddon() {

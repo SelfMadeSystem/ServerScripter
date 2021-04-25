@@ -1,8 +1,8 @@
-package uwu.smsgamer.serverscripter.python.scripts;
+package uwu.smsgamer.serverscripter.bungee.python.scripts;
 
 import org.python.core.*;
 import org.python.util.PythonInterpreter;
-import uwu.smsgamer.serverscripter.scripts.Script;
+import uwu.smsgamer.serverscripter.bungee.scripts.Script;
 
 import java.io.*;
 import java.util.*;

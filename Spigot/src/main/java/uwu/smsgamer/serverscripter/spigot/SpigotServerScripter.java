@@ -1,4 +1,4 @@
-package uwu.smsgamer.serverscripter;
+package uwu.smsgamer.serverscripter.spigot;
 
 import lombok.Getter;
 import me.godead.lilliputian.DependencyBuilder;
@@ -7,8 +7,9 @@ import org.bukkit.plugin.java.annotation.dependency.SoftDependency;
 import org.bukkit.plugin.java.annotation.plugin.*;
 import org.bukkit.plugin.java.annotation.plugin.author.Author;
 import uwu.smsgamer.senapi.Loader;
-import uwu.smsgamer.serverscripter.command.CommandScript;
-import uwu.smsgamer.serverscripter.utils.*;
+import uwu.smsgamer.serverscripter.bungee.ScripterLoader;
+import uwu.smsgamer.serverscripter.spigot.command.CommandScript;
+import uwu.smsgamer.serverscripter.spigot.utils.*;
 
 import java.io.File;
 import java.net.URLClassLoader;

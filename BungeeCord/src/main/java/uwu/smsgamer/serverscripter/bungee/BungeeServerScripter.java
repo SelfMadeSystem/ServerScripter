@@ -1,4 +1,4 @@
-package uwu.smsgamer.serverscripter;
+package uwu.smsgamer.serverscripter.bungee;
 
 import me.godead.lilliputian.DependencyBuilder;
 import net.md_5.bungee.api.plugin.Plugin;

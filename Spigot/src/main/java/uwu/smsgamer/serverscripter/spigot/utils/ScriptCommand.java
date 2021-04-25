@@ -1,4 +1,4 @@
-package uwu.smsgamer.serverscripter.utils;
+package uwu.smsgamer.serverscripter.spigot.utils;
 
 import org.bukkit.*;
 import org.bukkit.command.*;

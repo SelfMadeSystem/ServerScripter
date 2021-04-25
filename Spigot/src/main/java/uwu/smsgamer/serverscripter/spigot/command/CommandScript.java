@@ -1,8 +1,9 @@
-package uwu.smsgamer.serverscripter.command;
+package uwu.smsgamer.serverscripter.spigot.command;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.*;
-import uwu.smsgamer.serverscripter.*;
+import uwu.smsgamer.serverscripter.bungee.*;
+import uwu.smsgamer.serverscripter.spigot.*;
 
 import java.util.*;
 
