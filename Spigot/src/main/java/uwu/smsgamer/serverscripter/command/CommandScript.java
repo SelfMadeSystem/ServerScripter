@@ -33,6 +33,11 @@ public class CommandScript implements TabExecutor {
                 for (ScriptAddon addon : addons) {
                     sender.sendMessage(addon.getName() + " version " + addon.getVersion());
                 }
+            } else if (args[0].equalsIgnoreCase("reload")) {
+                ScripterLoader.getInstance().reloadAddons();
+                sender.sendMessage("Reloaded.");
+            } else {
+                sender.sendMessage("/script <addons:reload>");
             }
         }
         return true;
