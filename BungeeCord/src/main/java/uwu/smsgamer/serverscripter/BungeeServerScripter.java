@@ -1,7 +1,7 @@
 package uwu.smsgamer.serverscripter;
 
 import me.godead.lilliputian.DependencyBuilder;
-import net.md_5.bungee.api.plugin.*;
+import net.md_5.bungee.api.plugin.Plugin;
 import uwu.smsgamer.senapi.Loader;
 
 import java.net.URLClassLoader;
