@@ -3,4 +3,5 @@ include 'Base'
 include 'Spigot'
 include 'Python'
 include 'Groovy'
+include 'PacketEvents'
 

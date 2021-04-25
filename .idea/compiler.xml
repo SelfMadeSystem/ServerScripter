@@ -9,6 +9,8 @@
         </processorPath>
         <module name="ServerScripter.Base.test" />
         <module name="ServerScripter.Base.main" />
+        <module name="ServerScripter.PacketEvents.test" />
+        <module name="ServerScripter.PacketEvents.main" />
         <module name="ServerScripter.Spigot.test" />
       </profile>
       <profile name="Gradle Imported" enabled="true">
