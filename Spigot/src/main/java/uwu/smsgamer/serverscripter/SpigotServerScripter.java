@@ -2,7 +2,6 @@ package uwu.smsgamer.serverscripter;
 
 import lombok.Getter;
 import me.godead.lilliputian.DependencyBuilder;
-import org.bukkit.command.Command;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.plugin.java.annotation.dependency.SoftDependency;
 import org.bukkit.plugin.java.annotation.plugin.*;

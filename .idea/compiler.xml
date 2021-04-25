@@ -8,10 +8,12 @@
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.12/48e4e5d60309ebd833bc528dcf77668eab3cd72c/lombok-1.18.12.jar" />
         </processorPath>
         <module name="ServerScripter.Base.test" />
-        <module name="ServerScripter.Base.main" />
+        <module name="ServerScripter.BungeeCord.test" />
         <module name="ServerScripter.PacketEvents.test" />
         <module name="ServerScripter.PacketEvents.main" />
         <module name="ServerScripter.Spigot.test" />
+        <module name="ServerScripter.BungeeCord.main" />
+        <module name="ServerScripter.Base.main" />
       </profile>
       <profile name="Gradle Imported" enabled="true">
         <outputRelativeToContentRoot value="true" />
