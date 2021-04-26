@@ -29,11 +29,11 @@ public class VelocityServerScripter implements Loader {
     @Getter
     private static VelocityServerScripter instance;
     private final ProxyServer server;
-    private final Logger logger;
+    private final Logger sl4jfLogger;
     private final Path dataPath;
     private final File dataFile;
     private final java.util.logging.Logger javaLogger;
-    private ScripterLoader scripterLoader;
+    private final ScripterLoader scripterLoader;
 
     {
         instance = this;
@@ -42,7 +42,7 @@ public class VelocityServerScripter implements Loader {
     @Inject
     public VelocityServerScripter(ProxyServer server, Logger logger, @DataDirectory Path dataDirectory) {
         this.server = server;
-        this.logger = logger;
+        this.sl4jfLogger = logger;
         this.dataPath = dataDirectory;
         this.dataFile = dataDirectory.toFile();
 
