@@ -39,7 +39,7 @@ public class JSAddon extends ScriptAddon {
 
     @Override
     public void reload() {
-        System.out.println("[JSScripter] Enabling");
+        System.out.println("[JSScripter] Reloading");
         JSScriptLoader.getInstance().reloadScripts();
     }
 }

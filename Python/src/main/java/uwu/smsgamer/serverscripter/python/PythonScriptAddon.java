@@ -37,7 +37,7 @@ public class PythonScriptAddon extends ScriptAddon {
 
     @Override
     public void reload() {
-        System.out.println("[PyScripter] Enabling");
+        System.out.println("[PyScripter] Reloading");
         PyScriptLoader.getInstance().reloadScripts();
     }
 }

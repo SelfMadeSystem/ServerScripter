@@ -37,7 +37,7 @@ public class GroovyScriptAddon extends ScriptAddon {
 
     @Override
     public void reload() {
-        System.out.println("[GrScripter] Enabling");
+        System.out.println("[GrScripter] Reloading");
         GrScriptLoader.getInstance().reloadScripts();
     }
 }
