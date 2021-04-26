@@ -1,0 +1,16 @@
+plugins {
+    id 'java'
+}
+
+group 'uwu.smsgamer'
+version '0.1'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation project(":Base")
+
+    implementation group: 'org.mozilla', name: 'rhino', version: '1.7.13'
+}

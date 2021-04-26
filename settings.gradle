@@ -6,4 +6,5 @@ include 'Python'
 include 'Groovy'
 include 'PacketEvents'
 include 'Velocity'
+include 'JavaScript'
 
