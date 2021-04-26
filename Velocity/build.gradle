@@ -1,0 +1,56 @@
+plugins {
+    id 'java'
+}
+
+group 'uwu.smsgamer'
+version '0.1'
+
+repositories {
+    mavenCentral()
+    maven {
+        name = 'velocitypowered-repo'
+        url = 'https://repo.velocitypowered.com/releases/'
+    }
+    maven {
+        name = 'minecraft-libraries'
+        url = 'https://libraries.minecraft.net/'
+    }
+    maven {
+        name = 'spongepowered-repo'
+        url = 'https://repo.spongepowered.org/maven'
+    }
+    maven { url 'https://jitpack.io' }
+}
+
+configurations {
+    // configuration that holds jars to include in the jar
+    extraLibs
+}
+
+dependencies {
+    implementation project(":Base")
+    extraLibs project(":Base")
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+
+    compileOnly 'com.github.simplix-softworks:SimplixStorage:3.2.2'
+
+    compileOnly 'org.projectlombok:lombok:1.18.12'
+    annotationProcessor 'org.projectlombok:lombok:1.18.12'
+
+    testCompileOnly 'org.projectlombok:lombok:1.18.12'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.12'
+
+    compileOnly 'com.velocitypowered:velocity-api:1.1.0'
+    annotationProcessor 'com.velocitypowered:velocity-api:1.1.0'
+}
+
+jar {
+    from {
+        configurations.extraLibs.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+test {
+    useJUnitPlatform()
+}

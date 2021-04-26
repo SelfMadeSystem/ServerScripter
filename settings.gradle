@@ -5,4 +5,5 @@ include 'BungeeCord'
 include 'Python'
 include 'Groovy'
 include 'PacketEvents'
+include 'Velocity'
 

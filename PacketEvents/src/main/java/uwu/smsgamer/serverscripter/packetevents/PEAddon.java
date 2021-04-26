@@ -1,8 +1,8 @@
-package uwu.smsgamer.serverscripter.bungee.packetevents;
+package uwu.smsgamer.serverscripter.packetevents;
 
 import io.github.retrooper.packetevents.PacketEvents;
 import me.godead.lilliputian.DependencyBuilder;
-import uwu.smsgamer.serverscripter.bungee.*;
+import uwu.smsgamer.serverscripter.ScriptAddon;
 import uwu.smsgamer.serverscripter.spigot.SpigotServerScripter;
 
 public class PEAddon extends ScriptAddon {

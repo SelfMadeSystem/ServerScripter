@@ -7,7 +7,7 @@ import org.bukkit.plugin.java.annotation.dependency.SoftDependency;
 import org.bukkit.plugin.java.annotation.plugin.*;
 import org.bukkit.plugin.java.annotation.plugin.author.Author;
 import uwu.smsgamer.senapi.Loader;
-import uwu.smsgamer.serverscripter.bungee.ScripterLoader;
+import uwu.smsgamer.serverscripter.ScripterLoader;
 import uwu.smsgamer.serverscripter.spigot.command.CommandScript;
 import uwu.smsgamer.serverscripter.spigot.utils.*;
 

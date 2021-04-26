@@ -1,7 +1,7 @@
-package uwu.smsgamer.serverscripter.bungee.python.scripts;
+package uwu.smsgamer.serverscripter.python.scripts;
 
-import uwu.smsgamer.serverscripter.bungee.ScripterLoader;
-import uwu.smsgamer.serverscripter.bungee.scripts.ScriptsLoader;
+import uwu.smsgamer.serverscripter.ScripterLoader;
+import uwu.smsgamer.serverscripter.scripts.ScriptsLoader;
 
 import java.io.File;
 import java.util.Set;

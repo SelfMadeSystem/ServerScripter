@@ -12,6 +12,7 @@
         <module name="ServerScripter.PacketEvents.test" />
         <module name="ServerScripter.PacketEvents.main" />
         <module name="ServerScripter.Spigot.test" />
+        <module name="ServerScripter.Velocity.test" />
         <module name="ServerScripter.BungeeCord.main" />
         <module name="ServerScripter.Base.main" />
       </profile>
@@ -30,6 +31,47 @@
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-core/1.1/860340562250678d1a344907ac75754e259cdb14/hamcrest-core-1.1.jar" />
         </processorPath>
         <module name="ServerScripter.Spigot.main" />
+      </profile>
+      <profile name="Gradle Imported" enabled="true">
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.12/48e4e5d60309ebd833bc528dcf77668eab3cd72c/lombok-1.18.12.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.velocitypowered/velocity-api/1.1.0/12824e90e0f2e04d3f08aed00f059d7f164ed12a/velocity-api-1.1.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/text-serializer-gson/3.0.4/d9e3e97a60bf64690f633f16278117b1c0702c27/text-serializer-gson-3.0.4.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.moandjiezana.toml/toml4j/0.7.2/a03337911d0bd2c40932aca3946edb30d0e7d0c/toml4j-0.7.2.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/configurate-gson/3.7.1/431733e80d7dfc62b37962c2723bba5c996548f/configurate-gson-3.7.1.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/adventure-text-serializer-legacy-text3/4.0.0-SNAPSHOT/d8a2a9099778237168a058145f5ad66e64a8462a/adventure-text-serializer-legacy-text3-4.0.0-SNAPSHOT.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/adventure-text-serializer-legacy/4.7.0/a4024b13870196cc5d5ab75f57a417b05892c292/adventure-text-serializer-legacy-4.7.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/adventure-text-serializer-plain/4.7.0/b19a73b5c08f5519402f055dfbfd77212a7d0f43/adventure-text-serializer-plain-4.7.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/adventure-api/4.7.0/2c75a48918aa1a2063e85d2ed866e84dcf1aaa2/adventure-api-4.7.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/adventure-key/4.7.0/3fbcad775873c1c08c0b085538f84df4d56cd1e1/adventure-key-4.7.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/adventure-text-serializer-gson/4.7.0/36b7c1806120ef9acca933079c5977bd19b961fa/adventure-text-serializer-gson-4.7.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.8.6/9180733b7df8542621dc12e21e87557e8c99b8cb/gson-2.8.6.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/configurate-hocon/3.7.1/e3065a46f37f547ed1d6c2af8e46a91ab1bec529/configurate-hocon-3.7.1.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/configurate-yaml/3.7.1/a0c3eec370aa9bdec3f450f842edcb03f6d42be2/configurate-yaml-3.7.1.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/configurate-core/3.7.1/2cb140a772956b742e16c302f77c1352733dd35a/configurate-core-3.7.1.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.inject/guice/4.2.3/2ea992d6d7bdcac7a43111a95d182a4c42eb5ff7/guice-4.2.3.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/27.1-jre/e47b59c893079b87743cdcfb6f17ca95c08c592c/guava-27.1-jre.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/text-serializer-legacy/3.0.4/925bad50c7221713fe6ada7a42686df584969017/text-serializer-legacy-3.0.4.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/text-serializer-plain/3.0.4/b5b9ca6a4be956542934ca699091a3b8ea169c19/text-serializer-plain-3.0.4.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/text-api/3.0.4/3f6844794af6769053337f21e6ac544d88181fd9/text-api-3.0.4.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/1.7.30/b5a4b6d16ab13e34a88fae84c35cd5d68cac922c/slf4j-api-1.7.30.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.checkerframework/checker-qual/3.6.1/52ca62b41f68584c4d2de39d6176758e9383d0b6/checker-qual-3.6.1.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.mojang/brigadier/1.0.17/c6b7dc51dd44379cc751b7504816006e9be4b1e6/brigadier-1.0.17.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/3.0.2/25ea2e8b0c338a877313bd4672d3fe056ea78f0d/jsr305-3.0.2.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.errorprone/error_prone_annotations/2.2.0/88e3c593e9b3586e1c6177f89267da6fc6986f0c/error_prone_annotations-2.2.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.j2objc/j2objc-annotations/1.1/ed28ded51a8b1c6b112568def5f4b455e6809019/j2objc-annotations-1.1.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.mojo/animal-sniffer-annotations/1.17/f97ce6decaea32b36101e37979f8b647f00681fb/animal-sniffer-annotations-1.17.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/examination-string/1.1.0/9a6f6f9e10ca3ff3ce46db59845aae63f9d16fd8/examination-string-1.1.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/examination-api/1.1.0/d7b5e3f8edda2b64c37bc0059e265cc1f6e08322/examination-api-1.1.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax.inject/javax.inject/1/6975da39a7040257bd51d21a231b76c915872d38/javax.inject-1.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/aopalliance/aopalliance/1.0/235ba8b489512805ac13a8f9ea77a1ca5ebe3e8/aopalliance-1.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.typesafe/config/1.4.0/a8b341fe81552834edc231193afd6f56a96f0eff/config-1.4.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.yaml/snakeyaml/1.26/a78a8747147d2c5807683e76ec2b633e95c14fe9/snakeyaml-1.26.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.guava/failureaccess/1.0.1/1dcf1de382a0bf95a3d8b0849546c88bac1292c9/failureaccess-1.0.1.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.guava/listenablefuture/9999.0-empty-to-avoid-conflict-with-guava/b421526c5f297295adef1c886e5246c39d4ac629/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar" />
+        </processorPath>
+        <module name="ServerScripter.Velocity.main" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8" />

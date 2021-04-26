@@ -1,8 +1,8 @@
-package uwu.smsgamer.serverscripter.bungee.python;
+package uwu.smsgamer.serverscripter.python;
 
 import me.godead.lilliputian.*;
-import uwu.smsgamer.serverscripter.bungee.ScriptAddon;
-import uwu.smsgamer.serverscripter.bungee.python.scripts.PyScriptLoader;
+import uwu.smsgamer.serverscripter.ScriptAddon;
+import uwu.smsgamer.serverscripter.python.scripts.PyScriptLoader;
 
 public class PythonScriptAddon extends ScriptAddon {
     public PythonScriptAddon() {

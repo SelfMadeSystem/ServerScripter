@@ -15,6 +15,7 @@
             <option value="$PROJECT_DIR$/PacketEvents" />
             <option value="$PROJECT_DIR$/Python" />
             <option value="$PROJECT_DIR$/Spigot" />
+            <option value="$PROJECT_DIR$/Velocity" />
           </set>
         </option>
       </GradleProjectSettings>

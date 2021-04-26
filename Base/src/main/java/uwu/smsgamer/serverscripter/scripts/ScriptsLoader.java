@@ -1,4 +1,4 @@
-package uwu.smsgamer.serverscripter.bungee.scripts;
+package uwu.smsgamer.serverscripter.scripts;
 
 import java.io.File;
 import java.util.*;
