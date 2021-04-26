@@ -1,5 +1,6 @@
 package uwu.smsgamer.serverscripter.python.scripts;
 
+import org.python.util.PythonInterpreter;
 import uwu.smsgamer.serverscripter.ScripterLoader;
 import uwu.smsgamer.serverscripter.scripts.ScriptsLoader;
 
@@ -16,6 +17,18 @@ public class PyScriptLoader extends ScriptsLoader<PyScript> {
     public static PyScriptLoader getInstance() {
         if (INSTANCE == null) new PyScriptLoader();
         return INSTANCE;
+    }
+
+    @Override
+    public void loadScripts() {
+        new PythonInterpreter().exec("from sys import path\n" +
+                "path.append('" + PyScriptLoader.getInstance().getScriptDirectory().getPath() + "')");
+        super.loadScripts();
+    }
+
+    @Override
+    public void reloadScripts() {
+        super.reloadScripts();
     }
 
     @Override

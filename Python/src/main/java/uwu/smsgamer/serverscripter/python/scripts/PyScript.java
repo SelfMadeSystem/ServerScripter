@@ -8,10 +8,10 @@ import java.io.*;
 import java.util.*;
 
 public class PyScript extends Script {
-    private PythonInterpreter interpreter;
     public List<PyFunction> enableFuns = new ArrayList<>();
     public List<PyFunction> reloadFuns = new ArrayList<>();
     public List<PyFunction> disableFuns = new ArrayList<>();
+    private final PythonInterpreter interpreter;
 
     public PyScript(File scriptFile) {
         super(scriptFile);
@@ -27,7 +27,9 @@ public class PyScript extends Script {
     public void init() {
         System.out.println("Init: " + scriptFile.getName());
         try {
-            interpreter.execfile(new FileInputStream(getScriptFile()), getScriptFile().getName());
+            String name = getScriptFile().getName();
+            int i = name.lastIndexOf(".");
+            interpreter.execfile(new FileInputStream(getScriptFile()), name.substring(0, i));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

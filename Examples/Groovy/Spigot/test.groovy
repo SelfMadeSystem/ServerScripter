@@ -3,8 +3,8 @@ import org.bukkit.command.CommandSender
 import org.bukkit.command.TabExecutor
 import org.bukkit.event.EventPriority
 import org.bukkit.event.player.PlayerJoinEvent
-import uwu.smsgamer.serverscripter.utils.ScriptCommand
-import uwu.smsgamer.serverscripter.utils.ScriptListenerHelper
+import uwu.smsgamer.serverscripter.spigot.utils.ScriptCommand
+import uwu.smsgamer.serverscripter.spigot.utils.ScriptListenerHelper
 
 import java.util.function.Consumer
 
