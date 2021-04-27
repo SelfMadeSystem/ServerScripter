@@ -2,6 +2,7 @@ plugins {
     id 'java'
 }
 
+archivesBaseName = rootProject.name + "-" + project.name
 group 'uwu.smsgamer'
 version '0.1'
 

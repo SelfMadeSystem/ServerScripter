@@ -26,7 +26,7 @@ public class JSScript extends Script {
         try {
             String name = getScriptFile().getName();
             int i = name.lastIndexOf(".");
-            context.evaluateReader(scope, new FileReader(scriptFile), name.substring(0, i), 0, null);
+            context.evaluateReader(scope, new FileReader(scriptFile), name.substring(0, i), 1, null);
         } catch (IOException e) {
             e.printStackTrace();
         }
