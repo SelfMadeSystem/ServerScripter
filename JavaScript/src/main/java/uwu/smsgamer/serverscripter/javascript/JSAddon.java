@@ -6,8 +6,7 @@ import uwu.smsgamer.serverscripter.javascript.scripts.JSScriptLoader;
 
 public class JSAddon extends ScriptAddon {
     public JSAddon() {
-        this.name = "JavaScript";
-        this.version = "0.1";
+        super("JavaScript", "0.2");
     }
 
     @Override

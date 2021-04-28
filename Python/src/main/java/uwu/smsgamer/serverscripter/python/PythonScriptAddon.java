@@ -6,8 +6,7 @@ import uwu.smsgamer.serverscripter.python.scripts.PyScriptLoader;
 
 public class PythonScriptAddon extends ScriptAddon {
     public PythonScriptAddon() {
-        this.name = "Python";
-        this.version = "0.1";
+        super("Python", "0.2");
     }
 
     @Override

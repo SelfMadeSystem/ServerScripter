@@ -16,8 +16,13 @@ import java.util.Map;
 public abstract class ScriptAddon {
     File file;
     Map<String, String> jsonMap;
-    protected String name;
-    protected String version;
+    protected final String name;
+    protected final String version;
+
+    public ScriptAddon(String name, String version) {
+        this.name = name;
+        this.version = version;
+    }
 
     /**
      * Use this method to load dependencies before loading the addon.

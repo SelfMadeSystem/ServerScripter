@@ -6,8 +6,7 @@ import uwu.smsgamer.serverscripter.groovy.scripts.GrScriptLoader;
 
 public class GroovyScriptAddon extends ScriptAddon {
     public GroovyScriptAddon() {
-        this.name = "Groovy";
-        this.version = "0.1";
+        super("Groovy", "0.2");
     }
 
     @Override

@@ -50,6 +50,7 @@ public final class ScripterLoader {
 
     /**
      * Used to start the dependency builder. Gets sqlite-jdbc by default.
+     *
      * @return Returns a {@link DependencyBuilder}.
      */
     public DependencyBuilder startDependencyBuilder() {
@@ -62,6 +63,7 @@ public final class ScripterLoader {
 
     /**
      * Loads all the addons in the addons directory.
+     *
      * @param builder The {@link DependencyBuilder} returned by {@link ScripterLoader#startDependencyBuilder()}.
      */
     public void loadAddons(DependencyBuilder builder) {
@@ -76,7 +78,7 @@ public final class ScripterLoader {
                     JarFile jarFile = new JarFile(file);
                     ZipEntry entry = jarFile.getEntry("scripter.json");
 
-                    if (entry == null) throw new Exception("scripter.json is null.");
+                    if (entry == null) throw new Exception("scripter.json does not exist. Jar: " + jarFile.getName());
 
                     Gson json = new Gson();
 
@@ -86,10 +88,11 @@ public final class ScripterLoader {
 
                     String main = map.get("main");
 
-                    if (main == null) throw new Exception("Main is null.");
+                    if (main == null) throw new Exception("Main is null. Jar: " + jarFile.getName());
                     String mainClassEntry = main.replace(".", "/") + ".class";
                     JarEntry mainEntry = jarFile.getJarEntry(mainClassEntry);
-                    if (mainEntry == null) throw new Exception("Main entry is null. Main: " + mainClassEntry);
+                    if (mainEntry == null)
+                        throw new Exception("Main entry is null. Main: " + mainClassEntry + " Jar: " + jarFile.getName());
                     loadDependency(file);
                     Class<?> mainClass = Class.forName(main, true, classLoader);
 
@@ -99,9 +102,11 @@ public final class ScripterLoader {
                     ScriptAddon addon = (ScriptAddon) mainClass.newInstance();
 
                     if (addon.getName() == null || addon.getName().length() == 0)
-                        throw new Exception("Name of addon not initialised.");
+                        throw new Exception("Name of addon not initialised. Jar: " + jarFile.getName());
                     if (addon.getVersion() == null || addon.getVersion().length() == 0)
-                        throw new Exception("Version of addon not initialised.");
+                        throw new Exception("Version of addon not initialised. Jar: " + jarFile.getName());
+                    if (addons.stream().anyMatch(a -> a.getName().equals(addon.getName())))
+                        throw new Exception("Addon " + addon.getName() + " already initialized. Jar: " + jarFile.getName());
 
                     addon.file = file;
                     addon.jsonMap = map;
@@ -168,6 +173,8 @@ public final class ScripterLoader {
 
     /**
      * Calls the {@link ScriptAddon#reload()} method for all addons.
+     * <p>
+     * TODO: Load addons that aren't loaded.
      */
     public void reloadAddons() {
         for (ScriptAddon addon : addons) {
