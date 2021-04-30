@@ -1,17 +1,43 @@
 plugins {
     id 'java'
+    id "org.graalvm.plugin.compiler" version "0.1.0-alpha2"
 }
 
 archivesBaseName = rootProject.name + "-" + project.name
 group 'uwu.smsgamer'
-version '0.1'
+version '0.2'
 
 repositories {
     mavenCentral()
 }
 
+configurations {
+    // configuration that holds jars to include in the jar
+    extraLibs
+}
+
+ext.graalVersion = '20.2.0'
+
+graal {
+    version "$graalVersion"
+}
+
 dependencies {
     implementation project(":Base")
 
-    implementation group: 'org.mozilla', name: 'rhino', version: '1.7.13'
+    implementation "org.graalvm.sdk:graal-sdk:$graalVersion"
+    implementation "org.graalvm.js:js:$graalVersion"
+    // necessary to integrate with legacy ScriptEngine based implementation
+    implementation "org.graalvm.js:js-scriptengine:$graalVersion"
+
+    extraLibs "org.graalvm.sdk:graal-sdk:$graalVersion"
+    extraLibs "org.graalvm.js:js:$graalVersion"
+    extraLibs "org.graalvm.js:js-scriptengine:$graalVersion"
+    extraLibs group: 'org.graalvm.truffle', name: 'truffle-api', version: '1.0.0-rc8'
+}
+
+jar {
+    from {
+        configurations.extraLibs.collect { it.isDirectory() ? it : zipTree(it) }
+    }
 }
