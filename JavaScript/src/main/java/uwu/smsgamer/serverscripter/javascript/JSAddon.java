@@ -11,11 +11,10 @@ public class JSAddon extends ScriptAddon {
 
     @Override
     public void loadDependencies(DependencyBuilder builder) {
-        // group: 'org.graalvm.truffle', name: 'truffle-api', version: '1.0.0-rc8'
         builder.addDependency(new Dependency(Repository.MAVENCENTRAL,
-                "org.graalvm.truffle",
-                "truffle-api",
-                "1.0.0-rc8"));
+                "org.mozilla",
+                "rhino",
+                "1.7.13"));
     }
 
     @Override

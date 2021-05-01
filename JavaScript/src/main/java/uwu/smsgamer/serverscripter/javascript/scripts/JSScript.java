@@ -1,18 +1,18 @@
 package uwu.smsgamer.serverscripter.javascript.scripts;
 
-import org.graalvm.polyglot.*;
+import org.mozilla.javascript.*;
 import uwu.smsgamer.serverscripter.scripts.Script;
 
 import java.io.*;
 
 public class JSScript extends Script {
     private final Context context;
-    private final Value bindings;
+    private final ScriptableObject scope;
 
     public JSScript(File scriptFile) {
         super(scriptFile);
-        context = Context.create();
-        bindings = context.getBindings("js");
+        context = ContextFactory.getGlobal().enterContext();
+        scope = context.initStandardObjects();
     }
 
     @Override
@@ -24,8 +24,9 @@ public class JSScript extends Script {
     public void init() {
         System.out.println("Init: " + scriptFile.getName());
         try {
-            context.eval(Source.newBuilder("js", scriptFile).build());
-            System.out.println(bindings + " : " + context.getBindings("js"));
+            String name = getScriptFile().getName();
+            int i = name.lastIndexOf(".");
+            context.evaluateReader(scope, new FileReader(scriptFile), name.substring(0, i), 1, null);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -34,27 +35,27 @@ public class JSScript extends Script {
     @Override
     public void enable() {
         System.out.println("Enable: " + scriptFile.getName());
-//        Object obj = bindings.get("onEnable", bindings);
-//        if (obj == Scriptable.NOT_FOUND || obj == null) return;
-//        Function function = (Function) obj;
-//        function.call(context, bindings, bindings, new Object[0]);
+        Object obj = scope.get("onEnable", scope);
+        if (obj == Scriptable.NOT_FOUND || obj == null) return;
+        Function function = (Function) obj;
+        function.call(context, scope, scope, new Object[0]);
     }
 
     @Override
     public void disable() {
         System.out.println("Disable: " + scriptFile.getName());
-//        Object obj = bindings.get("onDisable", bindings);
-//        if (obj == Scriptable.NOT_FOUND || obj == null) return;
-//        Function function = (Function) obj;
-//        function.call(context, bindings, bindings, new Object[0]);
+        Object obj = scope.get("onDisable", scope);
+        if (obj == Scriptable.NOT_FOUND || obj == null) return;
+        Function function = (Function) obj;
+        function.call(context, scope, scope, new Object[0]);
     }
 
     @Override
     public void reload() {
         System.out.println("Reload: " + scriptFile.getName());
-//        Object obj = bindings.get("onReload", bindings);
-//        if (obj == Scriptable.NOT_FOUND || obj == null) return;
-//        Function function = (Function) obj;
-//        function.call(context, bindings, bindings, new Object[0]);
+        Object obj = scope.get("onReload", scope);
+        if (obj == Scriptable.NOT_FOUND || obj == null) return;
+        Function function = (Function) obj;
+        function.call(context, scope, scope, new Object[0]);
     }
 }

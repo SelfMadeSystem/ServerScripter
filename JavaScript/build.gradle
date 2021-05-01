@@ -1,6 +1,6 @@
 plugins {
     id 'java'
-    id "org.graalvm.plugin.compiler" version "0.1.0-alpha2"
+//    id "org.graalvm.plugin.compiler" version "0.1.0-alpha2"
 }
 
 archivesBaseName = rootProject.name + "-" + project.name
@@ -16,16 +16,18 @@ configurations {
     extraLibs
 }
 
-ext.graalVersion = '20.2.0'
+//ext.graalVersion = '20.2.0'
 
-graal {
-    version "$graalVersion"
-}
+//graal {
+//    version "$graalVersion"
+//}
 
 dependencies {
     implementation project(":Base")
 
-    implementation "org.graalvm.sdk:graal-sdk:$graalVersion"
+    implementation group: 'org.mozilla', name: 'rhino', version: '1.7.13'
+
+    /*implementation "org.graalvm.sdk:graal-sdk:$graalVersion"
     implementation "org.graalvm.js:js:$graalVersion"
     // necessary to integrate with legacy ScriptEngine based implementation
     implementation "org.graalvm.js:js-scriptengine:$graalVersion"
@@ -33,7 +35,7 @@ dependencies {
     extraLibs "org.graalvm.sdk:graal-sdk:$graalVersion"
     extraLibs "org.graalvm.js:js:$graalVersion"
     extraLibs "org.graalvm.js:js-scriptengine:$graalVersion"
-    extraLibs group: 'org.graalvm.truffle', name: 'truffle-api', version: '1.0.0-rc8'
+    extraLibs group: 'org.graalvm.truffle', name: 'truffle-api', version: '1.0.0-rc8'*/
 }
 
 jar {
