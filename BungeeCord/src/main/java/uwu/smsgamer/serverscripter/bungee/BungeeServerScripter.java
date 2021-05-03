@@ -4,6 +4,7 @@ import me.godead.lilliputian.DependencyBuilder;
 import net.md_5.bungee.api.plugin.Plugin;
 import uwu.smsgamer.senapi.Loader;
 import uwu.smsgamer.serverscripter.ScripterLoader;
+import uwu.smsgamer.serverscripter.bungee.commands.CommandScript;
 
 import java.net.URLClassLoader;
 
@@ -32,6 +33,7 @@ public class BungeeServerScripter extends Plugin implements Loader {
     @Override
     public void onEnable() {
         scripterLoader.enableAddons();
+        this.getProxy().getPluginManager().registerCommand(this, CommandScript.getInstance());
     }
 
     @Override
