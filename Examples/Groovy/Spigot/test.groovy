@@ -3,10 +3,20 @@ import org.bukkit.command.CommandSender
 import org.bukkit.command.TabExecutor
 import org.bukkit.event.EventPriority
 import org.bukkit.event.player.PlayerJoinEvent
+import uwu.smsgamer.serverscripter.groovy.scripts.GrScriptLoader
 import uwu.smsgamer.serverscripter.spigot.utils.ScriptCommand
 import uwu.smsgamer.serverscripter.spigot.utils.ScriptListenerHelper
 
 import java.util.function.Consumer
+
+
+var shell = new GroovyShell()
+
+var f2 = new File(GrScriptLoader.getInstance().getScriptDirectory(), "_test2.groovy")
+
+def test2 = shell.parse(f2)
+
+test2.test()
 
 
 println("Groovy script Loaded.")
