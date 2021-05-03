@@ -1,6 +1,8 @@
 package uwu.smsgamer.serverscripter.velocity;
 
 import com.google.inject.Inject;
+import com.mojang.brigadier.builder.LiteralArgumentBuilder;
+import com.velocitypowered.api.command.*;
 import com.velocitypowered.api.event.Subscribe;
 import com.velocitypowered.api.event.proxy.*;
 import com.velocitypowered.api.plugin.Plugin;
@@ -8,13 +10,15 @@ import com.velocitypowered.api.plugin.annotation.DataDirectory;
 import com.velocitypowered.api.proxy.ProxyServer;
 import lombok.Getter;
 import me.godead.lilliputian.DependencyBuilder;
+import net.kyori.adventure.text.Component;
 import org.slf4j.Logger;
 import uwu.smsgamer.senapi.Loader;
-import uwu.smsgamer.serverscripter.ScripterLoader;
+import uwu.smsgamer.serverscripter.*;
 
 import java.io.File;
 import java.net.URLClassLoader;
 import java.nio.file.Path;
+import java.util.Set;
 import java.util.logging.LogManager;
 
 @Plugin(
@@ -52,6 +56,30 @@ public class VelocityServerScripter implements Loader {
         builder.loadDependencies();
         scripterLoader.loadAddons();
         this.javaLogger = LogManager.getLogManager().getLogger(logger.getName());
+
+        getServer().getCommandManager().register(new BrigadierCommand(LiteralArgumentBuilder.<CommandSource>literal("vscript")
+                .then(LiteralArgumentBuilder.<CommandSource>literal("addons").executes(src -> {
+                    CommandSource source = src.getSource();
+                    source.sendMessage(Component.text("Addons:"));
+                    Set<ScriptAddon> addons = ScripterLoader.getInstance().getAddons();
+                    if (addons.size() == 0) {
+                        source.sendMessage(Component.text("No addons."));
+                        return 1;
+                    }
+                    for (ScriptAddon addon : addons) {
+                        source.sendMessage(Component.text(addon.getName() + " version " + addon.getVersion()));
+                    }
+                    return 1;
+                }))
+                .then(LiteralArgumentBuilder.<CommandSource>literal("reload").executes(src -> {
+                    CommandSource source = src.getSource();
+                    ScripterLoader.getInstance().reloadAddons();
+                    source.sendMessage(Component.text("Reloaded."));
+                    return 1;
+                })).executes(src -> {
+                    src.getSource().sendMessage(Component.text("/vscript <addons:reload>"));
+                    return 1;
+                }).build()));
     }
 
     @Subscribe
