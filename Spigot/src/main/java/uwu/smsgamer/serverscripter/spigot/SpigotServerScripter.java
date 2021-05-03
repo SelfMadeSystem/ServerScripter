@@ -48,7 +48,7 @@ public class SpigotServerScripter extends JavaPlugin implements Loader {
         ScriptListenerHelper.init();
         scripterLoader.enableAddons();
         ScriptCommand command = new ScriptCommand("script", "ServerScripter command.", "/script <addons:reload>", Collections.emptyList(), CommandScript.getInstance(), CommandScript.getInstance());
-        command.setPermission("serverscripter.command.script");
+        command.setPermission("serverscripter.command.script.spigot");
     }
 
     @Override

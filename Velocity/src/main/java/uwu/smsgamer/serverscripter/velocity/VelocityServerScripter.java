@@ -58,6 +58,7 @@ public class VelocityServerScripter implements Loader {
         this.javaLogger = LogManager.getLogManager().getLogger(logger.getName());
 
         getServer().getCommandManager().register(new BrigadierCommand(LiteralArgumentBuilder.<CommandSource>literal("vscript")
+                .requires(src -> src.hasPermission("serverscripter.command.script.velocity"))
                 .then(LiteralArgumentBuilder.<CommandSource>literal("addons").executes(src -> {
                     CommandSource source = src.getSource();
                     source.sendMessage(Component.text("Addons:"));
