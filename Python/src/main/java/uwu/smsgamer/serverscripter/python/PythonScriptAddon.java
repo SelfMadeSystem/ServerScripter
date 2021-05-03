@@ -40,7 +40,7 @@ public class PythonScriptAddon extends ScriptAddon {
         System.out.println("[PyScripter] Disabling");
         PyScriptLoader.getInstance().disableScripts();
         if (config.getBoolean("Delete Class Cache")) {
-            File[] listFiles = new File(PyScriptLoader.getInstance().getScriptDirectory(), "scripts")
+            File[] listFiles = PyScriptLoader.getInstance().getScriptDirectory()
                     .listFiles(pathname -> pathname.getName().endsWith("$py.class"));
             if (listFiles != null) for (File file : listFiles) file.delete();
         }
@@ -49,6 +49,7 @@ public class PythonScriptAddon extends ScriptAddon {
     @Override
     public void reload() {
         System.out.println("[PyScripter] Reloading");
+        config.forceReload();
         PyScriptLoader.getInstance().reloadScripts();
     }
 }
