@@ -27,6 +27,8 @@ public final class ScripterLoader {
     @Getter
     private final File scriptsDir;
     @Getter
+    private final File configDir;
+    @Getter
     private final Set<ScriptAddon> addons = new HashSet<>();
 
     {
@@ -42,6 +44,7 @@ public final class ScripterLoader {
         this.loader = loader;
         this.addonsDir = new File(this.loader.getDataFolder(), "addons");
         this.scriptsDir = new File(this.loader.getDataFolder(), "scripts");
+        this.configDir = new File(this.loader.getDataFolder(), "configs");
     }
 
     public static ScripterLoader getInstance() {
