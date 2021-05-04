@@ -21,7 +21,8 @@ public class GrScriptLoader extends ScriptsLoader<GrScript> {
     @Override
     public Set<File> getScriptFiles() {
         Set<File> scriptFiles = super.getScriptFiles();
-        scriptFiles.removeIf(f -> !f.getName().endsWith(".groovy"));
+        scriptFiles.removeIf(f -> !(f.getName().endsWith(".groovy") || f.getName().endsWith(".gvy") ||
+                f.getName().endsWith(".gy") || f.getName().endsWith(".gsh")));
         return scriptFiles;
     }
 
