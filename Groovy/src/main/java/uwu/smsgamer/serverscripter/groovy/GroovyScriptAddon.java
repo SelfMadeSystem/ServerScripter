@@ -1,12 +1,18 @@
 package uwu.smsgamer.serverscripter.groovy;
 
+import de.leonhard.storage.Config;
 import me.godead.lilliputian.*;
-import uwu.smsgamer.serverscripter.ScriptAddon;
+import uwu.smsgamer.serverscripter.*;
 import uwu.smsgamer.serverscripter.groovy.scripts.GrScriptLoader;
 
+import java.io.File;
+
 public class GroovyScriptAddon extends ScriptAddon {
+    public final Config config;
     public GroovyScriptAddon() {
         super("Groovy", "0.2");
+        config = new Config(new File(ScripterLoader.getInstance().getConfigDir(), "Groovy-config.yml"));
+        config.setDefault("Delete Class Cache", true);
     }
 
     @Override
@@ -32,6 +38,11 @@ public class GroovyScriptAddon extends ScriptAddon {
     public void disable() {
         System.out.println("[GrScripter] Disabling");
         GrScriptLoader.getInstance().disableScripts();
+        if (config.getBoolean("Delete Class Cache")) {
+            File[] listFiles = GrScriptLoader.getInstance().getScriptDirectory()
+                    .listFiles(pathname -> pathname.getName().endsWith(".class"));
+            if (listFiles != null) for (File file : listFiles) file.delete();
+        }
     }
 
     @Override
