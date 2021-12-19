@@ -23,11 +23,11 @@ class CommandTest(TabExecutor):
 
 class JoinListener(Consumer):
     def accept(self, t):
-        t.getPlayer().sendMessage("Hewwo!!!!")
+        t.getPlayer().sendMessage("Hewwo from Pythowon!!!!")
 
 
 def on_enable():
-    print("On Enable!!!")
+    print("On Enable - Python!!!")
     cmd = CommandTest()
     ScriptCommand.registerCommand(ScriptCommand("pytest", "Python Testing", "/test", [], cmd, cmd))
     ScriptListenerHelper.registerEvent(PlayerJoinEvent, EventPriority.NORMAL, JoinListener())
@@ -36,11 +36,11 @@ def on_enable():
 
 
 def on_disable():
-    print("On Disable!!!")
+    print("On Disable - Python!!!")
 
 
 def on_reload():
-    print("On Reload!!!")
+    print("On Reload - Python!!!")
     import _test2 as t
     reload(t)
     print(t.test_thing)

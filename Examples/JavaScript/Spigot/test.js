@@ -1,5 +1,9 @@
 print = function (a) {java.lang.System.out.println(a)}
 
+SS_Spigot = Packages.uwu.smsgamer.serverscripter.spigot;
+PlayerJoinEvent = Packages.org.bukkit.event.player.PlayerJoinEvent
+EventPriority = Packages.org.bukkit.event.EventPriority
+
 print("JavaScript Loading!!!!")
 
 command = {
@@ -11,11 +15,18 @@ command = {
     }
 }
 
+onJoin = {
+    accept: function(event) {
+        event.getPlayer().sendMessage("Hello from JavaScript!!!")
+    }
+}
+
 function onEnable() {
     print("JavaScript enabling!!!!!!!!")
     myCmd = new org.bukkit.command.TabExecutor(command)
-    scmd = Packages.uwu.smsgamer.serverscripter.spigot.utils.ScriptCommand
+    scmd = SS_Spigot.utils.ScriptCommand
     scmd.registerCommand(new scmd("jstest", "JavaScript Test", "/jstest", [], myCmd, myCmd))
+    SS_Spigot.utils.ScriptListenerHelper.registerEvent(PlayerJoinEvent, EventPriority.NORMAL, onJoin)
 }
 
 function onDisable() {
