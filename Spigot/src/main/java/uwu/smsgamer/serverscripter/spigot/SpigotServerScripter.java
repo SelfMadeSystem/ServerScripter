@@ -2,10 +2,12 @@ package uwu.smsgamer.serverscripter.spigot;
 
 import lombok.Getter;
 import me.godead.lilliputian.DependencyBuilder;
+import org.bukkit.Location;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.plugin.java.annotation.dependency.SoftDependency;
 import org.bukkit.plugin.java.annotation.plugin.*;
 import org.bukkit.plugin.java.annotation.plugin.author.Author;
+import org.bukkit.util.Vector;
 import uwu.smsgamer.senapi.Loader;
 import uwu.smsgamer.serverscripter.ScripterLoader;
 import uwu.smsgamer.serverscripter.spigot.command.CommandScript;

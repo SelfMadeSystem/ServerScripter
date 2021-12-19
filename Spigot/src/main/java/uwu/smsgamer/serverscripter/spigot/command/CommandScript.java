@@ -20,10 +20,16 @@ public class CommandScript implements TabExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        if (!testPermission(command, sender)) {
+            return true;
+        }
         if (args.length == 0) {
             sender.sendMessage("/script <addons:reload>");
         } else {
             if (args[0].equalsIgnoreCase("addons")) {
+                if (!testPermission(command, sender, "addons")) {
+                    return true;
+                }
                 sender.sendMessage("Addons:");
                 Set<ScriptAddon> addons = ScripterLoader.getInstance().getAddons();
                 if (addons.size() == 0) {
@@ -34,6 +40,9 @@ public class CommandScript implements TabExecutor {
                     sender.sendMessage(addon.getName() + " version " + addon.getVersion());
                 }
             } else if (args[0].equalsIgnoreCase("reload")) {
+                if (!testPermission(command, sender, "reload")) {
+                    return true;
+                }
                 ScripterLoader.getInstance().reloadAddons();
                 sender.sendMessage("Reloaded.");
             } else {
