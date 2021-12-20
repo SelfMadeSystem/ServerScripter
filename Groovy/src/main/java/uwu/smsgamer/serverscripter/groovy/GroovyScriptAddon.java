@@ -10,7 +10,7 @@ import java.io.File;
 public class GroovyScriptAddon extends ScriptAddon {
     public final Config config;
     public GroovyScriptAddon() {
-        super("Groovy", "0.2");
+        super("Groovy", "0.2", null);
         config = new Config(new File(ScripterLoader.getInstance().getConfigDir(), "Groovy-config.yml"));
         config.setDefault("Delete Class Cache", true);
     }

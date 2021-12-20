@@ -2,9 +2,12 @@ package uwu.smsgamer.serverscripter.velocity;
 
 import com.google.inject.Inject;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
-import com.velocitypowered.api.command.*;
+import com.velocitypowered.api.command.BrigadierCommand;
+import com.velocitypowered.api.command.CommandSource;
 import com.velocitypowered.api.event.Subscribe;
-import com.velocitypowered.api.event.proxy.*;
+import com.velocitypowered.api.event.proxy.ProxyInitializeEvent;
+import com.velocitypowered.api.event.proxy.ProxyReloadEvent;
+import com.velocitypowered.api.event.proxy.ProxyShutdownEvent;
 import com.velocitypowered.api.plugin.Plugin;
 import com.velocitypowered.api.plugin.annotation.DataDirectory;
 import com.velocitypowered.api.proxy.ProxyServer;
@@ -12,13 +15,16 @@ import lombok.Getter;
 import me.godead.lilliputian.DependencyBuilder;
 import net.kyori.adventure.text.Component;
 import org.slf4j.Logger;
-import uwu.smsgamer.senapi.Loader;
-import uwu.smsgamer.serverscripter.*;
+import uwu.smsgamer.serverscripter.ScriptAddon;
+import uwu.smsgamer.serverscripter.ScriptLoader;
+import uwu.smsgamer.serverscripter.ScripterLoader;
+import uwu.smsgamer.serverscripter.shell.PlayerOut;
 
 import java.io.File;
 import java.net.URLClassLoader;
 import java.nio.file.Path;
 import java.util.Set;
+import java.util.UUID;
 import java.util.logging.LogManager;
 
 @Plugin(
@@ -29,7 +35,7 @@ import java.util.logging.LogManager;
         authors = {"Sms_Gamer_3808"}
 )
 @Getter
-public class VelocityServerScripter implements Loader {
+public class VelocityServerScripter implements ScriptLoader {
     @Getter
     private static VelocityServerScripter instance;
     private final ProxyServer server;

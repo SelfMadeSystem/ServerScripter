@@ -103,8 +103,10 @@ public class ScriptListenerHelper extends RegisteredListener {
     @Override
     public void callEvent(Event event) {
         Set<Consumer<Event>> funs = functions.get(event.getClass());
-        for (Consumer<Event> fun : funs) {
-            fun.accept(event);
+        if (funs != null) {
+            for (Consumer<Event> fun : funs) {
+                fun.accept(event);
+            }
         }
     }
 }

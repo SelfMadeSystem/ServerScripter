@@ -7,7 +7,7 @@ import uwu.smsgamer.serverscripter.spigot.SpigotServerScripter;
 
 public class PEAddon extends ScriptAddon {
     public PEAddon() {
-        super("PacketEvents", "0.2");
+        super("PacketEvents", "0.2", null);
     }
 
     @Override

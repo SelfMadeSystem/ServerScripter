@@ -10,6 +10,7 @@
 package uwu.smsgamer.senapi.utils.spigot;
 
 import org.bukkit.*;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import java.util.*;
@@ -26,6 +27,11 @@ public class SConsolePlayer implements OfflinePlayer {
     public static SConsolePlayer getInstance() {
         if (INSTANCE == null) INSTANCE = new SConsolePlayer();
         return INSTANCE;
+    }
+
+    public static OfflinePlayer getOfflinePlayer(CommandSender sender) {
+        if (sender instanceof OfflinePlayer) return (OfflinePlayer) sender;
+        return getInstance();
     }
 
     public static OfflinePlayer deserialize(Map<String, Object> args) {

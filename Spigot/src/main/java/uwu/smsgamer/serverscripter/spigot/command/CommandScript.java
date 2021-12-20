@@ -2,12 +2,15 @@ package uwu.smsgamer.serverscripter.spigot.command;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.*;
+import uwu.smsgamer.senapi.utils.spigot.SConsolePlayer;
 import uwu.smsgamer.serverscripter.*;
+import uwu.smsgamer.serverscripter.shell.Shell;
 
 import java.util.*;
 
 public class CommandScript implements TabExecutor {
     private static CommandScript INSTANCE;
+    private static String HELP_MESSAGE = "/script <addons:reload:shell> [shell name]";
 
     {
         INSTANCE = this;
@@ -24,32 +27,51 @@ public class CommandScript implements TabExecutor {
             return true;
         }
         if (args.length == 0) {
-            sender.sendMessage("/script <addons:reload>");
+            sender.sendMessage(HELP_MESSAGE);
+            return true;
         } else {
-            if (args[0].equalsIgnoreCase("addons")) {
-                if (!testPermission(command, sender, "addons")) {
+            switch (args[0].toLowerCase()) {
+                case "addons":
+                    if (!testPermission(command, sender, "addons")) {
+                        return true;
+                    }
+                    sender.sendMessage("Addons:");
+                    Set<ScriptAddon> addons = ScripterLoader.getInstance().getAddons();
+                    if (addons.size() == 0) {
+                        sender.sendMessage("No addons.");
+                        return true;
+                    }
+                    for (ScriptAddon addon : addons) {
+                        sender.sendMessage(addon.getName() + " version " + addon.getVersion());
+                    }
                     return true;
-                }
-                sender.sendMessage("Addons:");
-                Set<ScriptAddon> addons = ScripterLoader.getInstance().getAddons();
-                if (addons.size() == 0) {
-                    sender.sendMessage("No addons.");
+                case "reload":
+                    if (!testPermission(command, sender, "reload")) {
+                        return true;
+                    }
+                    ScripterLoader.getInstance().reloadAddons();
+                    sender.sendMessage("Reloaded.");
                     return true;
-                }
-                for (ScriptAddon addon : addons) {
-                    sender.sendMessage(addon.getName() + " version " + addon.getVersion());
-                }
-            } else if (args[0].equalsIgnoreCase("reload")) {
-                if (!testPermission(command, sender, "reload")) {
+                case "shell":
+                    if (!testPermission(command, sender, "shell")) {
+                        return true;
+                    }
+                    if (args.length == 1) {
+                        sender.sendMessage(ScripterLoader.getInstance().getShellNames());
+                        return true;
+                    }
+                    String shellName = args[1].toLowerCase();
+                    if (ScripterLoader.getInstance().getShells().containsKey(shellName)) {
+                        Shell<?> shell = ScripterLoader.getInstance().getShells().get(shellName);
+                        shell.setShell(SConsolePlayer.getOfflinePlayer(sender).getUniqueId());
+                        sender.sendMessage("Shell " + shellName + " opened.");
+                    }
                     return true;
-                }
-                ScripterLoader.getInstance().reloadAddons();
-                sender.sendMessage("Reloaded.");
-            } else {
-                sender.sendMessage("/script <addons:reload>");
+                default:
+                    sender.sendMessage(HELP_MESSAGE);
+                    return true;
             }
         }
-        return true;
     }
 
     @Override

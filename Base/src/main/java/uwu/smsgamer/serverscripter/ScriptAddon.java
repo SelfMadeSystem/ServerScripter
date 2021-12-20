@@ -2,9 +2,14 @@ package uwu.smsgamer.serverscripter;
 
 import lombok.Getter;
 import me.godead.lilliputian.DependencyBuilder;
+import uwu.smsgamer.serverscripter.shell.PlayerOut;
+import uwu.smsgamer.serverscripter.shell.PlayerShell;
+import uwu.smsgamer.serverscripter.shell.Shell;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 /**
  * An abstract class that addons must extend.
@@ -18,10 +23,12 @@ public abstract class ScriptAddon {
     Map<String, String> jsonMap;
     protected final String name;
     protected final String version;
+    protected final Shell<?> shell;
 
-    public ScriptAddon(String name, String version) {
+    public ScriptAddon(String name, String version, Shell<?> shell) {
         this.name = name;
         this.version = version;
+        this.shell = shell;
     }
 
     /**

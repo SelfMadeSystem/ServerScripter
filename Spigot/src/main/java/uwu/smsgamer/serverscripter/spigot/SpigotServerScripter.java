@@ -2,15 +2,17 @@ package uwu.smsgamer.serverscripter.spigot;
 
 import lombok.Getter;
 import me.godead.lilliputian.DependencyBuilder;
-import org.bukkit.Location;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.plugin.java.annotation.dependency.SoftDependency;
 import org.bukkit.plugin.java.annotation.plugin.*;
 import org.bukkit.plugin.java.annotation.plugin.author.Author;
-import org.bukkit.util.Vector;
-import uwu.smsgamer.senapi.Loader;
+import uwu.smsgamer.serverscripter.ScriptLoader;
 import uwu.smsgamer.serverscripter.ScripterLoader;
+import uwu.smsgamer.serverscripter.shell.ShellManager;
 import uwu.smsgamer.serverscripter.spigot.command.CommandScript;
+import uwu.smsgamer.serverscripter.spigot.shell.ShellListener;
 import uwu.smsgamer.serverscripter.spigot.utils.*;
 
 import java.io.File;
@@ -22,7 +24,7 @@ import java.util.Collections;
 @Author("Sms_Gamer_3808")
 @SoftDependency("PacketEvents")
 @SoftDependency("PlaceholderAPI")
-public class SpigotServerScripter extends JavaPlugin implements Loader {
+public class SpigotServerScripter extends JavaPlugin implements ScriptLoader {
     private static SpigotServerScripter INSTANCE;
     @Getter
     private ScripterLoader scripterLoader;
@@ -43,6 +45,13 @@ public class SpigotServerScripter extends JavaPlugin implements Loader {
         scripterLoader.loadAddons(builder);
         builder.loadDependencies();
         scripterLoader.loadAddons();
+
+        ShellManager.onResponse = (uuid, message) -> Bukkit.getPlayer(uuid).sendMessage(message);
+        ShellManager.onError = (uuid, exception) -> {
+            String message = exception.getMessage();
+            if (message == null) message = exception.getClass().getSimpleName();
+            Bukkit.getPlayer(uuid).sendMessage(ChatColor.RED + message);
+        };
     }
 
     @Override
@@ -51,6 +60,7 @@ public class SpigotServerScripter extends JavaPlugin implements Loader {
         scripterLoader.enableAddons();
         ScriptCommand command = new ScriptCommand("script", "ServerScripter command.", "/script <addons:reload>", Collections.emptyList(), CommandScript.getInstance(), CommandScript.getInstance());
         command.setPermission("serverscripter.command.script.spigot");
+        getServer().getPluginManager().registerEvents(new ShellListener(), this);
     }
 
     @Override

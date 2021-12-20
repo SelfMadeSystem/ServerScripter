@@ -4,6 +4,7 @@ import de.leonhard.storage.Config;
 import me.godead.lilliputian.*;
 import uwu.smsgamer.serverscripter.*;
 import uwu.smsgamer.serverscripter.python.scripts.PyScriptLoader;
+import uwu.smsgamer.serverscripter.python.shell.PyShell;
 
 import java.io.File;
 
@@ -11,7 +12,7 @@ public class PythonScriptAddon extends ScriptAddon {
     public final Config config;
 
     public PythonScriptAddon() {
-        super("Python", "0.2");
+        super("Python", "0.2", new PyShell());
         config = new Config(new File(ScripterLoader.getInstance().getConfigDir(), "Python-config.yml"));
         config.setDefault("Delete Class Cache", true);
     }

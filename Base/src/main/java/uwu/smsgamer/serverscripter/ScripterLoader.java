@@ -6,12 +6,15 @@ import lombok.Getter;
 import me.godead.lilliputian.*;
 import org.jetbrains.annotations.NotNull;
 import uwu.smsgamer.senapi.Loader;
+import uwu.smsgamer.serverscripter.shell.Shell;
 
 import java.io.*;
 import java.lang.reflect.*;
 import java.net.*;
 import java.util.*;
+import java.util.function.Function;
 import java.util.jar.*;
+import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
 
 /**
@@ -22,7 +25,7 @@ public final class ScripterLoader {
     @NotNull
     private final URLClassLoader classLoader;
     @Getter
-    private final Loader loader;
+    private final ScriptLoader loader;
     private final File addonsDir;
     @Getter
     private final File scriptsDir;
@@ -37,9 +40,9 @@ public final class ScripterLoader {
 
     /**
      * @param classLoader The {@link URLClassLoader} to use.
-     * @param loader      The {@link Loader} to use.
+     * @param loader      The {@link ScriptLoader} to use.
      */
-    public ScripterLoader(@NotNull URLClassLoader classLoader, Loader loader) {
+    public ScripterLoader(@NotNull URLClassLoader classLoader, ScriptLoader loader) {
         this.classLoader = classLoader;
         this.loader = loader;
         this.addonsDir = new File(this.loader.getDataFolder(), "addons");
@@ -133,6 +136,23 @@ public final class ScripterLoader {
         } catch (Throwable t) {
             t.printStackTrace();
         }
+    }
+
+    private Map<String, Shell<?>> shells;
+    private String[] shellNames;
+
+    public Map<String, Shell<?>> getShells() {
+        if (shells == null) {
+            shells = this.addons.stream().map(ScriptAddon::getShell).filter(Objects::nonNull).collect(Collectors.toMap(s -> s.name.toLowerCase(), Function.identity()));
+        }
+        return shells;
+    }
+
+    public String[] getShellNames() {
+        if (shellNames == null) {
+            shellNames = this.addons.stream().map(ScriptAddon::getShell).filter(Objects::nonNull).map(s -> s.name).toArray(String[]::new);
+        }
+        return shellNames;
     }
 
     /**

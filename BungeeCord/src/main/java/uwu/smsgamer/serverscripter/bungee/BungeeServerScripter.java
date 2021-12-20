@@ -2,13 +2,15 @@ package uwu.smsgamer.serverscripter.bungee;
 
 import me.godead.lilliputian.DependencyBuilder;
 import net.md_5.bungee.api.plugin.Plugin;
-import uwu.smsgamer.senapi.Loader;
+import uwu.smsgamer.serverscripter.ScriptLoader;
 import uwu.smsgamer.serverscripter.ScripterLoader;
 import uwu.smsgamer.serverscripter.bungee.commands.CommandScript;
+import uwu.smsgamer.serverscripter.shell.PlayerOut;
 
 import java.net.URLClassLoader;
+import java.util.UUID;
 
-public class BungeeServerScripter extends Plugin implements Loader {
+public class BungeeServerScripter extends Plugin implements ScriptLoader {
     private static BungeeServerScripter INSTANCE;
     private ScripterLoader scripterLoader;
 
