@@ -46,12 +46,9 @@ public class SpigotServerScripter extends JavaPlugin implements ScriptLoader {
         builder.loadDependencies();
         scripterLoader.loadAddons();
 
-        ShellManager.onResponse = (uuid, message) -> Bukkit.getPlayer(uuid).sendMessage(message);
-        ShellManager.onError = (uuid, exception) -> {
-            String message = exception.getMessage();
-            if (message == null) message = exception.getClass().getSimpleName();
-            Bukkit.getPlayer(uuid).sendMessage(ChatColor.RED + message);
-        };
+        ShellManager.onPrint = (uuid, message) -> Bukkit.getPlayer(uuid).sendMessage(message);
+        ShellManager.onPrintError = (uuid, message) -> Bukkit.getPlayer(uuid).sendMessage(ChatColor.RED + message);
+        ShellManager.onAnnounce = (uuid, message) -> Bukkit.getPlayer(uuid).sendTitle("", message, 10, 60, 10);
     }
 
     @Override

@@ -5,7 +5,16 @@ import uwu.smsgamer.serverscripter.shell.Shell;
 import java.util.UUID;
 
 public class PyShell extends Shell<PyPlayerShell> {
-    public PyShell() {
+    private static PyShell instance;
+
+    public static PyShell getInstance() {
+        if (instance == null) {
+            instance = new PyShell();
+        }
+        return instance;
+    }
+
+    private PyShell() {
         super("Python");
     }
 

@@ -5,6 +5,7 @@ import org.bukkit.command.*;
 import uwu.smsgamer.senapi.utils.spigot.SConsolePlayer;
 import uwu.smsgamer.serverscripter.*;
 import uwu.smsgamer.serverscripter.shell.Shell;
+import uwu.smsgamer.serverscripter.shell.ShellManager;
 
 import java.util.*;
 
@@ -57,14 +58,22 @@ public class CommandScript implements TabExecutor {
                         return true;
                     }
                     if (args.length == 1) {
-                        sender.sendMessage(ScripterLoader.getInstance().getShellNames());
+                        List<String> names = new ArrayList<>(Arrays.asList(ScripterLoader.getInstance().getShellNames()));
+                        names.add("None");
+                        sender.sendMessage(String.join(", ", names));
                         return true;
                     }
                     String shellName = args[1].toLowerCase();
-                    if (ScripterLoader.getInstance().getShells().containsKey(shellName)) {
+                    UUID uuid = SConsolePlayer.getOfflinePlayer(sender).getUniqueId();
+                    if (shellName.equals("none")) {
+                        ShellManager.removeShell(uuid);
+                        sender.sendMessage("Removed shell.");
+                    } else if (ScripterLoader.getInstance().getShells().containsKey(shellName)) {
                         Shell<?> shell = ScripterLoader.getInstance().getShells().get(shellName);
-                        shell.setShell(SConsolePlayer.getOfflinePlayer(sender).getUniqueId());
+                        shell.setShell(uuid);
                         sender.sendMessage("Shell " + shellName + " opened.");
+                    } else {
+                        sender.sendMessage("Shell " + args[1] + " not found.");
                     }
                     return true;
                 default:

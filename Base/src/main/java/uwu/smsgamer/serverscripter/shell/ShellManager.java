@@ -10,9 +10,16 @@ public final class ShellManager {
     }
 
     public static Map<UUID, PlayerShell> activeShells = new java.util.HashMap<>();
-    public static BiConsumer<UUID, String> onResponse = (uuid, response) -> {
+    public static BiConsumer<UUID, String> onPrint = (uuid, response) -> {
+    };
+    public static BiConsumer<UUID, String> onPrintError = (uuid, response) -> {
     };
     public static BiConsumer<UUID, Exception> onError = (uuid, response) -> {
+        String message = response.getMessage();
+        if (message == null) message = response.getClass().getSimpleName();
+        onPrintError.accept(uuid, message);
+    };
+    public static BiConsumer<UUID, String> onAnnounce = (uuid, response) -> {
     };
 
     public static PlayerShell getShell(UUID uuid) {
@@ -21,9 +28,14 @@ public final class ShellManager {
 
     public static void setShell(UUID uuid, PlayerShell shell) {
         activeShells.put(uuid, shell);
+        activeShells.get(uuid).onEnable();
     }
 
     public static void removeShell(UUID uuid) {
+        if (!activeShells.containsKey(uuid)) {
+            return;
+        }
+        activeShells.get(uuid).onDisable();
         activeShells.remove(uuid);
     }
 }

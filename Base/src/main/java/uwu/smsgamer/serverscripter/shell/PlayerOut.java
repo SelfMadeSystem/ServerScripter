@@ -27,9 +27,13 @@ public class PlayerOut extends Writer {
 
     protected void print(String s) {
         if (this.error) {
-            ShellManager.onError.accept(this.uuid, new Exception(s));
+            if (builder.length() > 0) {
+                ShellManager.onPrintError.accept(this.uuid, s);
+            }
         } else {
-            ShellManager.onResponse.accept(this.uuid, s);
+            if (builder.length() > 0) {
+                ShellManager.onPrint.accept(this.uuid, s);
+            }
         }
     }
 
