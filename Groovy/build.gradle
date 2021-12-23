@@ -19,8 +19,8 @@ configurations {
 dependencies {
     implementation project(":Base")
 
-    implementation group: 'org.codehaus.groovy', name: 'groovy-all', version: '3.0.8'
-    extraLibs group: 'org.codehaus.groovy', name: 'groovy-all', version: '3.0.8'
+    implementation group: 'org.codehaus.groovy', name: 'groovy-all', version: '3.0.9'
+    extraLibs group: 'org.codehaus.groovy', name: 'groovy-all', version: '3.0.9'
 
     compileOnly 'com.github.simplix-softworks:SimplixStorage:3.2.2'
 }

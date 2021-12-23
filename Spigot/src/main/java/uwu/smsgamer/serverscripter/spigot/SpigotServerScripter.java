@@ -1,5 +1,6 @@
 package uwu.smsgamer.serverscripter.spigot;
 
+import de.leonhard.storage.Config;
 import lombok.Getter;
 import me.godead.lilliputian.DependencyBuilder;
 import org.bukkit.Bukkit;
@@ -48,6 +49,7 @@ public class SpigotServerScripter extends JavaPlugin implements ScriptLoader {
 
         ShellManager.onPrint = (uuid, message) -> Bukkit.getPlayer(uuid).sendMessage(message);
         ShellManager.onPrintError = (uuid, message) -> Bukkit.getPlayer(uuid).sendMessage(ChatColor.RED + message);
+        ShellManager.onError = (uuid, error) -> error.printStackTrace();
         ShellManager.onAnnounce = (uuid, message) -> Bukkit.getPlayer(uuid).sendTitle("", message, 10, 60, 10);
     }
 
