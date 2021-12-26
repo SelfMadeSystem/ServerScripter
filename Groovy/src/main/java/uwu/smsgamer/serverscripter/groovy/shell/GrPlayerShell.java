@@ -32,8 +32,8 @@ public class GrPlayerShell extends PlayerShell {
     }
 
     @Override
-    public void doExecute(String command) {
-        execute(command);
+    public Result doExecute(String command) {
+        return execute(command);
     }
 
     @Override

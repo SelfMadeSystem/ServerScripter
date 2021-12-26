@@ -1,5 +1,8 @@
 package uwu.smsgamer.serverscripter.shell;
 
+import uwu.smsgamer.serverscripter.utils.KillingTimer;
+import uwu.smsgamer.serverscripter.utils.KillingTimerTask;
+
 import java.util.*;
 
 /**
@@ -10,8 +13,8 @@ import java.util.*;
 public abstract class PlayerShell {
     public boolean isEnabled = false;
     public final UUID uuid;
-    public final List<TimerTask> tasks = new java.util.ArrayList<>();
-    public final Timer timer;
+    public final List<KillingTimerTask> tasks = new java.util.ArrayList<>();
+    public final KillingTimer shellTimer;
     public final StringBuffer buffer = new StringBuffer();
     public final Shell<?> shell;
 
@@ -23,7 +26,7 @@ public abstract class PlayerShell {
     protected PlayerShell(UUID uuid, Shell<?> shell) {
         this.uuid = uuid;
         this.shell = shell;
-        this.timer = new Timer(uuid.toString(), true);
+        this.shellTimer = new KillingTimer(uuid.toString(), true, getTimeout());
     }
 
     /**
@@ -75,11 +78,9 @@ public abstract class PlayerShell {
                     return;
                 }
             }
-            TimerTask task;
-            TimerTask checkTask;
-            TimerTask[] checkTasks = new TimerTask[1]; // This is a hack to get around the fact that TimerTask.cancel() is not thread-safe.
+            KillingTimerTask task;
             String finalCommand = command;
-            task = new TimerTask() {
+            task = new KillingTimerTask() {
                 @Override
                 public void run() {
                     try {
@@ -87,27 +88,20 @@ public abstract class PlayerShell {
                     } catch (Throwable e) {
                         ShellManager.onError.accept(uuid, e);
                     }
-                    checkTasks[0].cancel();
                     tasks.remove(this);
+                }
+
+                @Override
+                public void killed() {
+                    ShellManager.onPrintError.accept(uuid, "Command timed out.");
                 }
             };
             tasks.add(task);
-            timer.schedule(task, 0L);
-            checkTasks[0] = checkTask = new TimerTask() {
-                @Override
-                public void run() {
-                    if (tasks.contains(task)) {
-                        task.cancel();
-                        tasks.remove(task);
-                        ShellManager.onPrintError.accept(uuid, timeout());
-                    }
-                }
-            };
-            timer.schedule(checkTask, getTimeout());
+            shellTimer.schedule(task, 0L);
         }
     }
 
-    public void doExecute(String command) {
+    public Result doExecute(String command) {
         Result result = execute(command);
         switch (result.response) {
             case UNFINISHED:
@@ -118,6 +112,7 @@ public abstract class PlayerShell {
                 ShellManager.onAnnounce.accept(uuid, "Exit shell.");
                 shell.removeShell(uuid);
         }
+        return result;
     }
 
     /**
