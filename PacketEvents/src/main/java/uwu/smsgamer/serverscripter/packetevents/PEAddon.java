@@ -1,7 +1,7 @@
 package uwu.smsgamer.serverscripter.packetevents;
 
 import io.github.retrooper.packetevents.PacketEvents;
-import me.godead.lilliputian.DependencyBuilder;
+import uwu.smsgamer.serverscripter.lilliputian.DependencyBuilder;
 import uwu.smsgamer.serverscripter.ScriptAddon;
 import uwu.smsgamer.serverscripter.spigot.SpigotServerScripter;
 
@@ -23,7 +23,7 @@ public class PEAddon extends ScriptAddon {
 
     @Override
     public void enable() {
-        PacketEvents.get().registerListener(new ScriptPacketListener());
+        PacketEvents.get().registerListener(ScriptPacketListener.getInstance());
         PacketEvents.get().init();
     }
 

@@ -1,9 +1,8 @@
 package uwu.smsgamer.serverscripter.javascript;
 
-import me.godead.lilliputian.*;
-import org.mozilla.javascript.Context;
-import org.mozilla.javascript.ContextFactory;
-import org.mozilla.javascript.tools.shell.ShellContextFactory;
+import uwu.smsgamer.serverscripter.lilliputian.Dependency;
+import uwu.smsgamer.serverscripter.lilliputian.DependencyBuilder;
+import uwu.smsgamer.serverscripter.lilliputian.Repository;
 import uwu.smsgamer.serverscripter.ScriptAddon;
 import uwu.smsgamer.serverscripter.javascript.scripts.JSScriptLoader;
 import uwu.smsgamer.serverscripter.javascript.shell.JSShell;

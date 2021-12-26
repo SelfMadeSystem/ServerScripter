@@ -16,7 +16,7 @@
  *  You should have received a copy of the GNU General Public License along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-package me.godead.lilliputian;
+package uwu.smsgamer.serverscripter.lilliputian;
 
 import java.io.*;
 import java.net.*;
@@ -35,7 +35,6 @@ public class Dependency {
     private final Boolean customRepository;
 
     private final String repositoryURL;
-    private final DependencyLoader loader = new DependencyLoader((URLClassLoader) Lilliputian.getPlugin().getClass().getClassLoader());
 
     public Dependency(Repository repository, String group, String name, String version) {
         this.repositoryURL = null;
@@ -78,14 +77,18 @@ public class Dependency {
     }
 
     private void load(File file) {
-        loader.loadDependency(file);
+        Lilliputian.getLoader().loadDependency(file);
     }
 
     private File download() {
 
         File dir = new File(Lilliputian.getPath());
 
-        if (!dir.exists()) dir.mkdirs();
+        if (!dir.exists()) {
+            if (!dir.mkdirs()) {
+                throw new RuntimeException("Error. Could not create directory: " + dir.getAbsolutePath());
+            }
+        }
 
         File file = new File(Lilliputian.getPath() + "/" + getJarName());
 

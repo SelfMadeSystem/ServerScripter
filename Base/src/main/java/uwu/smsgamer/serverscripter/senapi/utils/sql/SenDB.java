@@ -7,9 +7,9 @@
  *  You should have received a copy of the GNU General Public License along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-package uwu.smsgamer.senapi.utils.sql;
+package uwu.smsgamer.serverscripter.senapi.utils.sql;
 
-import uwu.smsgamer.senapi.utils.Pair;
+import uwu.smsgamer.serverscripter.senapi.utils.Pair;
 
 import java.sql.*;
 import java.util.*;

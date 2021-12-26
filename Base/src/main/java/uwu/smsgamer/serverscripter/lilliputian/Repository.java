@@ -16,41 +16,22 @@
  *  You should have received a copy of the GNU General Public License along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-package me.godead.lilliputian;
+package uwu.smsgamer.serverscripter.lilliputian;
 
-import org.jetbrains.annotations.NotNull;
+public enum Repository {
 
-import java.io.File;
-import java.lang.reflect.Method;
-import java.net.*;
-import java.util.*;
+    JITPACK("https://jitpack.io/%s.jar"),
+    MAVENCENTRAL("https://repo1.maven.org/maven2/%s.jar"),
+    SONATYPE("https://search.maven.org/remotecontent?filepath=%s.jar"),
+    CUSTOM("repo/%s.jar");
 
-class DependencyLoader {
+    private final String repositoryURL;
 
-    @NotNull
-    private final URLClassLoader classLoader;
-
-    @NotNull
-    private final List<File> loadedFiles = new ArrayList<>();
-
-    public DependencyLoader(@NotNull final URLClassLoader classLoader) {
-        this.classLoader = classLoader;
+    Repository(String repositoryURL) {
+        this.repositoryURL = repositoryURL;
     }
 
-    //Adds the file to the class path
-    protected void loadDependency(File file) {
-
-        if (loadedFiles.contains(file)) return;
-
-        try {
-
-            Method method = URLClassLoader.class.getDeclaredMethod("addURL", URL.class);
-            method.setAccessible(true);
-            method.invoke(classLoader, file.toURI().toURL());
-
-            loadedFiles.add(file);
-        } catch (Throwable t) {
-            t.printStackTrace();
-        }
+    public String getRepositoryURL() {
+        return repositoryURL;
     }
 }

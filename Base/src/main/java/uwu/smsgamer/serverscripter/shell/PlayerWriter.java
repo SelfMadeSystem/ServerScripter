@@ -3,12 +3,12 @@ package uwu.smsgamer.serverscripter.shell;
 import java.io.Writer;
 import java.util.UUID;
 
-public class PlayerOut extends Writer {
+public class PlayerWriter extends Writer {
     private final StringBuilder builder = new StringBuilder();
     protected final UUID uuid;
     protected final boolean error;
 
-    public PlayerOut(UUID uuid, boolean error) {
+    public PlayerWriter(UUID uuid, boolean error) {
         this.uuid = uuid;
         this.error = error;
     }

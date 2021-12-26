@@ -5,7 +5,7 @@ import org.python.core.Py;
 import org.python.core.PyException;
 import org.python.core.PyObject;
 import org.python.util.InteractiveInterpreter;
-import uwu.smsgamer.serverscripter.shell.PlayerOut;
+import uwu.smsgamer.serverscripter.shell.PlayerWriter;
 import uwu.smsgamer.serverscripter.shell.PlayerShell;
 
 import java.util.UUID;
@@ -15,8 +15,8 @@ public class PyPlayerShell extends PlayerShell {
     protected PyPlayerShell(UUID uuid) {
         super(uuid, PyShell.getInstance());
         interpreter = new MyInteractiveInterpreter();
-        interpreter.setOut(new PlayerOut(uuid, false));
-        interpreter.setErr(new PlayerOut(uuid, true));
+        interpreter.setOut(new PlayerWriter(uuid, false));
+        interpreter.setErr(new PlayerWriter(uuid, true));
     }
 
     @Override

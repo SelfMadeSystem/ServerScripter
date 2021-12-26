@@ -1,15 +1,11 @@
 package uwu.smsgamer.serverscripter;
 
 import lombok.Getter;
-import me.godead.lilliputian.DependencyBuilder;
-import uwu.smsgamer.serverscripter.shell.PlayerOut;
-import uwu.smsgamer.serverscripter.shell.PlayerShell;
+import uwu.smsgamer.serverscripter.lilliputian.DependencyBuilder;
 import uwu.smsgamer.serverscripter.shell.Shell;
 
 import java.io.File;
-import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 /**
  * An abstract class that addons must extend.

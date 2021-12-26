@@ -1,8 +1,7 @@
 package uwu.smsgamer.serverscripter.spigot;
 
-import de.leonhard.storage.Config;
 import lombok.Getter;
-import me.godead.lilliputian.DependencyBuilder;
+import uwu.smsgamer.serverscripter.lilliputian.DependencyBuilder;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -41,7 +40,7 @@ public class SpigotServerScripter extends JavaPlugin implements ScriptLoader {
 
     @Override
     public void onLoad() {
-        scripterLoader = new ScripterLoader((URLClassLoader) this.getClassLoader(), this);
+        scripterLoader = new ScripterLoader(this);
         DependencyBuilder builder = scripterLoader.startDependencyBuilder();
         scripterLoader.loadAddons(builder);
         builder.loadDependencies();

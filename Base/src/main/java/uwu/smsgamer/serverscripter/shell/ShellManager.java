@@ -14,7 +14,7 @@ public final class ShellManager {
     };
     public static BiConsumer<UUID, String> onPrintError = (uuid, response) -> {
     };
-    public static BiConsumer<UUID, Exception> onError = (uuid, response) -> {
+    public static BiConsumer<UUID, Throwable> onError = (uuid, response) -> {
         String message = response.getMessage();
         if (message == null) message = response.getClass().getSimpleName();
         onPrintError.accept(uuid, message);

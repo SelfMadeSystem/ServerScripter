@@ -12,7 +12,7 @@ package uwu.smsgamer.senapi.utils.spigot;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
 import org.bukkit.permissions.Permissible;
-import uwu.smsgamer.senapi.Constants;
+import uwu.smsgamer.serverscripter.senapi.Constants;
 
 /**
  * Utilities regarding players.

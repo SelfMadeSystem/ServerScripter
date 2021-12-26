@@ -7,7 +7,7 @@
  *  You should have received a copy of the GNU General Public License along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-package uwu.smsgamer.senapi.utils;
+package uwu.smsgamer.serverscripter.senapi.utils;
 
 public class Pair<A, B> {
     public A a;

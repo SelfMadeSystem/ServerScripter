@@ -83,17 +83,8 @@ public abstract class PlayerShell {
                 @Override
                 public void run() {
                     try {
-                        Result result = execute(finalCommand);
-                        switch (result.response) {
-                            case UNFINISHED:
-                                buffer.append(result.output);
-                                ShellManager.onAnnounce.accept(uuid, "Unfinished command.");
-                                break;
-                            case EXIT:
-                                ShellManager.onAnnounce.accept(uuid, "Exit shell.");
-                                shell.removeShell(uuid);
-                        }
-                    } catch (Exception e) {
+                        doExecute(finalCommand);
+                    } catch (Throwable e) {
                         ShellManager.onError.accept(uuid, e);
                     }
                     checkTasks[0].cancel();
@@ -116,6 +107,19 @@ public abstract class PlayerShell {
         }
     }
 
+    public void doExecute(String command) {
+        Result result = execute(command);
+        switch (result.response) {
+            case UNFINISHED:
+                buffer.append(result.output);
+                ShellManager.onAnnounce.accept(uuid, "Unfinished command.");
+                break;
+            case EXIT:
+                ShellManager.onAnnounce.accept(uuid, "Exit shell.");
+                shell.removeShell(uuid);
+        }
+    }
+
     /**
      * Executes the command. This method is called in a separate thread.
      *
@@ -134,7 +138,6 @@ public abstract class PlayerShell {
     }
 
     public static class Result {
-
         public enum Response {
             FINISHED,
             UNFINISHED,
@@ -143,6 +146,7 @@ public abstract class PlayerShell {
 
         public static final Result UNFINISHED = new Result(Response.UNFINISHED);
         public static final Result EXIT = new Result(Response.EXIT);
+        public static final Result EMPTY = new Result(Response.FINISHED, "");
 
         public final Response response;
         public final String output;
@@ -155,6 +159,10 @@ public abstract class PlayerShell {
         public Result(Response response) {
             this.response = response;
             this.output = null;
+        }
+
+        public Result(String output) {
+            this(Response.FINISHED, output);
         }
     }
 }

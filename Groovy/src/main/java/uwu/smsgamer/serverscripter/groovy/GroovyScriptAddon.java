@@ -1,19 +1,32 @@
 package uwu.smsgamer.serverscripter.groovy;
 
 import de.leonhard.storage.Config;
-import me.godead.lilliputian.*;
+import uwu.smsgamer.serverscripter.lilliputian.DependencyBuilder;
 import uwu.smsgamer.serverscripter.*;
 import uwu.smsgamer.serverscripter.groovy.scripts.GrScriptLoader;
+import uwu.smsgamer.serverscripter.groovy.shell.GrShell;
 
 import java.io.File;
 
 public class GroovyScriptAddon extends ScriptAddon {
     public final Config config;
     public GroovyScriptAddon() {
-        super("Groovy", "0.2", null);
+        super("Groovy", "0.2", GrShell.getInstance());
         config = new Config(new File(ScripterLoader.getInstance().getConfigDir(), "Groovy-config.yml"));
         config.setDefault("Delete Class Cache", true);
     }
+
+    private static GroovyScriptAddon INSTANCE;
+
+    {
+        INSTANCE = this;
+    }
+
+    public static GroovyScriptAddon getInstance() {
+        if (INSTANCE == null) new GroovyScriptAddon();
+        return INSTANCE;
+    }
+
 
     @Override
     public void loadDependencies(DependencyBuilder builder) {

@@ -7,11 +7,11 @@
  *  You should have received a copy of the GNU General Public License along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-package uwu.smsgamer.senapi.config;
+package uwu.smsgamer.serverscripter.senapi.config;
 
 import de.leonhard.storage.*;
 import de.leonhard.storage.internal.settings.ReloadSettings;
-import uwu.smsgamer.senapi.Loader;
+import uwu.smsgamer.serverscripter.senapi.Loader;
 
 import java.io.*;
 import java.net.*;

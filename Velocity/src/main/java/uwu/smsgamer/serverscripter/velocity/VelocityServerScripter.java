@@ -12,19 +12,17 @@ import com.velocitypowered.api.plugin.Plugin;
 import com.velocitypowered.api.plugin.annotation.DataDirectory;
 import com.velocitypowered.api.proxy.ProxyServer;
 import lombok.Getter;
-import me.godead.lilliputian.DependencyBuilder;
+import uwu.smsgamer.serverscripter.lilliputian.DependencyBuilder;
 import net.kyori.adventure.text.Component;
 import org.slf4j.Logger;
 import uwu.smsgamer.serverscripter.ScriptAddon;
 import uwu.smsgamer.serverscripter.ScriptLoader;
 import uwu.smsgamer.serverscripter.ScripterLoader;
-import uwu.smsgamer.serverscripter.shell.PlayerOut;
 
 import java.io.File;
 import java.net.URLClassLoader;
 import java.nio.file.Path;
 import java.util.Set;
-import java.util.UUID;
 import java.util.logging.LogManager;
 
 @Plugin(
@@ -56,7 +54,7 @@ public class VelocityServerScripter implements ScriptLoader {
         this.dataPath = dataDirectory;
         this.dataFile = dataDirectory.toFile();
 
-        scripterLoader = new ScripterLoader((URLClassLoader) this.getClass().getClassLoader(), this);
+        scripterLoader = new ScripterLoader(this);
         DependencyBuilder builder = scripterLoader.startDependencyBuilder();
         scripterLoader.loadAddons(builder);
         builder.loadDependencies();

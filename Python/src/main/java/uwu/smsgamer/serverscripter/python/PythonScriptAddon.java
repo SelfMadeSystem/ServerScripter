@@ -1,7 +1,9 @@
 package uwu.smsgamer.serverscripter.python;
 
 import de.leonhard.storage.Config;
-import me.godead.lilliputian.*;
+import uwu.smsgamer.serverscripter.lilliputian.Dependency;
+import uwu.smsgamer.serverscripter.lilliputian.DependencyBuilder;
+import uwu.smsgamer.serverscripter.lilliputian.Repository;
 import uwu.smsgamer.serverscripter.*;
 import uwu.smsgamer.serverscripter.python.scripts.PyScriptLoader;
 import uwu.smsgamer.serverscripter.python.shell.PyShell;

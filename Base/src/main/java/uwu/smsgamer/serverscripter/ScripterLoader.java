@@ -3,9 +3,8 @@ package uwu.smsgamer.serverscripter;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import lombok.Getter;
-import me.godead.lilliputian.*;
 import org.jetbrains.annotations.NotNull;
-import uwu.smsgamer.senapi.Loader;
+import uwu.smsgamer.serverscripter.lilliputian.*;
 import uwu.smsgamer.serverscripter.shell.Shell;
 
 import java.io.*;
@@ -23,7 +22,7 @@ import java.util.zip.ZipEntry;
 public final class ScripterLoader {
     private static ScripterLoader INSTANCE;
     @NotNull
-    private final URLClassLoader classLoader;
+    private final CustomClassLoader classLoader;
     @Getter
     private final ScriptLoader loader;
     private final File addonsDir;
@@ -39,12 +38,12 @@ public final class ScripterLoader {
     }
 
     /**
-     * @param classLoader The {@link URLClassLoader} to use.
      * @param loader      The {@link ScriptLoader} to use.
      */
-    public ScripterLoader(@NotNull URLClassLoader classLoader, ScriptLoader loader) {
-        this.classLoader = classLoader;
+    public ScripterLoader(ScriptLoader loader) {
         this.loader = loader;
+        Lilliputian.load(loader);
+        this.classLoader = Lilliputian.getClassLoader();
         this.addonsDir = new File(this.loader.getDataFolder(), "addons");
         this.scriptsDir = new File(this.loader.getDataFolder(), "scripts");
         this.configDir = new File(this.loader.getDataFolder(), "configs");
@@ -129,13 +128,7 @@ public final class ScripterLoader {
     }
 
     protected void loadDependency(File file) {
-        try {
-            Method method = URLClassLoader.class.getDeclaredMethod("addURL", URL.class);
-            method.setAccessible(true);
-            method.invoke(classLoader, file.toURI().toURL());
-        } catch (Throwable t) {
-            t.printStackTrace();
-        }
+        classLoader.loadJar(file);
     }
 
     private Map<String, Shell<?>> shells;

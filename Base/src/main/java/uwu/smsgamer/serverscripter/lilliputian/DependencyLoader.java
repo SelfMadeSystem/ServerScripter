@@ -16,52 +16,34 @@
  *  You should have received a copy of the GNU General Public License along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-package me.godead.lilliputian;
+package uwu.smsgamer.serverscripter.lilliputian;
 
-import org.jetbrains.annotations.*;
-import uwu.smsgamer.senapi.Loader;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
+import java.lang.reflect.Method;
+import java.net.*;
+import java.util.*;
 
-public class Lilliputian {
-
-    @Nullable
-    private static Loader plugin = null;
-    @Nullable
-    private static String path = null;
-    private final DependencyBuilder builder = new DependencyBuilder();
-
-    /**
-     * @param plugin Your plugin instance
-     */
-    public Lilliputian(@NotNull Loader plugin) {
-        Lilliputian.plugin = plugin;
-        path = plugin.getDataFolder() + File.separator + "LilliputianLibraries";
-    }
-
-    /**
-     * @param plugin Your plugin instance
-     * @param path   (Optional) The path to download the Dependencies to.
-     *               (Example: "/MyPlugin" Will download them to a Folder called MyPlugin inside the server's plugins folder)
-     */
-    public Lilliputian(@NotNull Loader plugin, String path) {
-        Lilliputian.plugin = plugin;
-        Lilliputian.path = plugin.getDataFolder().getParent() + path;
-    }
+class DependencyLoader {
 
     @NotNull
-    public static Loader getPlugin() {
-        assert plugin != null : "Error. Plugin seems to be null";
-        return plugin;
-    }
+    private final CustomClassLoader classLoader;
 
     @NotNull
-    public static String getPath() {
-        assert path != null : "Error. Path seems to be null";
-        return path;
+    private final List<File> loadedFiles = new ArrayList<>();
+
+    public DependencyLoader(@NotNull final CustomClassLoader classLoader) {
+        this.classLoader = classLoader;
     }
 
-    public DependencyBuilder getDependencyBuilder() {
-        return builder;
+    //Adds the file to the class path
+    protected void loadDependency(File file) {
+
+        if (loadedFiles.contains(file)) return;
+
+        classLoader.loadJar(file);
+
+        loadedFiles.add(file);
     }
 }

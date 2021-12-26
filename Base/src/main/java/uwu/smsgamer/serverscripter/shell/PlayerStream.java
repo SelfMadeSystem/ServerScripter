@@ -1,0 +1,44 @@
+package uwu.smsgamer.serverscripter.shell;
+
+import java.io.OutputStream;
+import java.util.UUID;
+
+public class PlayerStream extends OutputStream {
+    private final StringBuilder builder = new StringBuilder();
+    protected final UUID uuid;
+    protected final boolean error;
+
+    public PlayerStream(UUID uuid, boolean error) {
+        this.uuid = uuid;
+        this.error = error;
+    }
+
+
+    @Override
+    public void write(int b) {
+        builder.append((char) b);
+    }
+
+    @Override
+    public void flush() {
+        print(builder.toString());
+        builder.setLength(0);
+    }
+
+    protected void print(String s) {
+        if (this.error) {
+            if (builder.length() > 0) {
+                ShellManager.onPrintError.accept(this.uuid, s);
+            }
+        } else {
+            if (builder.length() > 0) {
+                ShellManager.onPrint.accept(this.uuid, s);
+            }
+        }
+    }
+
+    @Override
+    public void close() {
+        flush();
+    }
+}
