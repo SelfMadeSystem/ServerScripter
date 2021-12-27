@@ -20,7 +20,6 @@ import uwu.smsgamer.serverscripter.ScriptLoader;
 import uwu.smsgamer.serverscripter.ScripterLoader;
 
 import java.io.File;
-import java.net.URLClassLoader;
 import java.nio.file.Path;
 import java.util.Set;
 import java.util.logging.LogManager;

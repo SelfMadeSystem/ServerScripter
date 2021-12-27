@@ -1,6 +1,7 @@
 package uwu.smsgamer.serverscripter.bungee.commands;
 
 import net.md_5.bungee.api.*;
+import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.plugin.Command;
 import uwu.smsgamer.serverscripter.*;
 
@@ -24,8 +25,12 @@ public class CommandScript extends Command {
 
     @Override
     public void execute(CommandSender sender, String[] args) {
+        if (!hasPermission(sender)) {
+            sender.sendMessage(TextComponent.fromLegacyText(this.getPermissionMessage()));
+            return;
+        }
         if (args.length == 0) {
-            sender.sendMessage("/script <addons:reload>");
+            sender.sendMessage("/bscript <addons:reload>");
         } else {
             if (args[0].equalsIgnoreCase("addons")) {
                 sender.sendMessage("Addons:");
@@ -41,7 +46,7 @@ public class CommandScript extends Command {
                 ScripterLoader.getInstance().reloadAddons();
                 sender.sendMessage("Reloaded.");
             } else {
-                sender.sendMessage("/script <addons:reload>");
+                sender.sendMessage("/bscript <addons:reload>");
             }
         }
     }
