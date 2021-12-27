@@ -7,7 +7,30 @@
  *  You should have received a copy of the GNU General Public License along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
+package uwu.smsgamer.serverscripter.spigot.senapi.spigot;
+
+import org.bukkit.Bukkit;
+
 /**
- * This package contains utils that require the Spigot API.
+ * Utils for plugins.
  */
-package uwu.smsgamer.senapi.utils.spigot;
+public class SPluginUtils {
+    /**
+     * Gets if a plugin is enabled.
+     *
+     * @param name Plugin name.
+     * @return If the plugin is enabled.
+     */
+    public static boolean isPluginEnabled(String name) {
+        return Bukkit.getPluginManager().isPluginEnabled(name);
+    }
+
+    /**
+     * Returns if PlaceholderAPI is enabled.
+     *
+     * @return If PlaceholderAPI is enabled.
+     */
+    public static boolean isPlaceholderAPIEnabled() {
+        return isPluginEnabled("PlaceholderAPI");
+    }
+}

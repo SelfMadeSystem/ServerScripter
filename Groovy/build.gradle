@@ -22,6 +22,12 @@ dependencies {
     implementation group: 'org.codehaus.groovy', name: 'groovy-all', version: '3.0.9'
     extraLibs group: 'org.codehaus.groovy', name: 'groovy-all', version: '3.0.9'
 
+    compileOnly 'org.projectlombok:lombok:1.18.22'
+    annotationProcessor 'org.projectlombok:lombok:1.18.22'
+
+    testCompileOnly 'org.projectlombok:lombok:1.18.22'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.22'
+
     compileOnly 'com.github.simplix-softworks:SimplixStorage:3.2.2'
 }
 

@@ -4,7 +4,7 @@ import java.io.OutputStream;
 import java.util.UUID;
 
 public class PlayerStream extends OutputStream {
-    private final StringBuilder builder = new StringBuilder();
+    protected final StringBuilder builder = new StringBuilder();
     protected final UUID uuid;
     protected final boolean error;
 

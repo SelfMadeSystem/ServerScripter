@@ -3,8 +3,6 @@ package uwu.smsgamer.serverscripter.groovy.shell;
 import groovy.lang.Binding;
 import org.apache.groovy.groovysh.Groovysh;
 import org.codehaus.groovy.tools.shell.IO;
-import uwu.smsgamer.serverscripter.groovy.GroovyScriptAddon;
-import uwu.smsgamer.serverscripter.groovy.scripts.GrScriptLoader;
 import uwu.smsgamer.serverscripter.lilliputian.Lilliputian;
 import uwu.smsgamer.serverscripter.shell.PlayerStream;
 import uwu.smsgamer.serverscripter.shell.PlayerShell;
@@ -24,8 +22,20 @@ public class GrPlayerShell extends PlayerShell {
     protected GrPlayerShell(UUID uuid) {
         super(uuid, GrShell.getInstance());
         binding = new Binding();
-        out = new PrintStream(new PlayerStream(uuid, false));
-        err = new PrintStream(new PlayerStream(uuid, true));
+        out = new PrintStream(new PlayerStream(uuid, false) {
+            @Override
+            public void flush() {
+                print(AnsiMCUtils.ansiToMC(builder.toString()));
+                builder.setLength(0);
+            }
+        });
+        err = new PrintStream(new PlayerStream(uuid, true) {
+            @Override
+            public void flush() {
+                print(AnsiMCUtils.ansiToMC(builder.toString()));
+                builder.setLength(0);
+            }
+        });
         this.groovysh = new Groovysh(Lilliputian.getClassLoader(), binding,
                 new IO(new InputStream() {
                     @Override
@@ -45,10 +55,10 @@ public class GrPlayerShell extends PlayerShell {
         if (command == null || command.isEmpty()) {
             return Result.EMPTY;
         }
-        if (command.startsWith(":")) {
-            ShellManager.onAnnounce.accept(uuid, "Oh no you don't!");
-            return Result.EMPTY;
-        }
+//        if (command.startsWith(":")) {
+//            ShellManager.onAnnounce.accept(uuid, "Oh no you don't!");
+//            return Result.EMPTY;
+//        }
         Object result = groovysh.execute(command);
         return new Result(String.valueOf(result));
     }

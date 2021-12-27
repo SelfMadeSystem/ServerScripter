@@ -2,7 +2,7 @@ package uwu.smsgamer.serverscripter.spigot.command;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.*;
-import uwu.smsgamer.senapi.utils.spigot.SConsolePlayer;
+import uwu.smsgamer.serverscripter.spigot.senapi.spigot.SConsolePlayer;
 import uwu.smsgamer.serverscripter.*;
 import uwu.smsgamer.serverscripter.shell.Shell;
 import uwu.smsgamer.serverscripter.shell.ShellManager;

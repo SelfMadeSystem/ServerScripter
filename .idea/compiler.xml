@@ -7,14 +7,11 @@
         <processorPath useClasspath="false">
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.12/48e4e5d60309ebd833bc528dcf77668eab3cd72c/lombok-1.18.12.jar" />
         </processorPath>
-        <module name="ServerScripter.Base.test" />
+        <module name="ServerScripter.BungeeCord.main" />
         <module name="ServerScripter.BungeeCord.test" />
         <module name="ServerScripter.PacketEvents.test" />
         <module name="ServerScripter.PacketEvents.main" />
         <module name="ServerScripter.Spigot.test" />
-        <module name="ServerScripter.Velocity.test" />
-        <module name="ServerScripter.BungeeCord.main" />
-        <module name="ServerScripter.Base.main" />
       </profile>
       <profile name="Gradle Imported" enabled="true">
         <outputRelativeToContentRoot value="true" />
@@ -35,7 +32,18 @@
       <profile name="Gradle Imported" enabled="true">
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.12/48e4e5d60309ebd833bc528dcf77668eab3cd72c/lombok-1.18.12.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.22/9c08ea24c6eb714e2d6170e8122c069a0ba9aacf/lombok-1.18.22.jar" />
+        </processorPath>
+        <module name="ServerScripter.Velocity.test" />
+        <module name="ServerScripter.Base.test" />
+        <module name="ServerScripter.Base.main" />
+        <module name="ServerScripter.Groovy.test" />
+        <module name="ServerScripter.Groovy.main" />
+      </profile>
+      <profile name="Gradle Imported" enabled="true">
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.22/9c08ea24c6eb714e2d6170e8122c069a0ba9aacf/lombok-1.18.22.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.velocitypowered/velocity-api/1.1.0/12824e90e0f2e04d3f08aed00f059d7f164ed12a/velocity-api-1.1.0.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/text-serializer-gson/3.0.4/d9e3e97a60bf64690f633f16278117b1c0702c27/text-serializer-gson-3.0.4.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.moandjiezana.toml/toml4j/0.7.2/a03337911d0bd2c40932aca3946edb30d0e7d0c/toml4j-0.7.2.jar" />

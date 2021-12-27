@@ -7,7 +7,7 @@
  *  You should have received a copy of the GNU General Public License along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-package uwu.smsgamer.senapi.utils.spigot;
+package uwu.smsgamer.serverscripter.spigot.senapi.spigot;
 
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
