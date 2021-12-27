@@ -16,7 +16,6 @@ import uwu.smsgamer.serverscripter.spigot.shell.ShellListener;
 import uwu.smsgamer.serverscripter.spigot.utils.*;
 
 import java.io.File;
-import java.net.URLClassLoader;
 import java.util.Collections;
 
 @Plugin(name = "ServerScripter", version = "0.1")
@@ -48,7 +47,12 @@ public class SpigotServerScripter extends JavaPlugin implements ScriptLoader {
 
         ShellManager.onPrint = (uuid, message) -> Bukkit.getPlayer(uuid).sendMessage(message);
         ShellManager.onPrintError = (uuid, message) -> Bukkit.getPlayer(uuid).sendMessage(ChatColor.RED + message);
-        ShellManager.onError = (uuid, error) -> error.printStackTrace();
+        ShellManager.onError = (uuid, error) -> {
+            error.printStackTrace();
+            String message = error.getMessage();
+            if (message == null) message = error.getClass().getSimpleName();
+            ShellManager.onPrintError.accept(uuid, message);
+        };
         ShellManager.onAnnounce = (uuid, message) -> Bukkit.getPlayer(uuid).sendTitle("", message, 10, 60, 10);
     }
 
