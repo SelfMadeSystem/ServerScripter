@@ -25,7 +25,7 @@ public class KillingTimer  {
     }
 
     public void schedule(KillingTimerTask task, long delay) {
-        timer.schedule(new TimerTaskKill(task, killTimer, maxTime, this, timer), delay);
+        timer.schedule(new TimerTaskKill(task, killTimer, maxTime, this), delay);
     }
 
     void makeTimer() {
