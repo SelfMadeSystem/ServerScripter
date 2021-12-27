@@ -85,6 +85,8 @@ public abstract class PlayerShell {
                 public void run() {
                     try {
                         doExecute(finalCommand);
+                    } catch (ThreadDeath e) {
+                        throw e;
                     } catch (Throwable e) {
                         ShellManager.onError.accept(uuid, e);
                     }
@@ -92,8 +94,13 @@ public abstract class PlayerShell {
                 }
 
                 @Override
-                public void killed() {
-                    ShellManager.onPrintError.accept(uuid, "Command timed out.");
+                public void killed(boolean suspended) {
+                    if (suspended) {
+                        ShellManager.onPrintError.accept(uuid, "Command timed out. (Suspended)");
+                    } else {
+                        ShellManager.onPrintError.accept(uuid, "Command timed out.");
+                    }
+                    tasks.remove(this);
                 }
             };
             tasks.add(task);

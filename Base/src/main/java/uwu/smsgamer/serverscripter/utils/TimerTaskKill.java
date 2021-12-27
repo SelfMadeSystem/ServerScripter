@@ -1,5 +1,7 @@
 package uwu.smsgamer.serverscripter.utils;
 
+import lombok.SneakyThrows;
+
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -11,23 +13,26 @@ class TimerTaskKill extends java.util.TimerTask {
     private Thread thread;
     private final KillingTimerTask task;
     private final Timer killTimer;
-    private final long maxTime;
+    private final TimerTask killTask;
+    private final KillingTimer timer;
 
-    TimerTaskKill(KillingTimerTask task, Timer killTimer, long maxTime) {
+    TimerTaskKill(KillingTimerTask task, Timer killTimer, long maxTime, KillingTimer timer) {
         this.task = task;
         this.killTimer = killTimer;
-        this.maxTime = maxTime;
+        this.timer = timer;
+        TimerTaskKill self = this;
+        killTask = new TimerTask() { // Assumes that the task is being run as soon as it is created.
+            @Override
+            public void run() {
+                System.out.println("??? " + task);
+                self.cancel();
+            }
+        };
+        killTimer.schedule(killTask, maxTime);
     }
 
     public void run() {
         thread = Thread.currentThread();
-        TimerTask killTask = new TimerTask() {
-            @Override
-            public void run() {
-                cancel();
-            }
-        };
-        killTimer.schedule(killTask, maxTime);
         try {
             task.run();
         } finally {
@@ -43,12 +48,40 @@ class TimerTaskKill extends java.util.TimerTask {
     }
 
     // This method kills the thread.
+    @SneakyThrows
     public void kill() {
         synchronized (task) {
             if (thread != null) {
-                thread.interrupt();
-                task.killed();
-                System.out.println("Killed task " + task);
+                // This is the only way to kill a thread that has no sleep() or wait() within it.
+                // Hopefully nothing's catching the exception.
+                Thread t = thread;
+                thread.stop();
+                if (thread.isAlive()) { // If it's still alive, it's probably stuck in a loop.
+                    System.out.println("Thread " + thread + " is still alive!");
+                    killTimer.schedule(new TimerTask() {
+                        @Override
+                        public void run() {
+                            if (thread != null && thread.isAlive()) { // If it's still alive, kill it.
+                                System.out.println("Thread " + thread + " is still alive!");
+                                thread.suspend(); // This is the last resort. Hopefully nothing bad happens.
+                                task.killed(true);
+                                System.out.println("Suspended thread " + thread + ".");
+                                thread.resume();
+                                // It absolutely breaks, but at this point, I don't care.
+                                // If someone really wants to catch ThreadDeath, they can. It's their fault.
+                                // Look, I tried.
+                            } else {
+                                task.killed(false);
+                                System.out.println("Stopped task " + task);
+                                timer.makeTimer();
+                            }
+                        }
+                    }, 250);
+                } else {
+                    task.killed(false);
+                    System.out.println("Stopped task " + task);
+                    timer.makeTimer();
+                }
             }
         }
     }

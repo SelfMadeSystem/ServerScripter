@@ -5,22 +5,18 @@ import java.util.Timer;
 /**
  * The same thing as {@link java.util.Timer}, but it kills the thread if a task is not completed in time.
  */
-public class KillingTimer extends java.util.Timer {
+public class KillingTimer  {
     private long maxTime;
+    private final String name;
+    private final boolean isDaemon;
+    private Timer timer;
     private final Timer killTimer;
 
-    public KillingTimer(long maxTime) {
-        this.maxTime = maxTime;
-        this.killTimer = new Timer("KillingTimer", true);
-    }
-
-    public KillingTimer() {
-        this(10000);
-    }
-
     public KillingTimer(String name, boolean isDaemon, long maxTime) {
-        super(name, isDaemon);
+        this.name = name;
+        this.isDaemon = isDaemon;
         this.maxTime = maxTime;
+        makeTimer();
         this.killTimer = new Timer(name + "-Killer", isDaemon);
     }
 
@@ -29,6 +25,10 @@ public class KillingTimer extends java.util.Timer {
     }
 
     public void schedule(KillingTimerTask task, long delay) {
-        super.schedule(new TimerTaskKill(task, killTimer, maxTime), delay);
+        timer.schedule(new TimerTaskKill(task, killTimer, maxTime, this, timer), delay);
+    }
+
+    void makeTimer() {
+        this.timer = new Timer(name, isDaemon);
     }
 }

@@ -5,6 +5,7 @@ import org.mozilla.javascript.Scriptable;
 import org.mozilla.javascript.tools.shell.ShellContextFactory;
 import uwu.smsgamer.serverscripter.shell.PlayerShell;
 import uwu.smsgamer.serverscripter.shell.ShellManager;
+import uwu.smsgamer.serverscripter.utils.KillingTimerTask;
 
 import java.util.TimerTask;
 import java.util.UUID;
@@ -16,12 +17,9 @@ public class JSPlayerShell extends PlayerShell {
         super(uuid, JSShell.getInstance());
         ShellContextFactory factory = new ShellContextFactory();
         factory.setLanguageVersion(Context.VERSION_ES6);
-        shellTimer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                cx = factory.enterContext();
-                scope = cx.initStandardObjects();
-            }
+        shellTimer.schedule(() -> {
+            cx = factory.enterContext();
+            scope = cx.initStandardObjects();
         }, 0);
     }
 
