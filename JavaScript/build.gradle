@@ -5,7 +5,7 @@ plugins {
 
 archivesBaseName = rootProject.name + "-" + project.name
 group 'uwu.smsgamer'
-version '0.2'
+version '0.2.0'
 
 repositories {
     mavenCentral()

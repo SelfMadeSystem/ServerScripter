@@ -27,7 +27,7 @@ import java.util.logging.LogManager;
 @Plugin(
         id = "server_scripter",
         name = "ServerScripter",
-        version = "0.1",
+        version = "0.2.0",
         description = "Scripting plugin for Spigot.",
         authors = {"Sms_Gamer_3808"}
 )

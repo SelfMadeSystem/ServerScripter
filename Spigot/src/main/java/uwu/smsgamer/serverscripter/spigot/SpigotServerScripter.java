@@ -18,7 +18,7 @@ import uwu.smsgamer.serverscripter.spigot.utils.*;
 import java.io.File;
 import java.util.Collections;
 
-@Plugin(name = "ServerScripter", version = "0.1")
+@Plugin(name = "ServerScripter", version = "0.2.0")
 @Description("Scripting plugin for Spigot.")
 @Author("Sms_Gamer_3808")
 @SoftDependency("PacketEvents")
