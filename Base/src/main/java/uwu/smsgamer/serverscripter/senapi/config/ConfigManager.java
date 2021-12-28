@@ -24,10 +24,10 @@ import java.util.logging.Level;
  * @author Sms_Gamer_3808 (Shoghi Simon)
  */
 public class ConfigManager {
-    protected static Loader pl;// = MatrixPvPBase.getInstance();
+    protected static Loader pl;
     private static ConfigManager instance;
-    public Map<String, Config> configs = new HashMap<>();
-    public Set<ConfVal<?>> vals = new HashSet<>();
+    public final Map<String, Config> configs = new HashMap<>();
+    public final Set<ConfVal<?>> vals = new HashSet<>();
 
     public static ConfigManager getInstance() {
         if (instance == null) instance = new ConfigManager();
@@ -55,7 +55,11 @@ public class ConfigManager {
         int lastIndex = resourcePath.lastIndexOf('/');
         File outDir = new File(dataFolder, resourcePath.substring(0, Math.max(lastIndex, 0)));
 
-        if (!outDir.exists()) outDir.mkdirs();
+        if (!outDir.exists()) {
+            if (!outDir.mkdirs()) {
+                throw new RuntimeException("The directory '" + outDir.getAbsolutePath() + "' could not be created");
+            }
+        }
 
         try {
             if (!outFile.exists()) {
@@ -98,14 +102,21 @@ public class ConfigManager {
         }
     }
 
-    public void setup(String... configs) {
+    private void checkDataFolder() {
         if (!pl.getDataFolder().exists()) {
-            pl.getDataFolder().mkdir();
+            if (!pl.getDataFolder().mkdirs()) {
+                throw new RuntimeException("The data folder could not be created");
+            }
         }
+    }
+
+    public void setup(String... configs) {
+        checkDataFolder();
         for (String config : configs) {
             pl.getLogger().info("Loading config: " + config);
             try {
                 loadConfig(config);
+                saveConfig(config);
                 pl.getLogger().info("Loaded config: " + config);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -133,9 +144,7 @@ public class ConfigManager {
     }
 
     public void loadConfig(String name, File file) {
-        if (!pl.getDataFolder().exists()) {
-            pl.getDataFolder().mkdir();
-        }
+        checkDataFolder();
         Config config = LightningBuilder.fromFile(file).createConfig();
         config.setReloadSettings(ReloadSettings.MANUALLY);
         configs.remove(config.getName());

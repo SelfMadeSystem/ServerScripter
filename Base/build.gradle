@@ -23,7 +23,7 @@ dependencies {
     compileOnly 'com.github.simplix-softworks:SimplixStorage:3.2.2'
     extraLibs 'com.github.simplix-softworks:SimplixStorage:3.2.2'
 
-    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'com.google.code.gson:gson:2.8.9'
 
     compileOnly 'org.projectlombok:lombok:1.18.22'
     annotationProcessor 'org.projectlombok:lombok:1.18.22'
