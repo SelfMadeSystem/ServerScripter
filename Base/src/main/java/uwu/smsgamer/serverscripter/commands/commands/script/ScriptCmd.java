@@ -8,6 +8,8 @@ import uwu.smsgamer.serverscripter.scripts.ScriptsLoader;
 import uwu.smsgamer.serverscripter.senapi.config.ColouredStringVal;
 import uwu.smsgamer.serverscripter.senapi.utils.APlayerOfSomeSort;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public abstract class ScriptCmd {
@@ -35,5 +37,17 @@ public abstract class ScriptCmd {
         ScriptsLoader<?> scriptsLoader = getScriptsLoader(lang);
         if (scriptsLoader == null) return null;
         return scriptsLoader.getScript(name);
+    }
+
+    public static String getLangName(String lang) {
+        ScriptsLoader<?> scriptsLoader = getScriptsLoader(lang);
+        if (scriptsLoader == null) return null;
+        return scriptsLoader.name;
+    }
+
+    public static List<String> getScripts(String lang) {
+        ScriptsLoader<?> scriptsLoader = getScriptsLoader(lang);
+        if (scriptsLoader == null) return Collections.emptyList();
+        return scriptsLoader.scripts.stream().map(Script::getScriptName).collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
     }
 }

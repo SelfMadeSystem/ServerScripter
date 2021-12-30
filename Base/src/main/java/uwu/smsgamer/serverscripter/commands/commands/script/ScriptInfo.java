@@ -42,7 +42,7 @@ public class ScriptInfo extends ScriptCmd {
         }
         ChatUtils.sendMessage(aPlayerOfSomeSort, info,
                 "%fileName%", script.getScriptFile().getName(),
-                "%lang%", lang,
+                "%lang%", getLangName(lang),
                 "%name%", script.getScriptName(),
                 "%author%", script.getScriptAuthor(),
                 "%description%", script.getScriptDescription(),
@@ -51,6 +51,9 @@ public class ScriptInfo extends ScriptCmd {
 
     @Override
     public List<String> getTabCompletions(APlayerOfSomeSort aPlayerOfSomeSort, String alias, String[] args) {
+        if (args.length == 3) {
+            return getScripts(args[0]);
+        }
         return Collections.emptyList();
     }
 }

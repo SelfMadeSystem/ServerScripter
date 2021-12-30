@@ -1,10 +1,13 @@
 package uwu.smsgamer.serverscripter.commands.commands;
 
+import uwu.smsgamer.serverscripter.ScripterLoader;
 import uwu.smsgamer.serverscripter.commands.CommandManager;
 import uwu.smsgamer.serverscripter.commands.SCommand;
 import uwu.smsgamer.serverscripter.commands.commands.script.*;
 import uwu.smsgamer.serverscripter.senapi.utils.APlayerOfSomeSort;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -49,12 +52,15 @@ public class ScriptCommand extends SCommand { // Todo: Implement permissions
 
     @Override
     public List<String> getTabCompletions(APlayerOfSomeSort aPlayerOfSomeSort, String alias, String[] args) {
-        if (args.length == 0) {
+        if (args.length == 1) {
+            return new ArrayList<>(ScripterLoader.getInstance().getScriptsLoadersByName().keySet());
+        }
+        if (args.length == 2) {
             return getCommandNames();
         }
-        ScriptCmd cmd = commands.get(args[0]);
+        ScriptCmd cmd = commands.get(args[1]);
         if (cmd == null) {
-            return getCommandNames();
+            return Collections.emptyList();
         }
         return cmd.getTabCompletions(aPlayerOfSomeSort, alias, args);
     }
