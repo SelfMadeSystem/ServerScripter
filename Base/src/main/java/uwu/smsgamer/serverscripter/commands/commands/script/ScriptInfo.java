@@ -1,4 +1,4 @@
-package uwu.smsgamer.serverscripter.commands.commands.shell;
+package uwu.smsgamer.serverscripter.commands.commands.script;
 
 import uwu.smsgamer.serverscripter.scripts.Script;
 import uwu.smsgamer.serverscripter.senapi.config.ColouredStringVal;
@@ -8,15 +8,15 @@ import uwu.smsgamer.serverscripter.senapi.utils.ChatUtils;
 import java.util.Collections;
 import java.util.List;
 
-public class ShellInfo extends ShellCmd {
+public class ScriptInfo extends ScriptCmd {
     public final ColouredStringVal help;
     public final ColouredStringVal info;
 
-    public ShellInfo(String baseCommandName) {
-        super(baseCommandName, "info");
-        help = new ColouredStringVal(baseCommandName + ".InfoHelp", "&c/%alias% <lang> info <script>\n" +
+    public ScriptInfo() {
+        super("info");
+        help = new ColouredStringVal("Script.InfoHelp", config,"&c/%alias% <lang> info <script>\n" +
                 "&7Lists all the scripts in the the specified language.");
-        info = new ColouredStringVal(baseCommandName + ".Info",
+        info = new ColouredStringVal("Script.Info", config,
                 "&7File name: &c%fileName%\n" +
                         "&7Language: &c%lang%\n" +
                         "&7Script Name: &c%name%\n" +

@@ -2,32 +2,32 @@ package uwu.smsgamer.serverscripter.commands.commands;
 
 import uwu.smsgamer.serverscripter.commands.CommandManager;
 import uwu.smsgamer.serverscripter.commands.SCommand;
-import uwu.smsgamer.serverscripter.commands.commands.shell.*;
+import uwu.smsgamer.serverscripter.commands.commands.script.*;
 import uwu.smsgamer.serverscripter.senapi.utils.APlayerOfSomeSort;
 
 import java.util.HashMap;
 import java.util.List;
 
 public class ScriptCommand extends SCommand { // Todo: Implement permissions
-    private HashMap<String, ShellCmd> commands = new HashMap<>();
+    private final HashMap<String, ScriptCmd> commands = new HashMap<>();
     public ScriptCommand(CommandManager manager) {
         super(manager, "Script", "Manages scripts.",
-                "&c/script <lang> <%commands%> [script]");
-        putCommand(new ShellCall(this.name));
-        putCommand(new ShellInfo(this.name));
-        putCommand(new ShellList(this.name));
-        putCommand(new ShellLoad(this.name));
-        putCommand(new ShellUnload(this.name));
-        putCommand(new ShellReload(this.name));
+                "&c/%alias% <lang> <%commands%> [script]");
+        putCommand(new ScriptCall());
+        putCommand(new ScriptInfo());
+        putCommand(new ScriptList());
+        putCommand(new ScriptLoad());
+        putCommand(new ScriptUnload());
+        putCommand(new ScriptReload());
     }
 
-    private void putCommand(ShellCmd cmd) {
+    private void putCommand(ScriptCmd cmd) {
         commands.put(cmd.getName(), cmd);
     }
 
     private List<String> getCommandNames() {
         List<String> names = new java.util.ArrayList<>();
-        for (ShellCmd cmd : commands.values()) {
+        for (ScriptCmd cmd : commands.values()) {
             names.add(cmd.getName());
         }
         return names;
@@ -35,11 +35,11 @@ public class ScriptCommand extends SCommand { // Todo: Implement permissions
 
     @Override
     public void execute(APlayerOfSomeSort aPlayerOfSomeSort, String alias, String[] args) {
-        if (args.length == 0) {
+        if (args.length < 2) {
             sendUsage(aPlayerOfSomeSort, alias);
             return;
         }
-        ShellCmd cmd = commands.get(args[0]);
+        ScriptCmd cmd = commands.get(args[1]);
         if (cmd == null) {
             sendUsage(aPlayerOfSomeSort, alias);
             return;
@@ -52,10 +52,16 @@ public class ScriptCommand extends SCommand { // Todo: Implement permissions
         if (args.length == 0) {
             return getCommandNames();
         }
-        ShellCmd cmd = commands.get(args[0]);
+        ScriptCmd cmd = commands.get(args[0]);
         if (cmd == null) {
             return getCommandNames();
         }
         return cmd.getTabCompletions(aPlayerOfSomeSort, alias, args);
+    }
+
+    @Override
+    public void sendUsage(APlayerOfSomeSort aPlayerOfSomeSort, String alias) {
+        aPlayerOfSomeSort.sendMessage(this.usage.getValue().replace("%alias%", alias)
+                .replace("%commands%", String.join(", ", getCommandNames())));
     }
 }

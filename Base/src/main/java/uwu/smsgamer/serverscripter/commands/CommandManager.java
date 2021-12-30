@@ -24,8 +24,9 @@ public abstract class CommandManager {
     }
 
     public SCommand getCommand(String name) {
+        name = name.toLowerCase();
         for (SCommand command : commands) {
-            if (name.equals(command.name) || command.aliases.contains(name)) {
+            if (name.equalsIgnoreCase(command.name) || command.aliases.contains(name)) {
                 return command;
             }
         }

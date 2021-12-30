@@ -29,7 +29,7 @@ public class PyScript extends Script {
     }
 
     // Finds script name, description, version, and author
-    private void findScriptInfo() throws IOException { // FIXME: 12/30/21 This is a mess & it's not even working
+    private void findScriptInfo() throws IOException {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(scriptFile));
             boolean inLongComment = false;
@@ -39,11 +39,11 @@ public class PyScript extends Script {
                 if (line.startsWith("#")) {
                     String[] split = line.substring(1).trim().split(" ");
                     if (split.length > 1) {
-                        String key = split[1].toLowerCase();
+                        String key = split[0].toLowerCase();
                         if (key.endsWith(":")) {
                             key = key.substring(0, key.length() - 1);
                         }
-                        String value = line.substring(line.indexOf(split[1]) + split[1].length() + 1);
+                        String value = line.substring(line.indexOf(split[0]) + split[0].length() + 1);
                         switch (key) {
                             case "name":
                                 scriptName = value;
@@ -71,11 +71,11 @@ public class PyScript extends Script {
                     }
 
                     if (split.length > 1) {
-                        String key = split[1].toLowerCase();
+                        String key = split[0].toLowerCase();
                         if (key.endsWith(":")) {
                             key = key.substring(0, key.length() - 1);
                         }
-                        String value = line.substring(line.indexOf(split[1]) + split[1].length() + 1);
+                        String value = line.substring(line.indexOf(split[0]) + split[0].length() + 1);
                         switch (key) {
                             case "name":
                                 scriptName = value;

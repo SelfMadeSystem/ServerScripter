@@ -36,11 +36,11 @@ public class JSScript extends Script {
                 if (line.startsWith("//")) {
                     String[] split = line.substring(2).trim().split(" ");
                     if (split.length > 1) {
-                        String key = split[1].toLowerCase();
+                        String key = split[0].toLowerCase();
                         if (key.endsWith(":")) {
                             key = key.substring(0, key.length() - 1);
                         }
-                        String value = line.substring(line.indexOf(split[1]) + split[1].length() + 1);
+                        String value = line.substring(line.indexOf(split[0]) + split[0].length() + 1);
                         switch (key) {
                             case "name":
                                 scriptName = value;
@@ -67,11 +67,11 @@ public class JSScript extends Script {
                         split = line.split(" ");
                     }
                     if (split.length > 1) {
-                        String key = split[1].toLowerCase();
+                        String key = split[0].toLowerCase();
                         if (key.endsWith(":")) {
                             key = key.substring(0, key.length() - 1);
                         }
-                        String value = line.substring(line.indexOf(split[1]) + split[1].length() + 1);
+                        String value = line.substring(line.indexOf(split[0]) + split[0].length() + 1);
                         switch (key) {
                             case "name":
                                 scriptName = value;

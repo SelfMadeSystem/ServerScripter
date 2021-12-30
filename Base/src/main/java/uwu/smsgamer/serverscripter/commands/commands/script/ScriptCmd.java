@@ -1,7 +1,8 @@
-package uwu.smsgamer.serverscripter.commands.commands.shell;
+package uwu.smsgamer.serverscripter.commands.commands.script;
 
 import lombok.Getter;
 import uwu.smsgamer.serverscripter.ScripterLoader;
+import uwu.smsgamer.serverscripter.commands.SCommand;
 import uwu.smsgamer.serverscripter.scripts.Script;
 import uwu.smsgamer.serverscripter.scripts.ScriptsLoader;
 import uwu.smsgamer.serverscripter.senapi.config.ColouredStringVal;
@@ -9,16 +10,18 @@ import uwu.smsgamer.serverscripter.senapi.utils.APlayerOfSomeSort;
 
 import java.util.List;
 
-public abstract class ShellCmd {
-    public final ColouredStringVal scriptNotFound;
-    protected final String baseCommandName;
+public abstract class ScriptCmd {
+    public static final String config = SCommand.config;
+    public static final ColouredStringVal scriptNotFound;
     @Getter
     protected final String name;
 
-    public ShellCmd(String baseCommandName, String name) {
-        this.baseCommandName = baseCommandName;
+    static {
+        scriptNotFound = new ColouredStringVal("Shell.ScriptNotFound", config,"&cScript not found");
+    }
+
+    public ScriptCmd(String name) {
         this.name = name;
-        this.scriptNotFound = new ColouredStringVal(baseCommandName + ".ScriptNotFound", "&cScript not found");
     }
 
     public abstract void execute(APlayerOfSomeSort aPlayerOfSomeSort, String alias, String[] args);
