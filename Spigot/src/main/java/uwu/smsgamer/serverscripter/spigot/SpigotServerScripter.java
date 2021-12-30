@@ -1,19 +1,25 @@
 package uwu.smsgamer.serverscripter.spigot;
 
 import lombok.Getter;
-import uwu.smsgamer.serverscripter.lilliputian.DependencyBuilder;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.plugin.java.annotation.command.Command;
 import org.bukkit.plugin.java.annotation.dependency.SoftDependency;
-import org.bukkit.plugin.java.annotation.plugin.*;
+import org.bukkit.plugin.java.annotation.plugin.Description;
+import org.bukkit.plugin.java.annotation.plugin.Plugin;
 import org.bukkit.plugin.java.annotation.plugin.author.Author;
 import uwu.smsgamer.serverscripter.ScriptLoader;
 import uwu.smsgamer.serverscripter.ScripterLoader;
+import uwu.smsgamer.serverscripter.commands.CommandManager;
+import uwu.smsgamer.serverscripter.lilliputian.DependencyBuilder;
+import uwu.smsgamer.serverscripter.senapi.config.ConfigManager;
 import uwu.smsgamer.serverscripter.shell.ShellManager;
 import uwu.smsgamer.serverscripter.spigot.command.CommandScript;
+import uwu.smsgamer.serverscripter.spigot.command.SpigotCommandManager;
 import uwu.smsgamer.serverscripter.spigot.shell.ShellListener;
-import uwu.smsgamer.serverscripter.spigot.utils.*;
+import uwu.smsgamer.serverscripter.spigot.utils.ScriptCommand;
+import uwu.smsgamer.serverscripter.spigot.utils.ScriptListenerHelper;
 
 import java.io.File;
 import java.util.Collections;
@@ -23,6 +29,8 @@ import java.util.Collections;
 @Author("Sms_Gamer_3808")
 @SoftDependency("PacketEvents")
 @SoftDependency("PlaceholderAPI")
+@Command(name = "script", desc = "Scripting plugin for Spigot.")
+@Command(name = "shell", desc = "Shell plugin for Spigot.", aliases = {"sh"})
 public class SpigotServerScripter extends JavaPlugin implements ScriptLoader {
     private static SpigotServerScripter INSTANCE;
     @Getter
@@ -36,6 +44,9 @@ public class SpigotServerScripter extends JavaPlugin implements ScriptLoader {
         if (INSTANCE == null) new SpigotServerScripter();
         return INSTANCE;
     }
+
+    @Getter
+    private final CommandManager commandManager = new SpigotCommandManager();
 
     @Override
     public void onLoad() {
@@ -58,11 +69,14 @@ public class SpigotServerScripter extends JavaPlugin implements ScriptLoader {
 
     @Override
     public void onEnable() {
+        ConfigManager.getInstance().setup("commands");
         ScriptListenerHelper.init();
         scripterLoader.enableAddons();
         ScriptCommand command = new ScriptCommand("script", "ServerScripter command.", "/script <addons:reload>", Collections.emptyList(), CommandScript.getInstance(), CommandScript.getInstance());
         command.setPermission("serverscripter.command.script.spigot");
         getServer().getPluginManager().registerEvents(new ShellListener(), this);
+        commandManager.registerCommands();
+        ConfigManager.getInstance().saveAll();
     }
 
     @Override

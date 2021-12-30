@@ -11,12 +11,13 @@ package uwu.smsgamer.serverscripter.senapi.config;
 
 import de.leonhard.storage.*;
 import de.leonhard.storage.internal.settings.ReloadSettings;
-import uwu.smsgamer.serverscripter.senapi.Loader;
+import uwu.smsgamer.serverscripter.ScripterLoader;
 
 import java.io.*;
 import java.net.*;
 import java.util.*;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Abstract class to store configuration files.
@@ -24,10 +25,11 @@ import java.util.logging.Level;
  * @author Sms_Gamer_3808 (Shoghi Simon)
  */
 public class ConfigManager {
-    protected static Loader pl;
     private static ConfigManager instance;
     public final Map<String, Config> configs = new HashMap<>();
     public final Set<ConfVal<?>> vals = new HashSet<>();
+    private final Logger logger = ScripterLoader.getInstance().getLoader().getLogger();
+    private final File configFolder = ScripterLoader.getInstance().getConfigDir();
 
     public static ConfigManager getInstance() {
         if (instance == null) instance = new ConfigManager();
@@ -72,10 +74,10 @@ public class ConfigManager {
                 out.close();
                 in.close();
             } else {
-                pl.getLogger().log(Level.WARNING, "Could not save " + outFile.getName() + " to " + outFile + " because " + outFile.getName() + " already exists.");
+                ScripterLoader.getInstance().getLoader().getLogger().log(Level.WARNING, "Could not save " + outFile.getName() + " to " + outFile + " because " + outFile.getName() + " already exists.");
             }
         } catch (IOException ex) {
-            pl.getLogger().log(Level.SEVERE, "Could not save " + outFile.getName() + " to " + outFile, ex);
+            ScripterLoader.getInstance().getLoader().getLogger().log(Level.SEVERE, "Could not save " + outFile.getName() + " to " + outFile, ex);
         }
     }
 
@@ -85,7 +87,9 @@ public class ConfigManager {
         }
 
         try {
-            URL url = pl.
+            URL url = ScripterLoader.
+                    getInstance().
+                    getLoader().
                     getClass().
                     getClassLoader().
                     getResource(filename);
@@ -102,9 +106,13 @@ public class ConfigManager {
         }
     }
 
+    private File getDataFolder() {
+        return configFolder;
+    }
+
     private void checkDataFolder() {
-        if (!pl.getDataFolder().exists()) {
-            if (!pl.getDataFolder().mkdirs()) {
+        if (!getDataFolder().exists()) {
+            if (!getDataFolder().mkdirs()) {
                 throw new RuntimeException("The data folder could not be created");
             }
         }
@@ -113,20 +121,23 @@ public class ConfigManager {
     public void setup(String... configs) {
         checkDataFolder();
         for (String config : configs) {
-            pl.getLogger().info("Loading config: " + config);
+            logger.info("Loading config: " + config);
             try {
                 loadConfig(config);
-                saveConfig(config);
-                pl.getLogger().info("Loaded config: " + config);
+                logger.info("Loaded config: " + config);
             } catch (Exception e) {
                 e.printStackTrace();
-                pl.getLogger().severe("Error while loading config: " + config);
+                logger.severe("Error while loading config: " + config);
             }
         }
     }
 
+    public void saveAll() {
+        configs.forEach((k, v) -> saveConfig(k));
+    }
+
     public File configFile(String name) {
-        return new File(pl.getDataFolder(), name + ".yml");
+        return new File(ScripterLoader.getInstance().getConfigDir(), name + ".yml");
     }
 
     public void reloadConfig(String name) {
@@ -139,7 +150,7 @@ public class ConfigManager {
 
         File configFile = configFile(name);
         if (!configFile.exists())
-            saveResource(name + ".yml", pl.getDataFolder());
+            saveResource(name + ".yml", getDataFolder());
         loadConfig(name, configFile);
     }
 
@@ -156,8 +167,8 @@ public class ConfigManager {
             Config config = getConfig(name);
             config.write();
         } catch (Exception e) {
-            pl.getLogger().warning("Exception thrown when saving config: " + name);
-            pl.getLogger().warning("If it's a StringIndexOutOfBoundsException, please ignore it. For some reason it happens and I have no idea why but nothing seems to be broken so idc.");
+            logger.warning("Exception thrown when saving config: " + name);
+            logger.warning("If it's a StringIndexOutOfBoundsException, please ignore it. For some reason it happens and I have no idea why but nothing seems to be broken so idc.");
             e.printStackTrace();
         }
     }
