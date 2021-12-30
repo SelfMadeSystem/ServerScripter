@@ -13,6 +13,10 @@ public class GrScriptLoader extends ScriptsLoader<GrScript> {
         INSTANCE = this;
     }
 
+    protected GrScriptLoader() {
+        super("Groovy", "groovy", "gvy", "gy", "gsh");
+    }
+
     public static GrScriptLoader getInstance() {
         if (INSTANCE == null) new GrScriptLoader();
         return INSTANCE;

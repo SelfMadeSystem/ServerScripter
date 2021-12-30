@@ -1,6 +1,7 @@
 package uwu.smsgamer.serverscripter.commands;
 
 import org.jetbrains.annotations.NotNull;
+import uwu.smsgamer.serverscripter.commands.commands.ScriptCommand;
 import uwu.smsgamer.serverscripter.commands.commands.ShellCommand;
 import uwu.smsgamer.serverscripter.senapi.utils.APlayerOfSomeSort;
 
@@ -18,7 +19,7 @@ public abstract class CommandManager {
     protected abstract @NotNull String getPrefix();
 
     public void registerCommands() {
-        // registerCommand(new ScriptCommand(this));
+         registerCommand(new ScriptCommand(this));
          registerCommand(new ShellCommand(this));
     }
 

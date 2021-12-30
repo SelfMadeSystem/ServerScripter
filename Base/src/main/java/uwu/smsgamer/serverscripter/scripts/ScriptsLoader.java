@@ -1,5 +1,7 @@
 package uwu.smsgamer.serverscripter.scripts;
 
+import uwu.smsgamer.serverscripter.ScripterLoader;
+
 import java.io.File;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -12,6 +14,21 @@ import java.util.stream.Collectors;
  */
 public abstract class ScriptsLoader<S extends Script> {
     public final Set<S> scripts = new HashSet<>();
+    public final String name;
+    public final List<String> aliases;
+
+    protected ScriptsLoader(String name, String... aliases) {
+        this.name = name;
+        this.aliases = Arrays.asList(aliases);
+        ScripterLoader.getInstance().addScriptsLoader(this);
+    }
+
+    public S getScript(String name) {
+        for (S script : scripts) {
+            if (script.getScriptName().equalsIgnoreCase(name)) return script;
+        }
+        return null;
+    }
 
     /**
      * Returns the directory where scripts are located.

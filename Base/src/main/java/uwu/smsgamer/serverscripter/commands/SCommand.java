@@ -34,6 +34,7 @@ public abstract class SCommand {
 
     public abstract void execute(APlayerOfSomeSort aPlayerOfSomeSort, String alias, String[] args);
     public abstract List<String> getTabCompletions(APlayerOfSomeSort aPlayerOfSomeSort, String alias, String[] args);
+
     public void sendUsage(APlayerOfSomeSort aPlayerOfSomeSort, String alias) {
         aPlayerOfSomeSort.sendMessage(this.usage.getValue().replace("%alias%", alias));
     }

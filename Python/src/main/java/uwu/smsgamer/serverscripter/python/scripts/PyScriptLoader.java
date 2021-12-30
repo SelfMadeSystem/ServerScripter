@@ -14,6 +14,10 @@ public class PyScriptLoader extends ScriptsLoader<PyScript> {
         INSTANCE = this;
     }
 
+    protected PyScriptLoader() {
+        super("Python", "py", "python");
+    }
+
     public static PyScriptLoader getInstance() {
         if (INSTANCE == null) new PyScriptLoader();
         return INSTANCE;

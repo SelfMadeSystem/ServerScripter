@@ -4,7 +4,7 @@ import groovy.lang.*;
 import groovy.util.*;
 import org.codehaus.groovy.control.*;
 
-import java.io.File;
+import java.io.*;
 import java.net.*;
 
 public class GrScript extends uwu.smsgamer.serverscripter.scripts.Script {
@@ -32,16 +32,87 @@ public class GrScript extends uwu.smsgamer.serverscripter.scripts.Script {
     @Override
     protected void loadScript() {
         System.out.println("LoadScript: " + scriptFile.getName());
+        File scriptFile = getScriptFile();
+        try {
+            findScriptInfo();
+            script = engine.createScript(scriptFile.toURI().toString(), binding);
+        } catch (CompilationFailedException | ResourceException | ScriptException | IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Finds script name, description, version, and author
+    private void findScriptInfo() throws IOException {
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(scriptFile));
+            boolean inLongComment = false;
+            String line;
+            while ((line = reader.readLine()) != null) {
+                line = line.trim();
+                if (line.startsWith("//")) {
+                    String[] split = line.substring(2).trim().split(" ");
+                    if (split.length > 1) {
+                        String key = split[1].toLowerCase();
+                        if (key.endsWith(":")) {
+                            key = key.substring(0, key.length() - 1);
+                        }
+                        String value = line.substring(line.indexOf(split[1]) + split[1].length() + 1);
+                        switch (key) {
+                            case "name":
+                                scriptName = value;
+                                break;
+                            case "description":
+                                scriptDescription = value;
+                                break;
+                            case "version":
+                                scriptVersion = value;
+                                break;
+                            case "author":
+                                scriptAuthor = value;
+                                break;
+                        }
+                    }
+                } else if (line.startsWith("/*") || inLongComment) {
+                    inLongComment = !line.endsWith("*/");
+                    String[] split;
+                    if (line.startsWith("/*")) {
+                        split = line.substring(2).trim().split(" ");
+                    } else if (line.startsWith("*")) {
+                        split = line.substring(1).split(" ");
+                    } else {
+                        split = line.split(" ");
+                    }
+                    if (split.length > 1) {
+                        String key = split[1].toLowerCase();
+                        if (key.endsWith(":")) {
+                            key = key.substring(0, key.length() - 1);
+                        }
+                        String value = line.substring(line.indexOf(split[1]) + split[1].length() + 1);
+                        switch (key) {
+                            case "name":
+                                scriptName = value;
+                                break;
+                            case "description":
+                                scriptDescription = value;
+                                break;
+                            case "version":
+                                scriptVersion = value;
+                                break;
+                            case "author":
+                                scriptAuthor = value;
+                                break;
+                        }
+                    }
+                }
+            }
+        } catch (IOException e) {
+            throw new IOException("Error finding script info: " + scriptFile.getName(), e);
+        }
     }
 
     @Override
     public void init() {
         System.out.println("Init: " + scriptFile.getName());
-        try {
-            script = engine.createScript(getScriptFile().toURI().toString(), binding);
-        } catch (CompilationFailedException | ResourceException | ScriptException e) {
-            e.printStackTrace();
-        }
         script.run();
     }
 

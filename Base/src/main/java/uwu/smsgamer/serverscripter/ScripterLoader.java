@@ -5,6 +5,8 @@ import com.google.gson.reflect.TypeToken;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 import uwu.smsgamer.serverscripter.lilliputian.*;
+import uwu.smsgamer.serverscripter.scripts.Script;
+import uwu.smsgamer.serverscripter.scripts.ScriptsLoader;
 import uwu.smsgamer.serverscripter.shell.Shell;
 
 import java.io.*;
@@ -32,6 +34,10 @@ public final class ScripterLoader {
     private final File configDir;
     @Getter
     private final Set<ScriptAddon> addons = new HashSet<>();
+    @Getter
+    private final Set<ScriptsLoader<?>> scriptsLoaders = new HashSet<>();
+    @Getter
+    private final HashMap<String, ScriptsLoader<?>> scriptsLoadersByName = new HashMap<>();
 
     {
         INSTANCE = this;
@@ -200,5 +206,11 @@ public final class ScripterLoader {
                 new Exception("Failed to reload addon: " + addon.getName() + " version " + addon.getVersion(), e).printStackTrace();
             }
         }
+    }
+
+    public <S extends Script> void addScriptsLoader(ScriptsLoader<?> scriptsLoader) {
+        scriptsLoaders.add(scriptsLoader);
+        scriptsLoadersByName.put(scriptsLoader.name, scriptsLoader);
+        scriptsLoader.aliases.forEach(a -> scriptsLoadersByName.put(a, scriptsLoader));
     }
 }

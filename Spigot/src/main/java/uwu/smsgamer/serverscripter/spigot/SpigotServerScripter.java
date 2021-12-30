@@ -72,8 +72,8 @@ public class SpigotServerScripter extends JavaPlugin implements ScriptLoader {
         ConfigManager.getInstance().setup("commands");
         ScriptListenerHelper.init();
         scripterLoader.enableAddons();
-        ScriptCommand command = new ScriptCommand("script", "ServerScripter command.", "/script <addons:reload>", Collections.emptyList(), CommandScript.getInstance(), CommandScript.getInstance());
-        command.setPermission("serverscripter.command.script.spigot");
+//        ScriptCommand command = new ScriptCommand("script", "ServerScripter command.", "/script <addons:reload>", Collections.emptyList(), CommandScript.getInstance(), CommandScript.getInstance());
+//        command.setPermission("serverscripter.command.script.spigot");
         getServer().getPluginManager().registerEvents(new ShellListener(), this);
         commandManager.registerCommands();
         ConfigManager.getInstance().saveAll();

@@ -13,6 +13,10 @@ public class JSScriptLoader extends ScriptsLoader<JSScript> {
         INSTANCE = this;
     }
 
+    protected JSScriptLoader() {
+        super("JavaScript", "js", "javascript");
+    }
+
     public static JSScriptLoader getInstance() {
         if (INSTANCE == null) new JSScriptLoader();
         return INSTANCE;

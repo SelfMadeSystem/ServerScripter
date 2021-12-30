@@ -3,6 +3,8 @@ package uwu.smsgamer.serverscripter.scripts;
 import lombok.Getter;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * An abstract class that scripts must implement
@@ -11,6 +13,14 @@ import java.io.File;
 public abstract class Script {
     @Getter
     protected final File scriptFile;
+    @Getter
+    protected String scriptName;
+    @Getter
+    protected String scriptDescription = "";
+    @Getter
+    protected String scriptVersion = "";
+    @Getter
+    protected String scriptAuthor = "";
     protected boolean loaded;
 
     /**
@@ -18,6 +28,8 @@ public abstract class Script {
      */
     public Script(File scriptFile) {
         this.scriptFile = scriptFile;
+        int lastIndexOf = scriptFile.getName().lastIndexOf(".");
+        scriptName = scriptFile.getName().substring(0, lastIndexOf);
     }
 
     /**
