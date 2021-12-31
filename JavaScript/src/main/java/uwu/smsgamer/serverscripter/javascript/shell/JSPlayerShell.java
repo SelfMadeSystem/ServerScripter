@@ -13,6 +13,7 @@ import java.util.UUID;
 public class JSPlayerShell extends PlayerShell {
     private Context cx;
     private Scriptable scope;
+
     protected JSPlayerShell(UUID uuid) {
         super(uuid, JSShell.getInstance());
         ShellContextFactory factory = new ShellContextFactory();
@@ -39,5 +40,10 @@ public class JSPlayerShell extends PlayerShell {
             return Result.UNFINISHED;
         }
         return new Result(Result.Response.FINISHED, result.toString());
+    }
+
+    @Override
+    public void setObject(String name, Object object) {
+        shellTimer.schedule(() -> scope.put(name, scope, object), 0);
     }
 }

@@ -16,7 +16,6 @@ public class ScriptCommand extends SCommand { // Todo: Implement permissions
     public ScriptCommand(CommandManager manager) {
         super(manager, "Script", "Manages scripts.",
                 "&c/%alias% <lang> <%commands%> [script]");
-        putCommand(new ScriptCall());
         putCommand(new ScriptInfo());
         putCommand(new ScriptList());
         putCommand(new ScriptLoad());

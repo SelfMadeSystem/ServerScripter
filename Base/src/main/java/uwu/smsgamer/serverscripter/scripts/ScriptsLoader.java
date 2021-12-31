@@ -49,6 +49,7 @@ public abstract class ScriptsLoader<S extends Script> {
             S e = newScript(scriptFile);
             e.load();
             scripts.add(e);
+            ScripterLoader.getInstance().getObjects().forEach(e::setObject);
         }
     }
 

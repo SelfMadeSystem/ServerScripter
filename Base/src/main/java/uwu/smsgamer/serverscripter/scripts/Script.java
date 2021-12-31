@@ -66,4 +66,20 @@ public abstract class Script {
      * Call reload functions in the script.
      */
     public abstract void reload();
+
+    /**
+     * Sets an object to be used by the script.
+     *
+     * @param name   The name of the object.
+     * @param object The object.
+     */
+    public abstract void setObject(String name, Object object);
+
+    /**
+     * Gets an object from the script.
+     *
+     * @param name The name of the object.
+     * @return The object.
+     */
+    public abstract Object getObject(String name);
 }

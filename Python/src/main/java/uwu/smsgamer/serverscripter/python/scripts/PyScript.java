@@ -151,4 +151,14 @@ public class PyScript extends Script {
             fun.__call__();
         }
     }
+
+    @Override
+    public void setObject(String name, Object object) {
+        interpreter.set(name, object);
+    }
+
+    @Override
+    public Object getObject(String name) {
+        return interpreter.get(name);
+    }
 }

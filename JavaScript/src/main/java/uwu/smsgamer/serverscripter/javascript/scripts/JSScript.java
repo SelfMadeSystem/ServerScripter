@@ -132,4 +132,14 @@ public class JSScript extends Script {
         Function function = (Function) obj;
         function.call(context, scope, scope, new Object[0]);
     }
+
+    @Override
+    public void setObject(String name, Object object) {
+        scope.put(name, scope, object);
+    }
+
+    @Override
+    public Object getObject(String name) {
+        return scope.get(name, scope);
+    }
 }

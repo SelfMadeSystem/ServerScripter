@@ -35,6 +35,11 @@ public class PyPlayerShell extends PlayerShell {
         return Result.UNFINISHED;
     }
 
+    @Override
+    public void setObject(String name, Object object) {
+        interpreter.set(name, object);
+    }
+
     private static class MyInteractiveInterpreter extends InteractiveInterpreter {
         @Override
         public boolean runsource(String source, String filename, CompileMode kind) {

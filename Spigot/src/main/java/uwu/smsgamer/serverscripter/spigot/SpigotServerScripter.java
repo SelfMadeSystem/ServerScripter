@@ -65,6 +65,8 @@ public class SpigotServerScripter extends JavaPlugin implements ScriptLoader {
             ShellManager.onPrintError.accept(uuid, message);
         };
         ShellManager.onAnnounce = (uuid, message) -> Bukkit.getPlayer(uuid).sendTitle("", message, 10, 60, 10);
+        ShellManager.getObjects = (uuid) -> Collections.singletonMap("player", Bukkit.getPlayer(uuid));
+        scripterLoader.setObject("plugin", this);
     }
 
     @Override

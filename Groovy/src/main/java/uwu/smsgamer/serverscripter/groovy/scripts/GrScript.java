@@ -142,4 +142,14 @@ public class GrScript extends uwu.smsgamer.serverscripter.scripts.Script {
         } catch (MissingMethodException ignored) {
         }
     }
+
+    @Override
+    public void setObject(String name, Object object) {
+        binding.setVariable(name, object);
+    }
+
+    @Override
+    public Object getObject(String name) {
+        return binding.getVariable(name);
+    }
 }

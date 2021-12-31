@@ -1,5 +1,7 @@
 package uwu.smsgamer.serverscripter.shell;
 
+import uwu.smsgamer.serverscripter.ScripterLoader;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -13,21 +15,21 @@ public abstract class Shell<S extends PlayerShell> {
     public final String name;
     public final Map<UUID, S> shells = new HashMap<>(0);
 
-    // TODO: 12/20/21 Add "Object player" object so it can be added as a variable to the shell.
     protected Shell(String name) {
         this.name = name;
     }
 
-    public S setShell(UUID uuid) {
+    public void setShell(UUID uuid) {
         if (shells.containsKey(uuid)) {
             S shell = shells.get(uuid);
             ShellManager.setShell(uuid, shell);
-            return shell;
+            return;
         }
         S shell = createShell(uuid);
         shells.put(uuid, shell);
         ShellManager.setShell(uuid, shell);
-        return shell;
+        ScripterLoader.getInstance().getObjects().forEach(shell::setObject);
+        ShellManager.getObjects.apply(uuid).forEach(shell::setObject);
     }
 
     public void removeShell(UUID uuid) {

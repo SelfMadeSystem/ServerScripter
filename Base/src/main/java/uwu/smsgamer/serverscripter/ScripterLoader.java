@@ -37,7 +37,9 @@ public final class ScripterLoader {
     @Getter
     private final Set<ScriptsLoader<?>> scriptsLoaders = new HashSet<>();
     @Getter
-    private final HashMap<String, ScriptsLoader<?>> scriptsLoadersByName = new HashMap<>();
+    private final Map<String, ScriptsLoader<?>> scriptsLoadersByName = new HashMap<>();
+    @Getter
+    private final Map<String, Object> objects = new HashMap<>();
 
     {
         INSTANCE = this;
@@ -57,6 +59,14 @@ public final class ScripterLoader {
 
     public static ScripterLoader getInstance() {
         return INSTANCE;
+    }
+
+    public void setObject(String name, Object object) {
+        objects.put(name, object);
+    }
+
+    public Object getObject(String name) {
+        return objects.get(name);
     }
 
     /**

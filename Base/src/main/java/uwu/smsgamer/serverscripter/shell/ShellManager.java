@@ -1,8 +1,10 @@
 package uwu.smsgamer.serverscripter.shell;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 public final class ShellManager {
     private ShellManager() {
@@ -21,6 +23,7 @@ public final class ShellManager {
     };
     public static BiConsumer<UUID, String> onAnnounce = (uuid, response) -> {
     };
+    public static Function<UUID, Map<String, Object>> getObjects = (uuid) -> new HashMap<>();
 
     public static PlayerShell getShell(UUID uuid) {
         return activeShells.get(uuid);

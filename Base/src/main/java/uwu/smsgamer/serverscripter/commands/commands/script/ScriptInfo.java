@@ -37,7 +37,10 @@ public class ScriptInfo extends ScriptCmd {
         String scriptName = args[2];
         Script script = getScript(lang, scriptName);
         if (script == null) {
-            ChatUtils.sendMessage(aPlayerOfSomeSort, scriptNotFound);
+            ChatUtils.sendMessage(aPlayerOfSomeSort, scriptNotFound,
+                    "%alias%", alias,
+                    "%lang%", lang,
+                    "%script%", scriptName);
             return;
         }
         ChatUtils.sendMessage(aPlayerOfSomeSort, info,

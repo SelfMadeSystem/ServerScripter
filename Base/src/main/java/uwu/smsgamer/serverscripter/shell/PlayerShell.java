@@ -131,13 +131,12 @@ public abstract class PlayerShell {
     public abstract Result execute(String command);
 
     /**
-     * Called when the command times out.
+     * Sets an object to be used by the shell.
      *
-     * @return The response.
+     * @param name The name of the object.
+     * @param object The object.
      */
-    public String timeout() {
-        return "Command timed out.";
-    }
+    public abstract void setObject(String name, Object object);
 
     public static class Result {
         public enum Response {

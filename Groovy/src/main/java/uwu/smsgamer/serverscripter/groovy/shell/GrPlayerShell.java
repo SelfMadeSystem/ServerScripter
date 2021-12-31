@@ -62,4 +62,9 @@ public class GrPlayerShell extends PlayerShell {
         Object result = groovysh.execute(command);
         return new Result(String.valueOf(result));
     }
+
+    @Override
+    public void setObject(String name, Object object) {
+        binding.setVariable(name, object);
+    }
 }
