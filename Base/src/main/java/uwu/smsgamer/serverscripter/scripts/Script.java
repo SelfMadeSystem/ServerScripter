@@ -3,25 +3,20 @@ package uwu.smsgamer.serverscripter.scripts;
 import lombok.Getter;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * An abstract class that scripts must implement
  * if you are to implement a scripting language.
  */
+@Getter
 public abstract class Script {
-    @Getter
     protected final File scriptFile;
-    @Getter
     protected String scriptName;
-    @Getter
     protected String scriptDescription = "";
-    @Getter
     protected String scriptVersion = "";
-    @Getter
     protected String scriptAuthor = "";
     protected boolean loaded;
+    protected boolean initialized;
 
     /**
      * @param scriptFile The file this script represents.
@@ -40,6 +35,7 @@ public abstract class Script {
     public final void load() {
         if (!loaded) loadScript();
         loaded = true;
+        setObject("script", this);
     }
 
     /**
@@ -48,9 +44,27 @@ public abstract class Script {
     protected abstract void loadScript();
 
     /**
+     * Call this to unload the script.
+     * <p>
+     * This calls {@link Script#unloadScript()} if it is loaded.
+     */
+    public final void unload() {
+        if (loaded) unloadScript();
+        loaded = false;
+    }
+
+    /**
+     * Unload the script. Should call {@link Script#disable()} first.
+     */
+    protected abstract void unloadScript();
+
+    /**
      * Initialize the script. Execute the script code (yes ik the naming is weird pls forgive me).
      */
-    public abstract void init();
+    public void init() {
+        if (initialized) return;
+        initialized = true;
+    }
 
     /**
      * Call enable functions in the script.

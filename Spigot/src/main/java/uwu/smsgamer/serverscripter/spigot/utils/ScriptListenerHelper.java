@@ -11,6 +11,7 @@ import java.util.function.Consumer;
 /**
  * Helper class to make listening to bukkit events much easier. Not necessary though.
  */
+@SuppressWarnings("unused")
 public class ScriptListenerHelper extends RegisteredListener {
     public static ScriptListenerHelper lowestListener;
     public static ScriptListenerHelper lowListener;
@@ -28,7 +29,6 @@ public class ScriptListenerHelper extends RegisteredListener {
         monitorListener = new ScriptListenerHelper(EventPriority.MONITOR, SpigotServerScripter.getInstance());
     }
 
-    @SuppressWarnings("unused")
     public static void registerEvent(Class<? extends Event> type, EventPriority priority, Consumer<Event> function) {
         switch (priority) {
             case LOWEST:
@@ -48,6 +48,29 @@ public class ScriptListenerHelper extends RegisteredListener {
                 break;
             case MONITOR:
                 monitorListener.registerFunction(type, function);
+                break;
+        }
+    }
+
+    public static void unregisterEvent(Class<? extends Event> type, EventPriority priority, Consumer<Event> function) {
+        switch (priority) {
+            case LOWEST:
+                lowestListener.unregisterFunction(type, function);
+                break;
+            case LOW:
+                lowListener.unregisterFunction(type, function);
+                break;
+            case NORMAL:
+                listener.unregisterFunction(type, function);
+                break;
+            case HIGH:
+                highListener.unregisterFunction(type, function);
+                break;
+            case HIGHEST:
+                highestListener.unregisterFunction(type, function);
+                break;
+            case MONITOR:
+                monitorListener.unregisterFunction(type, function);
                 break;
         }
     }
@@ -88,6 +111,17 @@ public class ScriptListenerHelper extends RegisteredListener {
             getEventListeners(event).register(this);
             return new HashSet<>();
         }).add(fun);
+    }
+
+    public void unregisterFunction(Class<? extends Event> event, Consumer<Event> fun) {
+        functions.computeIfPresent(event, (k, v) -> {
+            v.remove(fun);
+            if (v.isEmpty()) {
+                getEventListeners(event).unregister(this);
+                return null;
+            }
+            return v;
+        });
     }
 
     @Override

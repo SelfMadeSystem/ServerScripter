@@ -143,7 +143,7 @@ public final class ScripterLoader {
         }
     }
 
-    protected void loadDependency(File file) {
+    private void loadDependency(File file) {
         classLoader.loadJar(file);
     }
 
@@ -220,7 +220,7 @@ public final class ScripterLoader {
 
     public <S extends Script> void addScriptsLoader(ScriptsLoader<?> scriptsLoader) {
         scriptsLoaders.add(scriptsLoader);
-        scriptsLoadersByName.put(scriptsLoader.name, scriptsLoader);
-        scriptsLoader.aliases.forEach(a -> scriptsLoadersByName.put(a, scriptsLoader));
+        scriptsLoadersByName.put(scriptsLoader.getName(), scriptsLoader);
+        scriptsLoader.getAliases().forEach(a -> scriptsLoadersByName.put(a, scriptsLoader));
     }
 }

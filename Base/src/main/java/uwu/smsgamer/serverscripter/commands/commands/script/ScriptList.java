@@ -15,11 +15,11 @@ public class ScriptList extends ScriptCmd {
 
     public ScriptList() {
         super("list");
-        help = new ColouredStringVal("Script.ListHelp", config, "&c/%alias% <lang> list\n" +
+        help = new ColouredStringVal("Script.List.Help", config, "&c/%alias% <lang> list\n" +
                 "&7Lists all the scripts in the the specified language.");
-        list = new ColouredStringVal("Script.List", config, "&7Scripts: &a%scripts%");
-        join = new ColouredStringVal("Script.ListJoin", config, "&7, &a");
-        noScripts = new ColouredStringVal("Script.ListNoScripts", config, "&cNo scripts found.");
+        list = new ColouredStringVal("Script.List.List", config, "&7Scripts: &a%scripts%");
+        join = new ColouredStringVal("Script.List.Join", config, "&7, &a");
+        noScripts = new ColouredStringVal("Script.List.NoScriptsFound", config, "&cNo scripts found.");
     }
 
     @Override

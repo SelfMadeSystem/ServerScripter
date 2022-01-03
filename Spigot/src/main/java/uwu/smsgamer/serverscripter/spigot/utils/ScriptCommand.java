@@ -2,6 +2,7 @@ package uwu.smsgamer.serverscripter.spigot.utils;
 
 import org.bukkit.*;
 import org.bukkit.command.*;
+import uwu.smsgamer.serverscripter.scripts.Script;
 
 import java.lang.reflect.*;
 import java.util.*;
@@ -60,7 +61,7 @@ public class ScriptCommand extends Command {
     public static void registerCommand(Command command) {
         // Very Dirty Hack.
         try {
-            getCommandMap(Bukkit.getServer()).register("spygotscripts", command);
+            getCommandMap(Bukkit.getServer()).register("scriptscommands", command);
         } catch (NoSuchMethodException | SecurityException | IllegalAccessException |
           IllegalArgumentException | InvocationTargetException ex) {
             throw new UnsupportedOperationException(ex);

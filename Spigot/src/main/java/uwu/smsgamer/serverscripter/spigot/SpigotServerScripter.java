@@ -12,6 +12,7 @@ import org.bukkit.plugin.java.annotation.plugin.author.Author;
 import uwu.smsgamer.serverscripter.ScriptLoader;
 import uwu.smsgamer.serverscripter.ScripterLoader;
 import uwu.smsgamer.serverscripter.commands.CommandManager;
+import uwu.smsgamer.serverscripter.commands.SCommand;
 import uwu.smsgamer.serverscripter.lilliputian.DependencyBuilder;
 import uwu.smsgamer.serverscripter.senapi.config.ConfigManager;
 import uwu.smsgamer.serverscripter.shell.ShellManager;
@@ -71,7 +72,7 @@ public class SpigotServerScripter extends JavaPlugin implements ScriptLoader {
 
     @Override
     public void onEnable() {
-        ConfigManager.getInstance().setup("commands");
+        ConfigManager.getInstance().setup(SCommand.config);
         ScriptListenerHelper.init();
         scripterLoader.enableAddons();
 //        ScriptCommand command = new ScriptCommand("script", "ServerScripter command.", "/script <addons:reload>", Collections.emptyList(), CommandScript.getInstance(), CommandScript.getInstance());

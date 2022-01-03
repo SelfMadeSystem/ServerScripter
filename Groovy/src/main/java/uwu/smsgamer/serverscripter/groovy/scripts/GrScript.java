@@ -111,7 +111,16 @@ public class GrScript extends uwu.smsgamer.serverscripter.scripts.Script {
     }
 
     @Override
+    protected void unloadScript() {
+        System.out.println("UnloadScript: " + scriptFile.getName());
+        disable();
+        script = null;
+    }
+
+    @Override
     public void init() {
+        if (initialized) return;
+        super.init();
         System.out.println("Init: " + scriptFile.getName());
         script.run();
     }

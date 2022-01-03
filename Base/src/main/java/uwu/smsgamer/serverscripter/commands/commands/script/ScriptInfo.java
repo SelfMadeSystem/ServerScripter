@@ -14,7 +14,7 @@ public class ScriptInfo extends ScriptCmd {
 
     public ScriptInfo() {
         super("info");
-        help = new ColouredStringVal("Script.InfoHelp", config,"&c/%alias% <lang> info <script>\n" +
+        help = new ColouredStringVal("Script.Info.Help", config,"&c/%alias% <lang> info <script>\n" +
                 "&7Lists all the scripts in the the specified language.");
         info = new ColouredStringVal("Script.Info", config,
                 "&7File name: &c%fileName%\n" +

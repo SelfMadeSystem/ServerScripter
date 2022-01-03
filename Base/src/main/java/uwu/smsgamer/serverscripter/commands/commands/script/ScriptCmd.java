@@ -42,12 +42,12 @@ public abstract class ScriptCmd {
     public static String getLangName(String lang) {
         ScriptsLoader<?> scriptsLoader = getScriptsLoader(lang);
         if (scriptsLoader == null) return null;
-        return scriptsLoader.name;
+        return scriptsLoader.getName();
     }
 
     public static List<String> getScripts(String lang) {
         ScriptsLoader<?> scriptsLoader = getScriptsLoader(lang);
         if (scriptsLoader == null) return Collections.emptyList();
-        return scriptsLoader.scripts.stream().map(Script::getScriptName).collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
+        return scriptsLoader.getScripts().stream().map(Script::getScriptName).collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
     }
 }

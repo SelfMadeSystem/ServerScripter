@@ -95,7 +95,18 @@ public class JSScript extends Script {
     }
 
     @Override
+    protected void unloadScript() {
+        System.out.println("UnloadScript: " + scriptFile.getName());
+        disable();
+        synchronized (context) {
+            Context.exit();
+        }
+    }
+
+    @Override
     public void init() {
+        if (initialized) return;
+        super.init();
         System.out.println("Init: " + scriptFile.getName());
         try {
             String name = getScriptFile().getName();

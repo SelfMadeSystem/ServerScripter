@@ -1,5 +1,7 @@
 package uwu.smsgamer.serverscripter.scripts;
 
+import lombok.Getter;
+import org.jetbrains.annotations.Nullable;
 import uwu.smsgamer.serverscripter.ScripterLoader;
 
 import java.io.File;
@@ -12,10 +14,11 @@ import java.util.stream.Collectors;
  * This class loads and generates scripts.
  * @param <S> The type of the script class used.
  */
+@Getter
 public abstract class ScriptsLoader<S extends Script> {
-    public final Set<S> scripts = new HashSet<>();
-    public final String name;
-    public final List<String> aliases;
+    protected final Set<S> scripts = new HashSet<>();
+    protected final String name;
+    protected final List<String> aliases;
 
     protected ScriptsLoader(String name, String... aliases) {
         this.name = name;
@@ -78,6 +81,21 @@ public abstract class ScriptsLoader<S extends Script> {
     }
 
     /**
+     * Gets a script file given a name. Null if not found.
+     * @param fileName The name of the file.
+     * @return the script file. Null if not found.
+     */
+    @Nullable
+    public File getScriptFile(String fileName) {
+        for (File file : getScriptFiles()) {
+            String name = file.getName();
+            name = name.substring(0, name.lastIndexOf('.'));
+            if (name.equalsIgnoreCase(fileName)) return file;
+        }
+        return null;
+    }
+
+    /**
      * Calls the {@link Script#init()} method for all scripts.
      */
     public void initScripts() {
@@ -88,6 +106,18 @@ public abstract class ScriptsLoader<S extends Script> {
                 new Exception("Failed to init script: " + script.getScriptFile().getName(), e).printStackTrace();
             }
         }
+    }
+
+    /**
+     * Creates and loads a new script.
+     * @param file The file to load the script from.
+     * @return the new script.
+     */
+    public S createAndLoadScript(File file) {
+        S script = newScript(file);
+        script.load();
+        scripts.add(script);
+        return script;
     }
 
     /**

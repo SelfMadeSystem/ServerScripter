@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public abstract class SCommand {
-    public static final String config = "commands";
+    public static final String config = "Commands";
     public final CommandManager manager;
     public final String name;
     public final String description;
