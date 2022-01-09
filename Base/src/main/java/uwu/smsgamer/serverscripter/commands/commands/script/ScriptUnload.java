@@ -44,6 +44,11 @@ public class ScriptUnload extends ScriptCmd {
                     "%alias%", alias,
                     "%lang%", langName,
                     "%script%", scriptName);
+        } else {
+            ChatUtils.sendMessage(aPlayerOfSomeSort, scriptAlreadyUnloaded,
+                    "%alias%", alias,
+                    "%lang%", langName,
+                    "%script%", scriptName);
         }
     }
 

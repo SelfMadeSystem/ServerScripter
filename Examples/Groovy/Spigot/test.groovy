@@ -43,7 +43,7 @@ void onEnable() {
     println("Groovy script Enabled")
     def cmd = new CommandTest()
     ScriptCommand.registerCommand(new ScriptCommand("groovytest", "Groovy Testing", "/groovytest", [], cmd, cmd))
-    ScriptListenerHelper.registerEvent(PlayerJoinEvent.class, EventPriority.NORMAL, new ListenerTest())
+    ScriptListenerHelper.registerEvent(PlayerJoinEvent.class, EventPriority.NORMAL, new ListenerTest(), script)
 }
 
 def onDisable() {

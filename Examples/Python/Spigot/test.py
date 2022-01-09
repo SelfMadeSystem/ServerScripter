@@ -1,5 +1,11 @@
+# Author: Sms_Gamer
+# Version: 1.0
+# Description: Test script for ServerScripter
+# Name: test
+
 from uwu.smsgamer.serverscripter.spigot.utils import ScriptCommand
 from uwu.smsgamer.serverscripter.spigot.utils import ScriptListenerHelper
+# from uwu.smsgamer.serverscripter.packetevents import ScriptPacketListener
 from org.bukkit.command import TabExecutor
 from org.bukkit.event.player import PlayerJoinEvent
 from org.bukkit.event import EventPriority
@@ -25,12 +31,11 @@ class JoinListener(Consumer):
     def accept(self, t):
         t.getPlayer().sendMessage("Hewwo from Pythowon!!!!")
 
-
 def on_enable():
     print("On Enable - Python!!!")
     cmd = CommandTest()
     ScriptCommand.registerCommand(ScriptCommand("pytest", "Python Testing", "/test", [], cmd, cmd))
-    ScriptListenerHelper.registerEvent(PlayerJoinEvent, EventPriority.NORMAL, JoinListener())
+    ScriptListenerHelper.registerEvent(PlayerJoinEvent, EventPriority.NORMAL, JoinListener(), script)
     import _test2 as t
     print(t.test_thing)
 

@@ -28,7 +28,7 @@ import java.util.logging.LogManager;
         id = "server_scripter",
         name = "ServerScripter",
         version = "0.2.0",
-        description = "Scripting plugin for Spigot.",
+        description = "Scripting plugin for Velocity.",
         authors = {"Sms_Gamer_3808"}
 )
 @Getter
