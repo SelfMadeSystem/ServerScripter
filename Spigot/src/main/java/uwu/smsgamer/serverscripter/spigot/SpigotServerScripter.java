@@ -60,7 +60,7 @@ public class SpigotServerScripter extends JavaPlugin implements ScriptLoader {
         ShellManager.onPrint = (uuid, message) -> Bukkit.getPlayer(uuid).sendMessage(message);
         ShellManager.onPrintError = (uuid, message) -> Bukkit.getPlayer(uuid).sendMessage(ChatColor.RED + message);
         ShellManager.onError = (uuid, error) -> {
-            error.printStackTrace();
+//            error.printStackTrace();
             String message = error.getMessage();
             if (message == null) message = error.getClass().getSimpleName();
             ShellManager.onPrintError.accept(uuid, message);
@@ -72,7 +72,6 @@ public class SpigotServerScripter extends JavaPlugin implements ScriptLoader {
 
     @Override
     public void onEnable() {
-        ConfigManager.getInstance().setup(SCommand.config);
         ScriptListenerHelper.init();
         scripterLoader.enableAddons();
 //        ScriptCommand command = new ScriptCommand("script", "ServerScripter command.", "/script <addons:reload>", Collections.emptyList(), CommandScript.getInstance(), CommandScript.getInstance());

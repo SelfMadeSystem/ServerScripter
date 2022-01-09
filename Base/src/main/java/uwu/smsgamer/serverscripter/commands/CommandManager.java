@@ -3,6 +3,7 @@ package uwu.smsgamer.serverscripter.commands;
 import org.jetbrains.annotations.NotNull;
 import uwu.smsgamer.serverscripter.commands.commands.ScriptCommand;
 import uwu.smsgamer.serverscripter.commands.commands.ShellCommand;
+import uwu.smsgamer.serverscripter.senapi.config.ConfigManager;
 import uwu.smsgamer.serverscripter.senapi.utils.APlayerOfSomeSort;
 
 import java.util.ArrayList;
@@ -11,6 +12,10 @@ import java.util.List;
 
 public abstract class CommandManager {
     protected List<SCommand> commands = new ArrayList<>();
+
+    protected CommandManager() {
+        ConfigManager.getInstance().setup(SCommand.config);
+    }
 
     protected void registerCommand(SCommand command) {
         commands.add(command);
