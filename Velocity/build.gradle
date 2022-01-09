@@ -3,8 +3,6 @@ plugins {
 }
 
 archivesBaseName = rootProject.name + "-" + project.name
-group 'uwu.smsgamer'
-version '0.2.0'
 
 repositories {
     mavenCentral()
@@ -31,8 +29,8 @@ configurations {
 dependencies {
     implementation project(":Base")
     extraLibs project(":Base")
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
 
     compileOnly 'com.github.simplix-softworks:SimplixStorage:3.2.2'
 

@@ -5,7 +5,6 @@ import net.md_5.bungee.api.event.ChatEvent;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.event.EventHandler;
 import org.jetbrains.annotations.NotNull;
-import uwu.smsgamer.serverscripter.bungee.BungeeServerScripter;
 import uwu.smsgamer.serverscripter.shell.PlayerShell;
 import uwu.smsgamer.serverscripter.shell.ShellManager;
 

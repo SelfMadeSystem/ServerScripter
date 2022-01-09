@@ -11,7 +11,7 @@ public final class ShellManager {
         throw new AssertionError("No uwu.smsgamer.serverscripter.shell.ShellManager instances for you!");
     }
 
-    public static Map<UUID, PlayerShell> activeShells = new java.util.HashMap<>();
+    public static final Map<UUID, PlayerShell> activeShells = new java.util.HashMap<>();
     public static BiConsumer<UUID, String> onPrint = (uuid, response) -> {
     };
     public static BiConsumer<UUID, String> onPrintError = (uuid, response) -> {

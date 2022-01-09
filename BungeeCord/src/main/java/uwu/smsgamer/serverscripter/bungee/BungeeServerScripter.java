@@ -1,18 +1,15 @@
 package uwu.smsgamer.serverscripter.bungee;
 
-import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.chat.TextComponent;
-import uwu.smsgamer.serverscripter.bungee.commands.BungeeCommandManager;
-import uwu.smsgamer.serverscripter.bungee.shell.ShellListener;
-import uwu.smsgamer.serverscripter.lilliputian.DependencyBuilder;
 import net.md_5.bungee.api.plugin.Plugin;
 import uwu.smsgamer.serverscripter.ScriptLoader;
 import uwu.smsgamer.serverscripter.ScripterLoader;
-import uwu.smsgamer.serverscripter.bungee.commands.CommandScript;
+import uwu.smsgamer.serverscripter.bungee.commands.BungeeCommandManager;
+import uwu.smsgamer.serverscripter.bungee.shell.ShellListener;
+import uwu.smsgamer.serverscripter.lilliputian.DependencyBuilder;
 import uwu.smsgamer.serverscripter.senapi.utils.ChatColor;
 import uwu.smsgamer.serverscripter.shell.ShellManager;
 
-import java.net.URLClassLoader;
 import java.util.Collections;
 
 public class BungeeServerScripter extends Plugin implements ScriptLoader {

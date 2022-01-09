@@ -3,8 +3,6 @@ plugins {
 }
 
 archivesBaseName = rootProject.name + "-" + project.name
-group 'uwu.smsgamer'
-version '0.2.0'
 
 repositories {
     mavenCentral()
@@ -25,9 +23,9 @@ dependencies {
     implementation 'com.github.retrooper:packetevents:v1.8-pre-13'
     compileOnly 'org.spigotmc:spigot-api:1.12.2-R0.1-SNAPSHOT'
 
-    compileOnly 'org.projectlombok:lombok:1.18.12'
-    annotationProcessor 'org.projectlombok:lombok:1.18.12'
+    compileOnly 'org.projectlombok:lombok:1.18.22'
+    annotationProcessor 'org.projectlombok:lombok:1.18.22'
 
-    testCompileOnly 'org.projectlombok:lombok:1.18.12'
-    testAnnotationProcessor 'org.projectlombok:lombok:1.18.12'
+    testCompileOnly 'org.projectlombok:lombok:1.18.22'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.22'
 }

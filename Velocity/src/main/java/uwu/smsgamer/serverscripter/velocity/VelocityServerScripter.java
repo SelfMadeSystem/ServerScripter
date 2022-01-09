@@ -12,13 +12,11 @@ import com.velocitypowered.api.proxy.ProxyServer;
 import lombok.Getter;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
-import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.title.Title;
 import uwu.smsgamer.serverscripter.lilliputian.DependencyBuilder;
 import org.slf4j.Logger;
 import uwu.smsgamer.serverscripter.ScriptLoader;
 import uwu.smsgamer.serverscripter.ScripterLoader;
-import uwu.smsgamer.serverscripter.senapi.utils.ChatColor;
 import uwu.smsgamer.serverscripter.shell.ShellManager;
 import uwu.smsgamer.serverscripter.velocity.commands.VelocityCommandManager;
 import uwu.smsgamer.serverscripter.velocity.shell.ShellListener;
@@ -28,13 +26,12 @@ import java.nio.file.Path;
 import java.time.Duration;
 import java.util.Collections;
 import java.util.Optional;
-import java.util.Set;
 import java.util.logging.LogManager;
 
 @Plugin(
         id = "server_scripter",
         name = "ServerScripter",
-        version = "0.2.0",
+        version = "0.3.0",
         description = "Scripting plugin for Velocity.",
         authors = {"Sms_Gamer_3808"}
 )

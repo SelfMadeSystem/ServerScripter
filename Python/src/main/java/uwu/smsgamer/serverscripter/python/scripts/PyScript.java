@@ -8,9 +8,9 @@ import java.io.*;
 import java.util.*;
 
 public class PyScript extends Script {
-    public List<PyFunction> enableFuns = new ArrayList<>();
-    public List<PyFunction> reloadFuns = new ArrayList<>();
-    public List<PyFunction> disableFuns = new ArrayList<>();
+    public final List<PyFunction> enableFuns = new ArrayList<>();
+    public final List<PyFunction> reloadFuns = new ArrayList<>();
+    public final List<PyFunction> disableFuns = new ArrayList<>();
     private final PythonInterpreter interpreter;
 
     public PyScript(File scriptFile) {

@@ -7,37 +7,21 @@
         <processorPath useClasspath="false">
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.12/48e4e5d60309ebd833bc528dcf77668eab3cd72c/lombok-1.18.12.jar" />
         </processorPath>
-        <module name="ServerScripter.BungeeCord.main" />
         <module name="ServerScripter.BungeeCord.test" />
-        <module name="ServerScripter.PacketEvents.test" />
-        <module name="ServerScripter.PacketEvents.main" />
-        <module name="ServerScripter.Spigot.test" />
-      </profile>
-      <profile name="Gradle Imported" enabled="true">
-        <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="false">
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.12/48e4e5d60309ebd833bc528dcf77668eab3cd72c/lombok-1.18.12.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spigotmc/plugin-annotations/1.2.3-SNAPSHOT/9d55cf3007393ef21d4a862b3e8563c6e2dbf53f/plugin-annotations-1.2.3-SNAPSHOT.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.bukkit/bukkit/1.13-R0.1-SNAPSHOT/ebcbed4b5c0a0e12562b9503eeee316a2b73c401/bukkit-1.13-R0.1-SNAPSHOT.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-lang/commons-lang/2.6/ce1edb914c94ebc388f086c6827e8bdeec71ac2/commons-lang-2.6.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.googlecode.json-simple/json-simple/1.1.1/c9ad4a0850ab676c5c64461a05ca524cdfff59f1/json-simple-1.1.1.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/21.0/3a3d111be1be1b745edfa7d91678a12d7ed38709/guava-21.0.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.8.0/c4ba5371a29ac9b2ad6129b1d39ea38750043eff/gson-2.8.0.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.yaml/snakeyaml/1.21/18775fdda48574784f40b47bf478ab0593f92e4d/snakeyaml-1.21.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/junit/junit/4.10/e4f1766ce7404a08f45d859fb9c226fc9e41a861/junit-4.10.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-core/1.1/860340562250678d1a344907ac75754e259cdb14/hamcrest-core-1.1.jar" />
-        </processorPath>
-        <module name="ServerScripter.Spigot.main" />
+        <module name="ServerScripter.BungeeCord.main" />
       </profile>
       <profile name="Gradle Imported" enabled="true">
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.22/9c08ea24c6eb714e2d6170e8122c069a0ba9aacf/lombok-1.18.22.jar" />
         </processorPath>
-        <module name="ServerScripter.Velocity.test" />
         <module name="ServerScripter.Base.test" />
-        <module name="ServerScripter.Base.main" />
         <module name="ServerScripter.Groovy.test" />
+        <module name="ServerScripter.PacketEvents.test" />
+        <module name="ServerScripter.PacketEvents.main" />
+        <module name="ServerScripter.Spigot.test" />
+        <module name="ServerScripter.Velocity.test" />
+        <module name="ServerScripter.Base.main" />
         <module name="ServerScripter.Groovy.main" />
       </profile>
       <profile name="Gradle Imported" enabled="true">
@@ -74,6 +58,22 @@
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.guava/listenablefuture/9999.0-empty-to-avoid-conflict-with-guava/b421526c5f297295adef1c886e5246c39d4ac629/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar" />
         </processorPath>
         <module name="ServerScripter.Velocity.main" />
+      </profile>
+      <profile name="Gradle Imported" enabled="true">
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.22/9c08ea24c6eb714e2d6170e8122c069a0ba9aacf/lombok-1.18.22.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spigotmc/plugin-annotations/1.2.3-SNAPSHOT/55c7e44a745bdb4b2679db08d734042b17bff1d6/plugin-annotations-1.2.3-SNAPSHOT.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.bukkit/bukkit/1.13-R0.1-SNAPSHOT/ebcbed4b5c0a0e12562b9503eeee316a2b73c401/bukkit-1.13-R0.1-SNAPSHOT.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-lang/commons-lang/2.6/ce1edb914c94ebc388f086c6827e8bdeec71ac2/commons-lang-2.6.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.googlecode.json-simple/json-simple/1.1.1/c9ad4a0850ab676c5c64461a05ca524cdfff59f1/json-simple-1.1.1.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/21.0/3a3d111be1be1b745edfa7d91678a12d7ed38709/guava-21.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.8.0/c4ba5371a29ac9b2ad6129b1d39ea38750043eff/gson-2.8.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.yaml/snakeyaml/1.21/18775fdda48574784f40b47bf478ab0593f92e4d/snakeyaml-1.21.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/junit/junit/4.10/e4f1766ce7404a08f45d859fb9c226fc9e41a861/junit-4.10.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-core/1.1/860340562250678d1a344907ac75754e259cdb14/hamcrest-core-1.1.jar" />
+        </processorPath>
+        <module name="ServerScripter.Spigot.main" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8" />

@@ -9,19 +9,19 @@ import java.util.function.Consumer;
 public class ScriptPacketListener extends PacketListenerAbstract {
     private static ScriptPacketListener instance;
     // Not the cleanest way of doing it, but it works.
-    public Set<Consumer<PacketStatusReceiveEvent>> packetStatusReceiveFuns = new HashSet<>();
-    public Set<Consumer<PacketStatusSendEvent>> packetStatusSendFuns = new HashSet<>();
-    public Set<Consumer<PacketLoginReceiveEvent>> packetLoginReceiveFuns = new HashSet<>();
-    public Set<Consumer<PacketLoginSendEvent>> packetLoginSendFuns = new HashSet<>();
-    public Set<Consumer<PacketPlayReceiveEvent>> packetPlayReceiveFuns = new HashSet<>();
-    public Set<Consumer<PacketPlaySendEvent>> packetPlaySendFuns = new HashSet<>();
-    public Set<Consumer<PostPacketPlayReceiveEvent>> postPacketPlayReceiveFuns = new HashSet<>();
-    public Set<Consumer<PostPacketPlaySendEvent>> postPacketPlaySendFuns = new HashSet<>();
-    public Set<Consumer<PostPlayerInjectEvent>> postPlayerInjectFuns = new HashSet<>();
-    public Set<Consumer<PlayerInjectEvent>> playerInjectFuns = new HashSet<>();
-    public Set<Consumer<PlayerEjectEvent>> playerEjectFuns = new HashSet<>();
-    public Set<Consumer<PacketEvent>> packetEventExternalFuns = new HashSet<>();
-    public Set<Consumer<PacketHandshakeReceiveEvent>> packetHandshakeReceiveFuns = new HashSet<>();
+    public final Set<Consumer<PacketStatusReceiveEvent>> packetStatusReceiveFuns = new HashSet<>();
+    public final Set<Consumer<PacketStatusSendEvent>> packetStatusSendFuns = new HashSet<>();
+    public final Set<Consumer<PacketLoginReceiveEvent>> packetLoginReceiveFuns = new HashSet<>();
+    public final Set<Consumer<PacketLoginSendEvent>> packetLoginSendFuns = new HashSet<>();
+    public final Set<Consumer<PacketPlayReceiveEvent>> packetPlayReceiveFuns = new HashSet<>();
+    public final Set<Consumer<PacketPlaySendEvent>> packetPlaySendFuns = new HashSet<>();
+    public final Set<Consumer<PostPacketPlayReceiveEvent>> postPacketPlayReceiveFuns = new HashSet<>();
+    public final Set<Consumer<PostPacketPlaySendEvent>> postPacketPlaySendFuns = new HashSet<>();
+    public final Set<Consumer<PostPlayerInjectEvent>> postPlayerInjectFuns = new HashSet<>();
+    public final Set<Consumer<PlayerInjectEvent>> playerInjectFuns = new HashSet<>();
+    public final Set<Consumer<PlayerEjectEvent>> playerEjectFuns = new HashSet<>();
+    public final Set<Consumer<PacketEvent>> packetEventExternalFuns = new HashSet<>();
+    public final Set<Consumer<PacketHandshakeReceiveEvent>> packetHandshakeReceiveFuns = new HashSet<>();
 
     public static ScriptPacketListener getInstance() {
         if (instance == null) instance = new ScriptPacketListener();
