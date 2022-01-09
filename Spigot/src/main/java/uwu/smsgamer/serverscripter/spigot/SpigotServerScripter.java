@@ -12,14 +12,11 @@ import org.bukkit.plugin.java.annotation.plugin.author.Author;
 import uwu.smsgamer.serverscripter.ScriptLoader;
 import uwu.smsgamer.serverscripter.ScripterLoader;
 import uwu.smsgamer.serverscripter.commands.CommandManager;
-import uwu.smsgamer.serverscripter.commands.SCommand;
 import uwu.smsgamer.serverscripter.lilliputian.DependencyBuilder;
 import uwu.smsgamer.serverscripter.senapi.config.ConfigManager;
 import uwu.smsgamer.serverscripter.shell.ShellManager;
-import uwu.smsgamer.serverscripter.spigot.command.CommandScript;
 import uwu.smsgamer.serverscripter.spigot.command.SpigotCommandManager;
 import uwu.smsgamer.serverscripter.spigot.shell.ShellListener;
-import uwu.smsgamer.serverscripter.spigot.utils.ScriptCommand;
 import uwu.smsgamer.serverscripter.spigot.utils.ScriptListenerHelper;
 
 import java.io.File;
