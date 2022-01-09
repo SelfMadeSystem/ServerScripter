@@ -1,26 +1,33 @@
 package uwu.smsgamer.serverscripter.velocity;
 
 import com.google.inject.Inject;
-import com.mojang.brigadier.builder.LiteralArgumentBuilder;
-import com.velocitypowered.api.command.BrigadierCommand;
-import com.velocitypowered.api.command.CommandSource;
 import com.velocitypowered.api.event.Subscribe;
 import com.velocitypowered.api.event.proxy.ProxyInitializeEvent;
 import com.velocitypowered.api.event.proxy.ProxyReloadEvent;
 import com.velocitypowered.api.event.proxy.ProxyShutdownEvent;
 import com.velocitypowered.api.plugin.Plugin;
 import com.velocitypowered.api.plugin.annotation.DataDirectory;
+import com.velocitypowered.api.proxy.Player;
 import com.velocitypowered.api.proxy.ProxyServer;
 import lombok.Getter;
-import uwu.smsgamer.serverscripter.lilliputian.DependencyBuilder;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
+import net.kyori.adventure.text.format.TextColor;
+import net.kyori.adventure.title.Title;
+import uwu.smsgamer.serverscripter.lilliputian.DependencyBuilder;
 import org.slf4j.Logger;
-import uwu.smsgamer.serverscripter.ScriptAddon;
 import uwu.smsgamer.serverscripter.ScriptLoader;
 import uwu.smsgamer.serverscripter.ScripterLoader;
+import uwu.smsgamer.serverscripter.senapi.utils.ChatColor;
+import uwu.smsgamer.serverscripter.shell.ShellManager;
+import uwu.smsgamer.serverscripter.velocity.commands.VelocityCommandManager;
+import uwu.smsgamer.serverscripter.velocity.shell.ShellListener;
 
 import java.io.File;
 import java.nio.file.Path;
+import java.time.Duration;
+import java.util.Collections;
+import java.util.Optional;
 import java.util.Set;
 import java.util.logging.LogManager;
 
@@ -60,34 +67,57 @@ public class VelocityServerScripter implements ScriptLoader {
         scripterLoader.loadAddons();
         this.javaLogger = LogManager.getLogManager().getLogger(logger.getName());
 
-        getServer().getCommandManager().register(new BrigadierCommand(LiteralArgumentBuilder.<CommandSource>literal("vscript")
-                .requires(src -> src.hasPermission("serverscripter.command.script.velocity"))
-                .then(LiteralArgumentBuilder.<CommandSource>literal("addons").executes(src -> {
-                    CommandSource source = src.getSource();
-                    source.sendMessage(Component.text("Addons:"));
-                    Set<ScriptAddon> addons = ScripterLoader.getInstance().getAddons();
-                    if (addons.size() == 0) {
-                        source.sendMessage(Component.text("No addons."));
-                        return 1;
-                    }
-                    for (ScriptAddon addon : addons) {
-                        source.sendMessage(Component.text(addon.getName() + " version " + addon.getVersion()));
-                    }
-                    return 1;
-                }))
-                .then(LiteralArgumentBuilder.<CommandSource>literal("reload").executes(src -> {
-                    CommandSource source = src.getSource();
-                    ScripterLoader.getInstance().reloadAddons();
-                    source.sendMessage(Component.text("Reloaded."));
-                    return 1;
-                })).executes(src -> {
-                    src.getSource().sendMessage(Component.text("/vscript <addons:reload>"));
-                    return 1;
-                }).build()));
+
+        ShellManager.onPrint = (uuid, message) -> {
+            Optional<Player> optional = getServer().getPlayer(uuid);
+            if (optional.isPresent()) {
+                Player player = optional.get();
+                player.sendMessage(Component.text((message)));
+            }
+        };
+        ShellManager.onPrintError = (uuid, message) -> {
+            Optional<Player> optional = getServer().getPlayer(uuid);
+            if (optional.isPresent()) {
+                Player player = optional.get();
+                player.sendMessage(Component.text(message).color(NamedTextColor.RED));
+            }
+        };
+        ShellManager.onError = (uuid, error) -> {
+//            error.printStackTrace();
+            String message = error.getMessage();
+            if (message == null) message = error.getClass().getSimpleName();
+            ShellManager.onPrintError.accept(uuid, message);
+        };
+        ShellManager.onAnnounce = (uuid, message) -> {
+            Optional<Player> optional = getServer().getPlayer(uuid);
+            if (optional.isPresent()) {
+                Player player = optional.get();
+                player.showTitle(Title.title(
+                        Component.empty(),
+                        Component.text(message),
+                        Title.Times.of(
+                                Duration.ofMillis(10 * (1000 / 20)),
+                                Duration.ofMillis(60 * (1000 / 20)),
+                                Duration.ofMillis(10 * (1000 / 20)))));
+            }
+        };
+        ShellManager.getObjects = (uuid) -> {
+            Optional<Player> optional = getServer().getPlayer(uuid);
+            if (optional.isPresent()) {
+                Player player = optional.get();
+                return Collections.singletonMap("player", player);
+            }
+            return Collections.emptyMap();
+        };
+        scripterLoader.setObject("plugin", this);
+
+        VelocityCommandManager.getInstance();
     }
 
     @Subscribe
     public void onProxyInitialization(ProxyInitializeEvent event) {
+        getServer().getEventManager().register(this, ShellListener.getInstance());
+        VelocityCommandManager.getInstance().registerCommands();
         scripterLoader.enableAddons();
     }
 

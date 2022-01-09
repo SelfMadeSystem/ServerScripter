@@ -11,7 +11,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
-public class ScriptCommand extends SCommand { // Todo: Implement permissions
+public class ScriptCommand extends SCommand {
     private final HashMap<String, ScriptCmd> commands = new HashMap<>();
     public ScriptCommand(CommandManager manager) {
         super(manager, "Script", "Manages scripts.",

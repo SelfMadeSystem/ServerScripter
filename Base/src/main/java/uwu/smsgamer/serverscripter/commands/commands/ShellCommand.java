@@ -18,9 +18,9 @@ public class ShellCommand extends SCommand {
     public final ColouredStringVal shellNotFound;
     public ShellCommand(CommandManager manager) {
         super(manager, "Shell", "shell", "/%alias% <none, shell name>", "sh");
-        removedShell = new ColouredStringVal(name + ".RemovedShell", config,"&cRemoved shell.");
-        openedShell = new ColouredStringVal(name + ".Opened", config,"&aOpened shell %shell%.");
-        shellNotFound = new ColouredStringVal(name + ".ShellNotFound", config,"&cShell %shell% not found.");
+        removedShell = new ColouredStringVal("Shell.RemovedShell", config,"&cRemoved shell.");
+        openedShell = new ColouredStringVal("Shell.Opened", config,"&aOpened shell %shell%.");
+        shellNotFound = new ColouredStringVal("Shell.ShellNotFound", config,"&cShell %shell% not found.");
     }
 
     @Override
