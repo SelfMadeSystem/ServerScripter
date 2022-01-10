@@ -13,10 +13,6 @@ import java.util.List;
 public abstract class CommandManager {
     protected List<SCommand> commands = new ArrayList<>();
 
-    protected CommandManager() {
-        ConfigManager.getInstance().setup(SCommand.config);
-    }
-
     protected void registerCommand(SCommand command) {
         commands.add(command);
     }
@@ -24,6 +20,7 @@ public abstract class CommandManager {
     protected abstract @NotNull String getPrefix();
 
     public void registerCommands() {
+        ConfigManager.getInstance().setup(SCommand.config);
          registerCommand(new ScriptCommand(this));
          registerCommand(new ShellCommand(this));
     }

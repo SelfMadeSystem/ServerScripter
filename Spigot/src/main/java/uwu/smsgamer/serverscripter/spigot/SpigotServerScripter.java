@@ -22,7 +22,7 @@ import uwu.smsgamer.serverscripter.spigot.utils.ScriptListenerHelper;
 import java.io.File;
 import java.util.Collections;
 
-@Plugin(name = "ServerScripter", version = "0.3.0")
+@Plugin(name = "ServerScripter", version = "0.3.1")
 @Description("Scripting plugin for Spigot.")
 @Author("Sms_Gamer_3808")
 @SoftDependency("PacketEvents")
