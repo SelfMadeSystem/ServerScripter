@@ -5,6 +5,7 @@ import org.jetbrains.annotations.Nullable;
 import uwu.smsgamer.serverscripter.ScripterLoader;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -49,10 +50,14 @@ public abstract class ScriptsLoader<S extends Script> {
      */
     public void loadScripts() {
         for (File scriptFile : getScriptFiles()) {
-            S e = newScript(scriptFile);
-            e.load();
-            scripts.add(e);
-            ScripterLoader.getInstance().getObjects().forEach(e::setObject);
+            try {
+                S e = newScript(scriptFile);
+                e.load();
+                scripts.add(e);
+                ScripterLoader.getInstance().getObjects().forEach(e::setObject);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -61,7 +66,7 @@ public abstract class ScriptsLoader<S extends Script> {
      * @param file The file to make the script object from.
      * @return a new script object.
      */
-    public abstract S newScript(File file);
+    public abstract S newScript(File file) throws Exception;
 
     /**
      * Returns a list of all the script files.
@@ -113,7 +118,7 @@ public abstract class ScriptsLoader<S extends Script> {
      * @param file The file to load the script from.
      * @return the new script.
      */
-    public S createAndLoadScript(File file) {
+    public S createAndLoadScript(File file) throws Exception {
         S script = newScript(file);
         script.load();
         scripts.add(script);

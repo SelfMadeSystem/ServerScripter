@@ -15,6 +15,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/Base" />
             <option value="$PROJECT_DIR$/BungeeCord" />
+            <option value="$PROJECT_DIR$/GraalVM" />
             <option value="$PROJECT_DIR$/Groovy" />
             <option value="$PROJECT_DIR$/JavaScript" />
             <option value="$PROJECT_DIR$/PacketEvents" />

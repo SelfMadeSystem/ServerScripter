@@ -2,6 +2,7 @@ package uwu.smsgamer.serverscripter;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import de.leonhard.storage.Config;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 import uwu.smsgamer.serverscripter.lilliputian.*;
@@ -221,6 +222,5 @@ public final class ScripterLoader {
     public <S extends Script> void addScriptsLoader(ScriptsLoader<?> scriptsLoader) {
         scriptsLoaders.add(scriptsLoader);
         scriptsLoadersByName.put(scriptsLoader.getName(), scriptsLoader);
-        scriptsLoader.getAliases().forEach(a -> scriptsLoadersByName.put(a, scriptsLoader));
     }
 }

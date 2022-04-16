@@ -7,4 +7,5 @@ include 'Groovy'
 include 'PacketEvents'
 include 'Velocity'
 include 'JavaScript'
+include 'GraalVM'
 

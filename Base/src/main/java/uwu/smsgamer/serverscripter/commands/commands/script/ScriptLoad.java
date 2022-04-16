@@ -13,6 +13,7 @@ public class ScriptLoad extends ScriptCmd {
     public final ColouredStringVal help;
     public final ColouredStringVal scriptAlreadyLoaded;
     public final ColouredStringVal scriptLoaded;
+    public final ColouredStringVal scriptFailedToLoad;
     public ScriptLoad() {
         super("load");
         help = new ColouredStringVal("Script.Load.Help", config,"&c/%alias% <lang> load <script>\n" +
@@ -21,6 +22,8 @@ public class ScriptLoad extends ScriptCmd {
                 "&cThe script &7%script% &cis already loaded in &7%lang%&c.");
         scriptLoaded = new ColouredStringVal("Script.Load.Loaded", config,
                 "&aThe script &7%script% &ahas been loaded in &7%lang%&a.");
+        scriptFailedToLoad = new ColouredStringVal("Script.Load.FailedToLoad", config,
+                "&cThe script &7%script% &cfailed to load in &7%lang%&c.");
     }
 
     @Override
@@ -33,42 +36,50 @@ public class ScriptLoad extends ScriptCmd {
         String lang = args[0];
         String scriptName = args[2];
         String langName = getLangName(lang);
-        Script script = getScript(lang, scriptName);
-        if (script == null) {
-            ScriptsLoader<?> loader = getScriptsLoader(lang);
-            if (loader != null) {
-                File file = loader.getScriptFile(scriptName);
-                if (file != null) {
-                    script = loader.createAndLoadScript(file);
-                    script.init();
-                    script.enable();
-                    ChatUtils.sendMessage(aPlayerOfSomeSort, scriptLoaded,
-                            "%alias%", alias,
-                            "%script%", scriptName,
-                            "%lang%", langName);
-                    return;
+        try {
+            Script script = getScript(lang, scriptName);
+            if (script == null) {
+                ScriptsLoader<?> loader = getScriptsLoader(lang);
+                if (loader != null) {
+                    File file = loader.getScriptFile(scriptName);
+                    if (file != null) {
+                        script = loader.createAndLoadScript(file);
+                        script.init();
+                        script.enable();
+                        ChatUtils.sendMessage(aPlayerOfSomeSort, scriptLoaded,
+                                "%alias%", alias,
+                                "%script%", scriptName,
+                                "%lang%", langName);
+                        return;
+                    }
                 }
+                ChatUtils.sendMessage(aPlayerOfSomeSort, scriptNotFound,
+                        "%alias%", alias,
+                        "%lang%", langName,
+                        "%script%", scriptName);
+                return;
             }
-            ChatUtils.sendMessage(aPlayerOfSomeSort, scriptNotFound,
-                    "%alias%", alias,
-                    "%lang%", langName,
-                    "%script%", scriptName);
-            return;
-        }
 
-        if (script.isLoaded()) {
-            ChatUtils.sendMessage(aPlayerOfSomeSort, scriptAlreadyLoaded,
+            if (script.isLoaded()) {
+                ChatUtils.sendMessage(aPlayerOfSomeSort, scriptAlreadyLoaded,
+                        "%alias%", alias,
+                        "%lang%", langName,
+                        "%script%", scriptName);
+                return;
+            }
+            script.load();
+            script.enable();
+            ChatUtils.sendMessage(aPlayerOfSomeSort, scriptLoaded,
                     "%alias%", alias,
                     "%lang%", langName,
                     "%script%", scriptName);
-            return;
+        } catch (Exception e) {
+            e.printStackTrace();
+            ChatUtils.sendMessage(aPlayerOfSomeSort, scriptFailedToLoad,
+                    "%alias%", alias,
+                    "%lang%", langName,
+                    "%script%", scriptName);
         }
-        script.load();
-        script.enable();
-        ChatUtils.sendMessage(aPlayerOfSomeSort, scriptLoaded,
-                "%alias%", alias,
-                "%lang%", langName,
-                "%script%", scriptName);
     }
 
     @Override
