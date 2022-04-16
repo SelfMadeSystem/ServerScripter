@@ -56,7 +56,7 @@ public class GrPlayerShell extends PlayerShell {
             return Result.EMPTY;
         }
 //        if (command.startsWith(":")) {
-//            ShellManager.onAnnounce.accept(uuid, "Oh no you don't!");
+//            announce("Oh no you don't!");
 //            return Result.EMPTY;
 //        }
         Object result = groovysh.execute(command);

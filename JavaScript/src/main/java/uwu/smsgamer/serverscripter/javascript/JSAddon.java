@@ -9,7 +9,7 @@ import uwu.smsgamer.serverscripter.javascript.shell.JSShell;
 
 public class JSAddon extends ScriptAddon {
     public JSAddon() {
-        super("JavaScript", "0.2", JSShell.getInstance());
+        super("JavaScript", "0.4.0", JSShell.getInstance());
     }
 
     @Override

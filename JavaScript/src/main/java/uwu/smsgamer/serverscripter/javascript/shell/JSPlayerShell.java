@@ -28,7 +28,7 @@ public class JSPlayerShell extends PlayerShell {
     public Result doExecute(String command) {
         Result r = super.doExecute(command);
         if (r.response == Result.Response.FINISHED) {
-            ShellManager.onPrint.accept(uuid, r.output);
+            print(r.output);
         }
         return r;
     }

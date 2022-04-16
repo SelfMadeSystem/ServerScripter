@@ -62,19 +62,19 @@ public abstract class PlayerShell {
     public void onCommand(String command) {
         synchronized (tasks) {
             if (tasks.size() > 0) {
-                ShellManager.onAnnounce.accept(uuid, "Please wait for the previous command" + (tasks.size() > 1 ? "s" : "") + " to finish.");
+                announce("Please wait for the previous command" + (tasks.size() > 1 ? "s" : "") + " to finish.");
                 return;
             }
             command = command.replace("\\ ", " ");
             if (command.equals("\\")) {
-                ShellManager.onAnnounce.accept(uuid, "Finished command.");
+                print("Finished command.");
                 command = buffer.toString();
                 buffer.setLength(0);
             } else {
-                ShellManager.onPrint.accept(uuid, "> " + command);
+                print("> " + command);
                 if (buffer.length() > 0) {
                     buffer.append("\n").append(command);
-                    ShellManager.onAnnounce.accept(uuid, "Unfinished command.");
+                    announce("Unfinished command.");
                     return;
                 }
             }
@@ -96,9 +96,9 @@ public abstract class PlayerShell {
                 @Override
                 public void killed(boolean suspended) {
                     if (suspended) {
-                        ShellManager.onPrintError.accept(uuid, "Command timed out. (Suspended)");
+                        printError("Command timed out. (Suspended)");
                     } else {
-                        ShellManager.onPrintError.accept(uuid, "Command timed out.");
+                        printError("Command timed out.");
                     }
                     tasks.remove(this);
                 }
@@ -113,13 +113,29 @@ public abstract class PlayerShell {
         switch (result.response) {
             case UNFINISHED:
                 buffer.append(result.output);
-                ShellManager.onAnnounce.accept(uuid, "Unfinished command.");
+                announce("Unfinished command.");
                 break;
             case EXIT:
-                ShellManager.onAnnounce.accept(uuid, "Exit shell.");
+                announce("Exit shell.");
                 shell.removeShell(uuid);
         }
         return result;
+    }
+
+    public void print(String message) {
+        ShellManager.onPrint.accept(uuid, message);
+    }
+
+    public void printError(String message) {
+        ShellManager.onPrintError.accept(uuid, message);
+    }
+
+    public void error(Throwable e) {
+        ShellManager.onError.accept(uuid, e);
+    }
+
+    public void announce(String message) {
+        ShellManager.onAnnounce.accept(uuid, message);
     }
 
     /**

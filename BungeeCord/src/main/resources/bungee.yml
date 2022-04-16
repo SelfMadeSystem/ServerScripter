@@ -1,5 +1,5 @@
 name: ServerScripter
-version: '0.3.1'
+version: '0.4.0'
 main: uwu.smsgamer.serverscripter.bungee.BungeeServerScripter
 author: Sms_Gamer_3808
 description: Scripting plugin for BungeeCord.

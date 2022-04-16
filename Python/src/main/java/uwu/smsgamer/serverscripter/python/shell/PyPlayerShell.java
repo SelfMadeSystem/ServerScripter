@@ -30,7 +30,7 @@ public class PyPlayerShell extends PlayerShell {
                     return Result.EXIT;
                 }
             }
-            return new Result(Result.Response.FINISHED, null);
+            return Result.EMPTY;
         }
         return Result.UNFINISHED;
     }

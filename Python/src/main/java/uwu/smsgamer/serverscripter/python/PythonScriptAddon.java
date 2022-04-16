@@ -14,7 +14,7 @@ public class PythonScriptAddon extends ScriptAddon {
     public final Config config;
 
     public PythonScriptAddon() {
-        super("Python", "0.2", PyShell.getInstance());
+        super("Python", "0.4.0", PyShell.getInstance());
         config = new Config(new File(ScripterLoader.getInstance().getConfigDir(), "Python-config.yml"));
         config.setDefault("Delete Class Cache", true);
     }

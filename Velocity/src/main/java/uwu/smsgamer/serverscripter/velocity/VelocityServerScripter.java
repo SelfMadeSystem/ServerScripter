@@ -31,7 +31,7 @@ import java.util.logging.LogManager;
 @Plugin(
         id = "server_scripter",
         name = "ServerScripter",
-        version = "0.3.1",
+        version = "0.4.0",
         description = "Scripting plugin for Velocity.",
         authors = {"Sms_Gamer_3808"}
 )
