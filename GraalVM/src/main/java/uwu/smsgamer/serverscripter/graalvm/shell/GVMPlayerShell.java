@@ -1,6 +1,7 @@
 package uwu.smsgamer.serverscripter.graalvm.shell;
 
 import org.graalvm.polyglot.*;
+import uwu.smsgamer.serverscripter.graalvm.GraalVMAddon;
 import uwu.smsgamer.serverscripter.shell.PlayerShell;
 import uwu.smsgamer.serverscripter.shell.PlayerStream;
 
@@ -11,15 +12,19 @@ import java.util.UUID;
 public class GVMPlayerShell extends PlayerShell {
     private String language;
     private final Context context;
-    private final Map<String, Object> members = new HashMap<>();
+    private final Value polyglotBindings;
+    private Value languageBindings;
+    private final Map<String, Object> values = new HashMap<>();
 
     protected GVMPlayerShell(UUID uuid) {
         super(uuid, GVMShell.getInstance());
         context = Context.newBuilder()
                 .allowAllAccess(true)
+                .hostClassLoader(GraalVMAddon.class.getClassLoader())
                 .out(new PlayerStream(uuid, false))
                 .err(new PlayerStream(uuid, true))
                 .build();
+        polyglotBindings = context.getPolyglotBindings();
     }
 
     @Override
@@ -47,6 +52,32 @@ public class GVMPlayerShell extends PlayerShell {
             }
             return Result.EMPTY;
         }
+        if (command.equals("__printAllBindings__")) {
+            print("Polyglot bindings:" + polyglotBindings.getMemberKeys());
+            print("Language bindings:" + languageBindings.getMemberKeys());
+            return Result.EMPTY;
+        }
+        if (command.startsWith("__getBinding__")) {
+            String[] split = command.split(" ");
+            StringBuilder sb = new StringBuilder();
+            if (split.length > 1) {
+                int i = 1;
+                Value value = polyglotBindings;
+                while (i < split.length) {
+                    if (sb.length() > 0) {
+                        sb.append(".");
+                    }
+                    sb.append(split[i]);
+                    if (!value.hasMembers()) {
+                        printError("No such binding: " + sb);
+                        return Result.EMPTY;
+                    }
+                    value = value.getMember(split[i]);
+                    i++;
+                }
+                print(sb + ": " + value);
+            }
+        }
         if (language == null) {
             announce("Language not set");
             print("Available languages: \u00A7r" + context.getEngine().getLanguages().keySet());
@@ -69,22 +100,18 @@ public class GVMPlayerShell extends PlayerShell {
 
     private String setLanguage(String language) {
         if (context.getEngine().getLanguages().containsKey(language)) {
-            Value bindings;
+            Value langBindings;
             try {
-                bindings = context.getBindings(language);
-            } catch (Exception e) {
-                return "Failed to get bindings";
-            }
-            Value finalBindings = bindings;
-            members.forEach((k, v) -> {
-                try {
-                    if (!finalBindings.hasMember(k)) {
-                        finalBindings.putMember(k, v);
+                langBindings = context.getBindings(language);
+                if (langBindings != null) {
+                    for (Map.Entry<String, Object> entry : values.entrySet()) {
+                        langBindings.putMember(entry.getKey(), entry.getValue());
                     }
-                } catch (Exception e) {
-                    e.printStackTrace();
                 }
-            });
+            } catch (PolyglotException e) {
+                return e.getMessage();
+            }
+            languageBindings = langBindings;
             this.language = language;
             return null;
         } else {
@@ -95,6 +122,10 @@ public class GVMPlayerShell extends PlayerShell {
 
     @Override
     public void setObject(String name, Object object) {
-        members.put(name, object);
+        polyglotBindings.putMember(name, object);
+        values.put(name, object);
+        if (languageBindings != null) {
+            languageBindings.putMember(name, object);
+        }
     }
 }

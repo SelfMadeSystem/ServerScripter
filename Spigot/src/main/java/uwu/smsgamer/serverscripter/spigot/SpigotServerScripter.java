@@ -39,7 +39,7 @@ public class SpigotServerScripter extends JavaPlugin implements ScriptLoader {
     }
 
     public static SpigotServerScripter getInstance() {
-        if (INSTANCE == null) new SpigotServerScripter();
+        if (INSTANCE == null) throw new NullPointerException("INSTANCE is null!");
         return INSTANCE;
     }
 

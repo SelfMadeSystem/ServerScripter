@@ -3,6 +3,7 @@ package uwu.smsgamer.serverscripter.graalvm.scripts;
 import org.graalvm.polyglot.Context;
 import org.graalvm.polyglot.Source;
 import org.graalvm.polyglot.Value;
+import uwu.smsgamer.serverscripter.graalvm.GraalVMAddon;
 import uwu.smsgamer.serverscripter.scripts.Script;
 
 import java.io.File;
@@ -15,26 +16,31 @@ import java.util.Set;
 // TODO: Fix ruby support
 // TODO: Figure out how LLVM works so we can use it
 public class GVMScript extends Script {
-    private String language;
-    private Context context;
-    private Source source;
+    private final String language;
+    private final Context context;
+    private final Source source;
+    private final Value polyglotBindings;
+    private final Value languageBindings;
 
     public GVMScript(File scriptFile, String language) throws IOException {
         super(scriptFile);
         this.language = language;
-        context = Context.newBuilder().allowAllAccess(true).build();
+        context = Context.newBuilder()
+                .allowAllAccess(true)
+                .hostClassLoader(GraalVMAddon.class.getClassLoader())
+                .build();
         source = Source.newBuilder(language, scriptFile).build();
+        polyglotBindings = context.getPolyglotBindings();
+        languageBindings = context.getBindings(language);
     }
 
     @Override
     protected void loadScript() {
-        System.out.println("LoadScript: " + scriptFile.getName());
-        context.eval(source);
+        // Nothing to do here
     }
 
     @Override
     protected void unloadScript() {
-        System.out.println("UnloadScript: " + scriptFile.getName());
         disable();
         context.close();
     }
@@ -68,37 +74,11 @@ public class GVMScript extends Script {
 
     private void tryExecuteFunctions(List<String> functionNames) {
         switch (language) {
-            case "ruby": {
-                Value bindings = context.getBindings(language);
-                Set<String> members = bindings.getMemberKeys();
-                for (String memberKey : members) {
-                    Value member = bindings.getMember(memberKey);
-                    if (functionNames.contains(memberKey)) {
-                        if (member.canExecute()) {
-                                bindings.getMember(memberKey).execute();
-                                System.out.println("Executed function: " + memberKey);
-                        }
-                    } else {
-                        if (member != null && member.hasMembers()) {
-                            for (String memberKey2 : member.getMemberKeys()) {
-                                Value member2 = member.getMember(memberKey2);
-                                if (functionNames.contains(memberKey2)) {
-                                    if (member2.canExecute()) {
-                                        bindings.getMember(memberKey2).execute();
-                                        System.out.println("Executed function: " + memberKey + "." + memberKey2);
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
             default: {
-                Value bindings = context.getBindings(language);
-                Set<String> members = bindings.getMemberKeys();
+                Set<String> members = languageBindings.getMemberKeys();
                 for (String member : members) {
                     if (functionNames.contains(member)) {
-                        Value function = bindings.getMember(member);
+                        Value function = languageBindings.getMember(member);
                         if (function.canExecute()) {
                             try {
                                 function.execute();
@@ -112,6 +92,13 @@ public class GVMScript extends Script {
                 }
             }
         }
+    }
+
+    @Override
+    public void init() {
+        super.init();
+        System.out.println("Init: " + scriptFile.getName());
+        context.eval(source);
     }
 
     @Override
@@ -134,11 +121,15 @@ public class GVMScript extends Script {
 
     @Override
     public void setObject(String name, Object object) {
-        context.getBindings(language).putMember(name, object);
+        polyglotBindings.putMember(name, object);
+        languageBindings.putMember(name, object);
     }
 
     @Override
     public Object getObject(String name) {
-        return context.getBindings(language).getMember(name);
+        if (languageBindings.hasMember(name)) {
+            return languageBindings.getMember(name);
+        }
+        return polyglotBindings.getMember(name);
     }
 }
