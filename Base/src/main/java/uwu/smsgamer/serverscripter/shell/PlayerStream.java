@@ -13,10 +13,13 @@ public class PlayerStream extends OutputStream {
         this.error = error;
     }
 
-
     @Override
     public void write(int b) {
-        builder.append((char) b);
+        if (b == '\n') {
+            flush();
+        } else {
+            builder.append((char) b);
+        }
     }
 
     @Override
