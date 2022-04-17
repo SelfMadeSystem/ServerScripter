@@ -16,6 +16,7 @@ import java.net.*;
 import java.util.*;
 import java.util.function.Function;
 import java.util.jar.*;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
 
@@ -60,6 +61,10 @@ public final class ScripterLoader {
 
     public static ScripterLoader getInstance() {
         return INSTANCE;
+    }
+
+    public static Logger getLogger() {
+        return INSTANCE.loader.getLogger();
     }
 
     public void setObject(String name, Object object) {
@@ -171,6 +176,7 @@ public final class ScripterLoader {
     public void loadAddons() {
         for (ScriptAddon addon : addons) {
             try {
+                getLogger().info("Loading addon " + addon.getName() + " v" + addon.getVersion());
                 addon.load();
             } catch (Exception e) {
                 new Exception("Failed to load addon: " + addon.getName() + " version " + addon.getVersion(), e).printStackTrace();
@@ -184,6 +190,7 @@ public final class ScripterLoader {
     public void enableAddons() {
         for (ScriptAddon addon : addons) {
             try {
+                getLogger().info("Enabling addon " + addon.getName() + " v" + addon.getVersion());
                 addon.enable();
             } catch (Exception e) {
                 new Exception("Failed to enable addon: " + addon.getName() + " version " + addon.getVersion(), e).printStackTrace();
@@ -197,6 +204,7 @@ public final class ScripterLoader {
     public void disableAddons() {
         for (ScriptAddon addon : addons) {
             try {
+                getLogger().info("Disabling addon " + addon.getName() + " v" + addon.getVersion());
                 addon.disable();
             } catch (Exception e) {
                 new Exception("Failed to disable addon: " + addon.getName() + " version " + addon.getVersion(), e).printStackTrace();
@@ -212,6 +220,7 @@ public final class ScripterLoader {
     public void reloadAddons() {
         for (ScriptAddon addon : addons) {
             try {
+                getLogger().info("Reloading addon " + addon.getName() + " v" + addon.getVersion());
                 addon.reload();
             } catch (Exception e) {
                 new Exception("Failed to reload addon: " + addon.getName() + " version " + addon.getVersion(), e).printStackTrace();

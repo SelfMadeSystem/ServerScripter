@@ -8,8 +8,20 @@ import uwu.smsgamer.serverscripter.javascript.scripts.JSScriptLoader;
 import uwu.smsgamer.serverscripter.javascript.shell.JSShell;
 
 public class JSAddon extends ScriptAddon {
+    private static JSAddon INSTANCE;
+
+    {
+        INSTANCE = this;
+    }
+
+    public static JSAddon getInstance() {
+        if (INSTANCE == null) throw new IllegalStateException("Instance not initialized");
+        return INSTANCE;
+    }
+
     public JSAddon() {
         super("JavaScript", "0.4.0", JSShell.getInstance());
+        INSTANCE = this;
     }
 
     @Override
@@ -22,26 +34,22 @@ public class JSAddon extends ScriptAddon {
 
     @Override
     public void load() {
-        System.out.println("[JSScripter] Loading");
         JSScriptLoader.getInstance().loadScripts();
         JSScriptLoader.getInstance().initScripts();
     }
 
     @Override
     public void enable() {
-        System.out.println("[JSScripter] Enabling");
         JSScriptLoader.getInstance().enableScripts();
     }
 
     @Override
     public void disable() {
-        System.out.println("[JSScripter] Disabling");
         JSScriptLoader.getInstance().disableScripts();
     }
 
     @Override
     public void reload() {
-        System.out.println("[JSScripter] Reloading");
         JSScriptLoader.getInstance().reloadScripts();
     }
 }

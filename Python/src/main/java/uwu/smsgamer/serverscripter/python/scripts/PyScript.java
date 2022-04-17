@@ -2,25 +2,29 @@ package uwu.smsgamer.serverscripter.python.scripts;
 
 import org.python.core.*;
 import org.python.util.PythonInterpreter;
+import uwu.smsgamer.serverscripter.python.PythonScriptAddon;
 import uwu.smsgamer.serverscripter.scripts.Script;
 
 import java.io.*;
 import java.util.*;
+import java.util.logging.Logger;
 
 public class PyScript extends Script {
     public final List<PyFunction> enableFuns = new ArrayList<>();
     public final List<PyFunction> reloadFuns = new ArrayList<>();
     public final List<PyFunction> disableFuns = new ArrayList<>();
     private final PythonInterpreter interpreter;
+    private final Logger logger;
 
     public PyScript(File scriptFile) {
         super(scriptFile);
         interpreter = new PythonInterpreter();
+        logger = PythonScriptAddon.getInstance().getLogger();
     }
 
     @Override
     protected void loadScript() {
-        System.out.println("LoadScript: " + scriptFile.getName());
+        logger.info("LoadScript: " + scriptFile.getName());
         try {
             findScriptInfo();
         } catch (IOException e) {
@@ -100,7 +104,7 @@ public class PyScript extends Script {
 
     @Override
     protected void unloadScript() {
-        System.out.println("UnloadScript: " + scriptFile.getName());
+        logger.info("UnloadScript: " + scriptFile.getName());
         disable();
         interpreter.cleanup();
     }
@@ -109,7 +113,7 @@ public class PyScript extends Script {
     public void init() {
         if (initialized) return;
         super.init();
-        System.out.println("Init: " + scriptFile.getName());
+        logger.info("Init: " + scriptFile.getName());
         try {
             String name = getScriptFile().getName();
             int i = name.lastIndexOf(".");
@@ -122,19 +126,19 @@ public class PyScript extends Script {
 
     @Override
     public void enable() {
-        System.out.println("Enable: " + scriptFile.getName());
+        logger.info("Enable: " + scriptFile.getName());
         execAll(this.enableFuns);
     }
 
     @Override
     public void disable() {
-        System.out.println("Disable: " + scriptFile.getName());
+        logger.info("Disable: " + scriptFile.getName());
         execAll(this.disableFuns);
     }
 
     @Override
     public void reload() {
-        System.out.println("Reload: " + scriptFile.getName());
+        logger.info("Reload: " + scriptFile.getName());
         execAll(this.reloadFuns);
     }
 

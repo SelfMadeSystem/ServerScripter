@@ -13,6 +13,17 @@ import java.io.File;
 public class PythonScriptAddon extends ScriptAddon {
     public final Config config;
 
+    private static PythonScriptAddon INSTANCE;
+
+    {
+        INSTANCE = this;
+    }
+
+    public static PythonScriptAddon getInstance() {
+        if (INSTANCE == null) throw new IllegalStateException("INSTANCE is null.");
+        return INSTANCE;
+    }
+
     public PythonScriptAddon() {
         super("Python", "0.4.0", PyShell.getInstance());
         config = new Config(new File(ScripterLoader.getInstance().getConfigDir(), "Python-config.yml"));
@@ -27,20 +38,17 @@ public class PythonScriptAddon extends ScriptAddon {
 
     @Override
     public void load() {
-        System.out.println("[PyScripter] Loading");
         PyScriptLoader.getInstance().loadScripts();
         PyScriptLoader.getInstance().initScripts();
     }
 
     @Override
     public void enable() {
-        System.out.println("[PyScripter] Enabling");
         PyScriptLoader.getInstance().enableScripts();
     }
 
     @Override
     public void disable() {
-        System.out.println("[PyScripter] Disabling");
         PyScriptLoader.getInstance().disableScripts();
         if (config.getBoolean("Delete Class Cache")) {
             File[] listFiles = PyScriptLoader.getInstance().getScriptDirectory()
@@ -51,7 +59,6 @@ public class PythonScriptAddon extends ScriptAddon {
 
     @Override
     public void reload() {
-        System.out.println("[PyScripter] Reloading");
         config.forceReload();
         PyScriptLoader.getInstance().reloadScripts();
     }

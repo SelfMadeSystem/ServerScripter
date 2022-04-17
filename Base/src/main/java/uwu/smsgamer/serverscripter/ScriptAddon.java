@@ -6,6 +6,8 @@ import uwu.smsgamer.serverscripter.shell.Shell;
 
 import java.io.File;
 import java.util.Map;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 /**
  * An abstract class that addons must extend.
@@ -20,11 +22,13 @@ public abstract class ScriptAddon {
     protected final String name;
     protected final String version;
     protected final Shell<?> shell;
+    protected final Logger logger;
 
     public ScriptAddon(String name, String version, Shell<?> shell) {
         this.name = name;
         this.version = version;
         this.shell = shell;
+        logger = Logger.getLogger(name);
     }
 
     /**

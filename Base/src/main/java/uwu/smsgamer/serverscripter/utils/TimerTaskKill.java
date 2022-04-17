@@ -1,6 +1,7 @@
 package uwu.smsgamer.serverscripter.utils;
 
 import lombok.SneakyThrows;
+import uwu.smsgamer.serverscripter.ScripterLoader;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -54,32 +55,31 @@ class TimerTaskKill extends java.util.TimerTask {
             if (thread != null) {
                 // This is the only way to kill a thread that has no sleep() or wait() within it.
                 // Hopefully nothing's catching the exception.
-                Thread t = thread;
                 thread.stop();
                 if (thread.isAlive()) { // If it's still alive, it's probably stuck in a loop.
-                    System.out.println("Thread " + thread + " is still alive!");
+                    ScripterLoader.getLogger().warning("Thread " + thread + " is still alive!");
                     killTimer.schedule(new TimerTask() {
                         @Override
                         public void run() {
                             if (thread != null && thread.isAlive()) { // If it's still alive, kill it.
-                                System.out.println("Thread " + thread + " is still alive!");
+                                ScripterLoader.getLogger().warning("Thread " + thread + " is still alive!");
                                 thread.suspend(); // This is the last resort. Hopefully nothing bad happens.
                                 task.killed(true);
-                                System.out.println("Suspended thread " + thread + ".");
+                                ScripterLoader.getLogger().warning("Suspended thread " + thread + ".");
                                 thread.resume();
                                 // It absolutely breaks, but at this point, I don't care.
                                 // If someone really wants to catch ThreadDeath, they can. It's their fault.
                                 // Look, I tried.
                             } else {
                                 task.killed(false);
-                                System.out.println("Stopped task " + task);
+                                ScripterLoader.getLogger().info("Stopped task " + task);
                                 timer.makeTimer();
                             }
                         }
                     }, 250);
                 } else {
                     task.killed(false);
-                    System.out.println("Stopped task " + task);
+                    ScripterLoader.getLogger().info("Stopped task " + task);
                     timer.makeTimer();
                 }
             }

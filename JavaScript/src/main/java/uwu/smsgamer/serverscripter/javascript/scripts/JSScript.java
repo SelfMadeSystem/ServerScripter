@@ -1,23 +1,27 @@
 package uwu.smsgamer.serverscripter.javascript.scripts;
 
 import org.mozilla.javascript.*;
+import uwu.smsgamer.serverscripter.javascript.JSAddon;
 import uwu.smsgamer.serverscripter.scripts.Script;
 
 import java.io.*;
+import java.util.logging.Logger;
 
 public class JSScript extends Script {
     private final Context context;
     private final ScriptableObject scope;
+    private final Logger logger;
 
     public JSScript(File scriptFile) {
         super(scriptFile);
         context = ContextFactory.getGlobal().enterContext();
         scope = context.initStandardObjects();
+        logger = JSAddon.getInstance().getLogger();
     }
 
     @Override
     protected void loadScript() {
-        System.out.println("LoadScript: " + scriptFile.getName());
+        logger.info("LoadScript: " + scriptFile.getName());
         try {
             findScriptInfo();
         } catch (IOException e) {
@@ -96,7 +100,7 @@ public class JSScript extends Script {
 
     @Override
     protected void unloadScript() {
-        System.out.println("UnloadScript: " + scriptFile.getName());
+        logger.info("UnloadScript: " + scriptFile.getName());
         disable();
         synchronized (context) {
             Context.exit();
@@ -107,7 +111,7 @@ public class JSScript extends Script {
     public void init() {
         if (initialized) return;
         super.init();
-        System.out.println("Init: " + scriptFile.getName());
+        logger.info("Init: " + scriptFile.getName());
         try {
             String name = getScriptFile().getName();
             int i = name.lastIndexOf(".");
@@ -119,7 +123,7 @@ public class JSScript extends Script {
 
     @Override
     public void enable() {
-        System.out.println("Enable: " + scriptFile.getName());
+        logger.info("Enable: " + scriptFile.getName());
         Object obj = scope.get("onEnable", scope);
         if (obj == Scriptable.NOT_FOUND || obj == null) return;
         Function function = (Function) obj;
@@ -128,7 +132,7 @@ public class JSScript extends Script {
 
     @Override
     public void disable() {
-        System.out.println("Disable: " + scriptFile.getName());
+        logger.info("Disable: " + scriptFile.getName());
         Object obj = scope.get("onDisable", scope);
         if (obj == Scriptable.NOT_FOUND || obj == null) return;
         Function function = (Function) obj;
@@ -137,7 +141,7 @@ public class JSScript extends Script {
 
     @Override
     public void reload() {
-        System.out.println("Reload: " + scriptFile.getName());
+        logger.info("Reload: " + scriptFile.getName());
         Object obj = scope.get("onReload", scope);
         if (obj == Scriptable.NOT_FOUND || obj == null) return;
         Function function = (Function) obj;

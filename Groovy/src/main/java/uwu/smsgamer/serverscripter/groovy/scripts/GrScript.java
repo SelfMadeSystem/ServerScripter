@@ -3,15 +3,18 @@ package uwu.smsgamer.serverscripter.groovy.scripts;
 import groovy.lang.*;
 import groovy.util.*;
 import org.codehaus.groovy.control.*;
+import uwu.smsgamer.serverscripter.groovy.GroovyScriptAddon;
 
 import java.io.*;
 import java.net.*;
+import java.util.logging.Logger;
 
 public class GrScript extends uwu.smsgamer.serverscripter.scripts.Script {
     private static final CompilerConfiguration config;
     private final GroovyScriptEngine engine;
     private final Binding binding;
     private groovy.lang.Script script;
+    private Logger logger;
 
     static {
         config = new CompilerConfiguration();
@@ -20,6 +23,7 @@ public class GrScript extends uwu.smsgamer.serverscripter.scripts.Script {
 
     public GrScript(File scriptFile) {
         super(scriptFile);
+        logger = GroovyScriptAddon.getInstance().getLogger();
         try {
             engine = new GroovyScriptEngine(new URL[]{GrScriptLoader.getInstance().getScriptDirectory().toURI().toURL()});
             engine.setConfig(config);
@@ -31,7 +35,7 @@ public class GrScript extends uwu.smsgamer.serverscripter.scripts.Script {
 
     @Override
     protected void loadScript() {
-        System.out.println("LoadScript: " + scriptFile.getName());
+        logger.info("LoadScript: " + scriptFile.getName());
         File scriptFile = getScriptFile();
         try {
             findScriptInfo();
@@ -112,7 +116,7 @@ public class GrScript extends uwu.smsgamer.serverscripter.scripts.Script {
 
     @Override
     protected void unloadScript() {
-        System.out.println("UnloadScript: " + scriptFile.getName());
+        logger.info("UnloadScript: " + scriptFile.getName());
         disable();
         script = null;
     }
@@ -121,13 +125,13 @@ public class GrScript extends uwu.smsgamer.serverscripter.scripts.Script {
     public void init() {
         if (initialized) return;
         super.init();
-        System.out.println("Init: " + scriptFile.getName());
+        logger.info("Init: " + scriptFile.getName());
         script.run();
     }
 
     @Override
     public void enable() {
-        System.out.println("Enable: " + scriptFile.getName());
+        logger.info("Enable: " + scriptFile.getName());
         try {
             script.invokeMethod("onEnable", null);
         } catch (MissingMethodException ignored) {
@@ -136,7 +140,7 @@ public class GrScript extends uwu.smsgamer.serverscripter.scripts.Script {
 
     @Override
     public void disable() {
-        System.out.println("Disable: " + scriptFile.getName());
+        logger.info("Disable: " + scriptFile.getName());
         try {
             script.invokeMethod("onDisable", null);
         } catch (MissingMethodException ignored) {
@@ -145,7 +149,7 @@ public class GrScript extends uwu.smsgamer.serverscripter.scripts.Script {
 
     @Override
     public void reload() {
-        System.out.println("Reload: " + scriptFile.getName());
+        logger.info("Reload: " + scriptFile.getName());
         try {
             script.invokeMethod("onReload", null);
         } catch (MissingMethodException ignored) {

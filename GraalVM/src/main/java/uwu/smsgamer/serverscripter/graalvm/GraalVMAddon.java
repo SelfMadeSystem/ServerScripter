@@ -23,9 +23,9 @@ public class GraalVMAddon extends ScriptAddon {
     }
 
     public static GraalVMAddon getInstance() {
+        if (INSTANCE == null) throw new IllegalStateException("INSTANCE is null.");
         return INSTANCE;
     }
-
 
     public GraalVMAddon() {
         super("GraalVM", "0.4.0", GVMShell.getInstance());
@@ -59,16 +59,16 @@ public class GraalVMAddon extends ScriptAddon {
             }
             if (!missingLanguages.isEmpty()) {
                 if (missingLanguages.contains("ruby")) {
-                    System.out.println("[GVMScripter] Ruby is not currently supported.");
+                    logger.info("[GraalVMAddon] Ruby is not currently supported.");
                     missingLanguages.remove("ruby");
                 }
                 if (missingLanguages.contains("wasm")) {
-                    System.out.println("[GVMScripter] WebAssembly is not currently supported.");
+                    logger.info("[GraalVMAddon] WebAssembly is not currently supported.");
                     missingLanguages.remove("wasm");
                 }
                 if (!missingLanguages.isEmpty()) {
-                    System.out.println("[GVMScripter] The following languages are missing: " + missingLanguages);
-                    System.out.println("[GVMScripter] Installed and supported languages: " + installedLanguages);
+                    logger.info("[GraalVMAddon] The following languages are missing: " + missingLanguages);
+                    logger.info("[GraalVMAddon] Installed and supported languages: " + installedLanguages);
                 }
             }
             availableLanguages.removeIf(lang -> !installedLanguages.contains(lang));
@@ -79,28 +79,22 @@ public class GraalVMAddon extends ScriptAddon {
 
     @Override
     public void load() {
-        System.out.println("[GVMScripter] Loading");
-        config.getStringList("Languages").forEach(lang -> {
-        });
         GVMScriptLoader.getInstance().loadScripts();
         GVMScriptLoader.getInstance().initScripts();
     }
 
     @Override
     public void enable() {
-        System.out.println("[GVMScripter] Enabling");
         GVMScriptLoader.getInstance().enableScripts();
     }
 
     @Override
     public void disable() {
-        System.out.println("[GVMScripter] Disabling");
         GVMScriptLoader.getInstance().disableScripts();
     }
 
     @Override
     public void reload() {
-        System.out.println("[GVMScripter] Reloading");
         GVMScriptLoader.getInstance().reloadScripts();
     }
 }

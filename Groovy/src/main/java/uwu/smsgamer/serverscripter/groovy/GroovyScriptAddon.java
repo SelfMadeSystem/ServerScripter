@@ -23,7 +23,7 @@ public class GroovyScriptAddon extends ScriptAddon {
     }
 
     public static GroovyScriptAddon getInstance() {
-        if (INSTANCE == null) new GroovyScriptAddon();
+        if (INSTANCE == null) throw new IllegalStateException("Instance not initialized");
         return INSTANCE;
     }
 
@@ -36,20 +36,17 @@ public class GroovyScriptAddon extends ScriptAddon {
 
     @Override
     public void load() {
-        System.out.println("[GrScripter] Loading");
         GrScriptLoader.getInstance().loadScripts();
         GrScriptLoader.getInstance().initScripts();
     }
 
     @Override
     public void enable() {
-        System.out.println("[GrScripter] Enabling");
         GrScriptLoader.getInstance().enableScripts();
     }
 
     @Override
     public void disable() {
-        System.out.println("[GrScripter] Disabling");
         GrScriptLoader.getInstance().disableScripts();
         if (config.getBoolean("Delete Class Cache")) {
             File[] listFiles = GrScriptLoader.getInstance().getScriptDirectory()
@@ -60,7 +57,6 @@ public class GroovyScriptAddon extends ScriptAddon {
 
     @Override
     public void reload() {
-        System.out.println("[GrScripter] Reloading");
         GrScriptLoader.getInstance().reloadScripts();
     }
 }

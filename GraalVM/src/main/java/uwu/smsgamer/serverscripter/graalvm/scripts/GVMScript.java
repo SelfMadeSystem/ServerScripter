@@ -12,6 +12,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Logger;
 
 // TODO: Fix ruby support
 // TODO: Figure out how LLVM works so we can use it
@@ -21,9 +22,11 @@ public class GVMScript extends Script {
     private final Source source;
     private final Value polyglotBindings;
     private final Value languageBindings;
+    private final Logger logger;
 
     public GVMScript(File scriptFile, String language) throws IOException {
         super(scriptFile);
+        logger = GraalVMAddon.getInstance().getLogger();
         this.language = language;
         context = Context.newBuilder()
                 .allowAllAccess(true)
@@ -86,7 +89,7 @@ public class GVMScript extends Script {
                                 t.printStackTrace();
                             }
                         } else {
-                            System.out.println("Function " + member + " is not executable! File: " + scriptFile.getName());
+                            logger.info("Function " + member + " is not executable! File: " + scriptFile.getName());
                         }
                     }
                 }
@@ -97,25 +100,25 @@ public class GVMScript extends Script {
     @Override
     public void init() {
         super.init();
-        System.out.println("Init: " + scriptFile.getName());
+        logger.info("Init: " + scriptFile.getName());
         context.eval(source);
     }
 
     @Override
     public void enable() {
-        System.out.println("EnableScript: " + scriptFile.getName());
+        logger.info("EnableScript: " + scriptFile.getName());
         tryExecuteFunctions(onEnableFunctionNames);
     }
 
     @Override
     public void disable() {
-        System.out.println("DisableScript: " + scriptFile.getName());
+        logger.info("DisableScript: " + scriptFile.getName());
         tryExecuteFunctions(onDisableFunctionNames);
     }
 
     @Override
     public void reload() {
-        System.out.println("ReloadScript: " + scriptFile.getName());
+        logger.info("ReloadScript: " + scriptFile.getName());
         tryExecuteFunctions(onReloadFunctionNames);
     }
 
