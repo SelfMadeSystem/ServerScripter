@@ -5,6 +5,7 @@ import uwu.smsgamer.serverscripter.senapi.utils.APlayerOfSomeSort;
 import uwu.smsgamer.serverscripter.senapi.utils.ChatColor;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,6 +34,7 @@ public abstract class SCommand {
     }
 
     public abstract void execute(APlayerOfSomeSort aPlayerOfSomeSort, String alias, String[] args);
+
     public abstract List<String> getTabCompletions(APlayerOfSomeSort aPlayerOfSomeSort, String alias, String[] args);
 
     public void sendUsage(APlayerOfSomeSort aPlayerOfSomeSort, String alias) {
@@ -76,5 +78,15 @@ public abstract class SCommand {
         }
 
         return false;
+    }
+
+    public static List<String> filterCompletions(List<String> completions, String last) {
+        Collections.sort(completions);
+        String lower = last.toLowerCase();
+        List<String> newCompletions = completions.stream().filter(s -> s.toLowerCase().startsWith(lower)).collect(Collectors.toList());
+        if (newCompletions.isEmpty()) {
+            return completions;
+        }
+        return newCompletions;
     }
 }

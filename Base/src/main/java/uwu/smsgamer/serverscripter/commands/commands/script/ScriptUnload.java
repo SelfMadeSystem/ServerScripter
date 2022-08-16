@@ -5,6 +5,7 @@ import uwu.smsgamer.serverscripter.senapi.config.ColouredStringVal;
 import uwu.smsgamer.serverscripter.senapi.utils.APlayerOfSomeSort;
 import uwu.smsgamer.serverscripter.senapi.utils.ChatUtils;
 
+import java.util.Collections;
 import java.util.List;
 
 public class ScriptUnload extends ScriptCmd {
@@ -54,6 +55,9 @@ public class ScriptUnload extends ScriptCmd {
 
     @Override
     public List<String> getTabCompletions(APlayerOfSomeSort aPlayerOfSomeSort, String alias, String[] args) {
-        return null;
+        if (args.length == 3) {
+            return getScripts(args[0]);
+        }
+        return Collections.emptyList();
     }
 }

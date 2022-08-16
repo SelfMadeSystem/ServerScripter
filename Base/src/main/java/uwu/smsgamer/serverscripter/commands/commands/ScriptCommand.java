@@ -47,21 +47,20 @@ public class ScriptCommand extends SCommand {
         }
         cmd.execute(aPlayerOfSomeSort, alias, args);
     }
-
     @Override
     public List<String> getTabCompletions(APlayerOfSomeSort aPlayerOfSomeSort, String alias, String[] args) {
         if (args.length == 1) {
-            return ScripterLoader.getInstance().getScriptsLoaders()
-                    .stream().map(ScriptsLoader::getName).collect(Collectors.toList());
+            return filterCompletions(ScripterLoader.getInstance().getScriptsLoaders()
+                    .stream().map(ScriptsLoader::getName).collect(Collectors.toList()), args[0]);
         }
         if (args.length == 2) {
-            return getCommandNames();
+            return filterCompletions(getCommandNames(), args[1]);
         }
         ScriptCmd cmd = commands.get(args[1]);
         if (cmd == null) {
             return Collections.emptyList();
         }
-        return cmd.getTabCompletions(aPlayerOfSomeSort, alias, args);
+        return filterCompletions(cmd.getTabCompletions(aPlayerOfSomeSort, alias, args), args[args.length - 1]);
     }
 
     @Override

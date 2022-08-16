@@ -7,6 +7,7 @@ import uwu.smsgamer.serverscripter.senapi.utils.APlayerOfSomeSort;
 import uwu.smsgamer.serverscripter.senapi.utils.ChatUtils;
 
 import java.io.File;
+import java.util.Collections;
 import java.util.List;
 
 public class ScriptLoad extends ScriptCmd {
@@ -84,6 +85,6 @@ public class ScriptLoad extends ScriptCmd {
 
     @Override
     public List<String> getTabCompletions(APlayerOfSomeSort aPlayerOfSomeSort, String alias, String[] args) {
-        return null;
+        return Collections.emptyList();
     }
 }
