@@ -14,5 +14,5 @@ dependencies {
 
     compile group:'org.python', name:'jython-standalone', version:'2.7.2'
 
-    compileOnly 'com.github.simplix-softworks:SimplixStorage:3.2.2'
+    compileOnly 'com.github.simplix-softworks:SimplixStorage:3.2.5'
 }

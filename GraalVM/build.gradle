@@ -14,7 +14,10 @@ configurations {
     extraLibs
 }
 
-ext.graalVersion = '22.0.0.2'
+sourceCompatibility = '11'
+targetCompatibility = '11'
+
+ext.graalVersion = '22.2.0'
 
 dependencies {
     implementation project(":Base")
@@ -24,7 +27,7 @@ dependencies {
     implementation "org.graalvm.truffle:truffle-api:$graalVersion"
     implementation "org.graalvm.truffle:truffle-dsl-processor:$graalVersion"
 
-    compileOnly 'com.github.simplix-softworks:SimplixStorage:3.2.2'
+    compileOnly 'com.github.simplix-softworks:SimplixStorage:3.2.5'
 }
 
 

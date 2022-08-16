@@ -13,7 +13,7 @@
       <profile name="Gradle Imported" enabled="true">
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.22/9c08ea24c6eb714e2d6170e8122c069a0ba9aacf/lombok-1.18.22.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.24/13a394eed5c4f9efb2a6d956e2086f1d81e857d9/lombok-1.18.24.jar" />
         </processorPath>
         <module name="ServerScripter.Base.test" />
         <module name="ServerScripter.Groovy.test" />
@@ -27,15 +27,31 @@
       <profile name="Gradle Imported" enabled="true">
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.22/9c08ea24c6eb714e2d6170e8122c069a0ba9aacf/lombok-1.18.22.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.velocitypowered/velocity-api/3.0.1/4c71619b0dce399c1f64a1974da19fafcefa3e50/velocity-api-3.0.1.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.24/13a394eed5c4f9efb2a6d956e2086f1d81e857d9/lombok-1.18.24.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spigotmc/plugin-annotations/1.2.3-SNAPSHOT/71b22cc99206a6b89b898220c2dd34c2c3473530/plugin-annotations-1.2.3-SNAPSHOT.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.bukkit/bukkit/1.13-R0.1-SNAPSHOT/ebcbed4b5c0a0e12562b9503eeee316a2b73c401/bukkit-1.13-R0.1-SNAPSHOT.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-lang/commons-lang/2.6/ce1edb914c94ebc388f086c6827e8bdeec71ac2/commons-lang-2.6.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.googlecode.json-simple/json-simple/1.1.1/c9ad4a0850ab676c5c64461a05ca524cdfff59f1/json-simple-1.1.1.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/21.0/3a3d111be1be1b745edfa7d91678a12d7ed38709/guava-21.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.8.0/c4ba5371a29ac9b2ad6129b1d39ea38750043eff/gson-2.8.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.yaml/snakeyaml/1.21/18775fdda48574784f40b47bf478ab0593f92e4d/snakeyaml-1.21.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/junit/junit/4.10/e4f1766ce7404a08f45d859fb9c226fc9e41a861/junit-4.10.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-core/1.1/860340562250678d1a344907ac75754e259cdb14/hamcrest-core-1.1.jar" />
+        </processorPath>
+        <module name="ServerScripter.Spigot.main" />
+      </profile>
+      <profile name="Gradle Imported" enabled="true">
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.24/13a394eed5c4f9efb2a6d956e2086f1d81e857d9/lombok-1.18.24.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.velocitypowered/velocity-api/3.1.1/82f54eae5d50f9390947c2623c6d6fe84e6fb0/velocity-api-3.1.1.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.moandjiezana.toml/toml4j/0.7.2/a03337911d0bd2c40932aca3946edb30d0e7d0c/toml4j-0.7.2.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/configurate-gson/3.7.2/431733e80d7dfc62b37962c2723bba5c996548f/configurate-gson-3.7.2.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/adventure-text-serializer-legacy/4.8.1/cf26c70c198632f962f2b5f1027eec55e03d14bb/adventure-text-serializer-legacy-4.8.1.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/adventure-text-serializer-plain/4.8.1/d45e1183eff735e16a227edba829fdb55baf8151/adventure-text-serializer-plain-4.8.1.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/adventure-api/4.8.1/76062b4b2a836bebae09003599b4c032702731f0/adventure-api-4.8.1.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/adventure-key/4.8.1/229c894238d3969b3ae47677557e6a8bf8f4da83/adventure-key-4.8.1.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/adventure-text-serializer-gson/4.8.1/8485dfb54328c94dabe8421c3c65648aa255191d/adventure-text-serializer-gson-4.8.1.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/adventure-text-serializer-legacy/4.9.3/9e7811601e508e0af6d53e35eab3588ee607bff6/adventure-text-serializer-legacy-4.9.3.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/adventure-text-serializer-plain/4.9.3/61d39db7e84c11d91be551cb9bc50c1aa7e64983/adventure-text-serializer-plain-4.9.3.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/adventure-api/4.9.3/b0054b3a4d144f09962fe72abc746191e7f931a2/adventure-api-4.9.3.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/adventure-key/4.9.3/1cf3ecba345cf8b810a00b941c8f14ecc6e5df16/adventure-key-4.9.3.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/adventure-text-serializer-gson/4.9.3/141df0329e00b791bcc8b2921cd715ac7d506bbe/adventure-text-serializer-gson-4.9.3.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.8.8/431fc3cbc0ff81abdbfde070062741089c3ba874/gson-2.8.8.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/configurate-hocon/3.7.2/a5e49f57ae8f5e61dbae48a158a28343e7d6f707/configurate-hocon-3.7.2.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/configurate-yaml/3.7.2/a0c3eec370aa9bdec3f450f842edcb03f6d42be2/configurate-yaml-3.7.2.jar" />
@@ -52,28 +68,12 @@
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/aopalliance/aopalliance/1.0/235ba8b489512805ac13a8f9ea77a1ca5ebe3e8/aopalliance-1.0.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.typesafe/config/1.4.0/a8b341fe81552834edc231193afd6f56a96f0eff/config-1.4.0.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.yaml/snakeyaml/1.26/a78a8747147d2c5807683e76ec2b633e95c14fe9/snakeyaml-1.26.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/examination-string/1.1.0/9a6f6f9e10ca3ff3ce46db59845aae63f9d16fd8/examination-string-1.1.0.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/examination-api/1.1.0/d7b5e3f8edda2b64c37bc0059e265cc1f6e08322/examination-api-1.1.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/examination-string/1.3.0/6f34afef5c54ccce4996bc321abf77518b55b4bd/examination-string-1.3.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/examination-api/1.3.0/8a2d185275307f1e2ef2adf7152b9a0d1d44c30b/examination-api-1.3.0.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.guava/failureaccess/1.0.1/1dcf1de382a0bf95a3d8b0849546c88bac1292c9/failureaccess-1.0.1.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.guava/listenablefuture/9999.0-empty-to-avoid-conflict-with-guava/b421526c5f297295adef1c886e5246c39d4ac629/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar" />
         </processorPath>
         <module name="ServerScripter.Velocity.main" />
-      </profile>
-      <profile name="Gradle Imported" enabled="true">
-        <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="false">
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.22/9c08ea24c6eb714e2d6170e8122c069a0ba9aacf/lombok-1.18.22.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spigotmc/plugin-annotations/1.2.3-SNAPSHOT/55c7e44a745bdb4b2679db08d734042b17bff1d6/plugin-annotations-1.2.3-SNAPSHOT.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.bukkit/bukkit/1.13-R0.1-SNAPSHOT/ebcbed4b5c0a0e12562b9503eeee316a2b73c401/bukkit-1.13-R0.1-SNAPSHOT.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-lang/commons-lang/2.6/ce1edb914c94ebc388f086c6827e8bdeec71ac2/commons-lang-2.6.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.googlecode.json-simple/json-simple/1.1.1/c9ad4a0850ab676c5c64461a05ca524cdfff59f1/json-simple-1.1.1.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/21.0/3a3d111be1be1b745edfa7d91678a12d7ed38709/guava-21.0.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.8.0/c4ba5371a29ac9b2ad6129b1d39ea38750043eff/gson-2.8.0.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.yaml/snakeyaml/1.21/18775fdda48574784f40b47bf478ab0593f92e4d/snakeyaml-1.21.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/junit/junit/4.10/e4f1766ce7404a08f45d859fb9c226fc9e41a861/junit-4.10.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-core/1.1/860340562250678d1a344907ac75754e259cdb14/hamcrest-core-1.1.jar" />
-        </processorPath>
-        <module name="ServerScripter.Spigot.main" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8" />

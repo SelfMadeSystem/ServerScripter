@@ -23,7 +23,7 @@ configurations {
 dependencies {
     implementation project(":Base")
 
-    implementation group: 'org.mozilla', name: 'rhino', version: '1.7.13'
+    implementation group: 'org.mozilla', name: 'rhino', version: '1.7.14'
 
     /*implementation "org.graalvm.sdk:graal-sdk:$graalVersion"
     implementation "org.graalvm.js:js:$graalVersion"

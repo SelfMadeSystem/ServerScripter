@@ -29,7 +29,7 @@ public class ScriptList extends ScriptCmd {
             ChatUtils.sendMessage(aPlayerOfSomeSort, help,
                     "%alias%", alias);
         } else {
-            String lang = args[1];
+            String lang = args[0];
             List<String> scripts = getScripts(lang);
             if (scripts.isEmpty()) {
                 ChatUtils.sendMessage(aPlayerOfSomeSort, noScripts,

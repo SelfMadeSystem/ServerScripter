@@ -4,12 +4,11 @@ import uwu.smsgamer.serverscripter.ScripterLoader;
 import uwu.smsgamer.serverscripter.commands.CommandManager;
 import uwu.smsgamer.serverscripter.commands.SCommand;
 import uwu.smsgamer.serverscripter.commands.commands.script.*;
+import uwu.smsgamer.serverscripter.scripts.ScriptsLoader;
 import uwu.smsgamer.serverscripter.senapi.utils.APlayerOfSomeSort;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class ScriptCommand extends SCommand {
     private final HashMap<String, ScriptCmd> commands = new HashMap<>();
@@ -52,7 +51,8 @@ public class ScriptCommand extends SCommand {
     @Override
     public List<String> getTabCompletions(APlayerOfSomeSort aPlayerOfSomeSort, String alias, String[] args) {
         if (args.length == 1) {
-            return new ArrayList<>(ScripterLoader.getInstance().getScriptsLoadersByName().keySet());
+            return ScripterLoader.getInstance().getScriptsLoaders()
+                    .stream().map(ScriptsLoader::getName).collect(Collectors.toList());
         }
         if (args.length == 2) {
             return getCommandNames();

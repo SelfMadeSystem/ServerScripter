@@ -37,7 +37,7 @@ dependencies {
 
     compileOnly 'net.md-5:bungeecord-api:1.18-R0.1-SNAPSHOT'
 
-    compileOnly 'com.github.simplix-softworks:SimplixStorage:3.2.2'
+    compileOnly 'com.github.simplix-softworks:SimplixStorage:3.2.5'
 
     compileOnly 'org.projectlombok:lombok:1.18.12'
     annotationProcessor 'org.projectlombok:lombok:1.18.12'

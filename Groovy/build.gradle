@@ -17,16 +17,16 @@ configurations {
 dependencies {
     implementation project(":Base")
 
-    implementation group: 'org.codehaus.groovy', name: 'groovy-all', version: '3.0.9'
-    extraLibs group: 'org.codehaus.groovy', name: 'groovy-all', version: '3.0.9'
+    implementation group: 'org.codehaus.groovy', name: 'groovy-all', version: '3.0.12'
+    extraLibs group: 'org.codehaus.groovy', name: 'groovy-all', version: '3.0.12'
 
-    compileOnly 'org.projectlombok:lombok:1.18.22'
-    annotationProcessor 'org.projectlombok:lombok:1.18.22'
+    compileOnly 'org.projectlombok:lombok:1.18.24'
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'
 
-    testCompileOnly 'org.projectlombok:lombok:1.18.22'
-    testAnnotationProcessor 'org.projectlombok:lombok:1.18.22'
+    testCompileOnly 'org.projectlombok:lombok:1.18.24'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.24'
 
-    compileOnly 'com.github.simplix-softworks:SimplixStorage:3.2.2'
+    compileOnly 'com.github.simplix-softworks:SimplixStorage:3.2.5'
 }
 
 jar {

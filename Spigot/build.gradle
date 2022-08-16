@@ -37,13 +37,13 @@ dependencies {
 
     compileOnly 'org.spigotmc:spigot-api:1.12.2-R0.1-SNAPSHOT'
 
-    compileOnly 'com.github.simplix-softworks:SimplixStorage:3.2.2'
+    compileOnly 'com.github.simplix-softworks:SimplixStorage:3.2.5'
 
-    compileOnly 'org.projectlombok:lombok:1.18.22'
-    annotationProcessor 'org.projectlombok:lombok:1.18.22'
+    compileOnly 'org.projectlombok:lombok:1.18.24'
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'
 
-    testCompileOnly 'org.projectlombok:lombok:1.18.22'
-    testAnnotationProcessor 'org.projectlombok:lombok:1.18.22'
+    testCompileOnly 'org.projectlombok:lombok:1.18.24'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.24'
 
     compileOnly 'org.spigotmc:plugin-annotations:1.2.3-SNAPSHOT'
     annotationProcessor 'org.spigotmc:plugin-annotations:1.2.3-SNAPSHOT'

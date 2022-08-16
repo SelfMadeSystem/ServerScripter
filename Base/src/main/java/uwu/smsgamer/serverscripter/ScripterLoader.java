@@ -2,17 +2,14 @@ package uwu.smsgamer.serverscripter;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import de.leonhard.storage.Config;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 import uwu.smsgamer.serverscripter.lilliputian.*;
-import uwu.smsgamer.serverscripter.scripts.Script;
 import uwu.smsgamer.serverscripter.scripts.ScriptsLoader;
 import uwu.smsgamer.serverscripter.shell.Shell;
 
 import java.io.*;
 import java.lang.reflect.*;
-import java.net.*;
 import java.util.*;
 import java.util.function.Function;
 import java.util.jar.*;
@@ -101,8 +98,7 @@ public final class ScripterLoader {
 
         for (File file : addonsDir.listFiles()) {
             if (file.getName().endsWith(".jar")) {
-                try {
-                    JarFile jarFile = new JarFile(file);
+                try (JarFile jarFile = new JarFile(file)) {
                     ZipEntry entry = jarFile.getEntry("scripter.json");
 
                     if (entry == null) throw new Exception("scripter.json does not exist. Jar: " + jarFile.getName());
@@ -126,7 +122,7 @@ public final class ScripterLoader {
                     if (!ScriptAddon.class.isAssignableFrom(mainClass))
                         throw new Exception("Main class is not ScriptAddon. Main class: " + mainClass.getName());
 
-                    ScriptAddon addon = (ScriptAddon) mainClass.newInstance();
+                    ScriptAddon addon = (ScriptAddon) mainClass.getDeclaredConstructor().newInstance();
 
                     if (addon.getName() == null || addon.getName().length() == 0)
                         throw new Exception("Name of addon not initialised. Jar: " + jarFile.getName());
@@ -228,8 +224,8 @@ public final class ScripterLoader {
         }
     }
 
-    public <S extends Script> void addScriptsLoader(ScriptsLoader<?> scriptsLoader) {
+    public void addScriptsLoader(ScriptsLoader<?> scriptsLoader) {
         scriptsLoaders.add(scriptsLoader);
-        scriptsLoadersByName.put(scriptsLoader.getName(), scriptsLoader);
+        scriptsLoadersByName.put(scriptsLoader.getName().toLowerCase(), scriptsLoader);
     }
 }

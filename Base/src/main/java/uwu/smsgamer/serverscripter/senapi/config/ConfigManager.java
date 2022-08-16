@@ -10,6 +10,7 @@
 package uwu.smsgamer.serverscripter.senapi.config;
 
 import de.leonhard.storage.*;
+import de.leonhard.storage.internal.settings.DataType;
 import de.leonhard.storage.internal.settings.ReloadSettings;
 import uwu.smsgamer.serverscripter.ScripterLoader;
 
@@ -156,8 +157,10 @@ public class ConfigManager {
 
     public void loadConfig(String name, File file) {
         checkDataFolder();
-        Config config = LightningBuilder.fromFile(file).createConfig();
-        config.setReloadSettings(ReloadSettings.MANUALLY);
+        Config config = SimplixBuilder.fromFile(file)
+                .setDataType(DataType.UNSORTED)
+                .setReloadSettings(ReloadSettings.MANUALLY)
+                .createConfig();
         configs.remove(config.getName());
         configs.put(name, config);
     }
